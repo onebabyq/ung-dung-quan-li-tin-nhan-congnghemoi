@@ -1,0 +1,1 @@
+Đây là folder của Thy
