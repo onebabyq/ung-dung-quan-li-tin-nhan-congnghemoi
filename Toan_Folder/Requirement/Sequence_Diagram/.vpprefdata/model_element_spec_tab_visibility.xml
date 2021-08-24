@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelElementSpecTabVisibility version="20191031">
+	<Type id="Activity">
+		<Tab id="Parameters"/>
+	</Type>
+	<Type id="ActivityParameterNode">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="ActivitySwimlane2">
+		<Tab id="Horizontal Partitions"/>
+		<Tab id="Vertical Partitions"/>
+	</Type>
+	<Type id="Actor">
+		<Tab id="Goals"/>
+	</Type>
+	<Type id="Association">
+		<Tab id="ORM Association Detail"/>
+	</Type>
+	<Type id="AssociationEnd">
+		<Tab id="ORM Association End Detail"/>
+		<Tab id="Qualifier"/>
+	</Type>
+	<Type id="Attribute">
+		<Tab id="ORM Attribute Detail"/>
+	</Type>
+	<Type id="BPActivityResource">
+		<Tab id="Parameter Bindings"/>
+	</Type>
+	<Type id="BPChoreographySubProcess">
+		<Tab id="Participants"/>
+		<Tab id="Procedures"/>
+	</Type>
+	<Type id="BPChoreographyTask">
+		<Tab id="Message Flows"/>
+		<Tab id="Participants"/>
+		<Tab id="Procedures"/>
+	</Type>
+	<Type id="BPCorrelationKey">
+		<Tab id="Correlation Properties"/>
+	</Type>
+	<Type id="BPCorrelationProperty">
+		<Tab id="Retrieval Expressions"/>
+	</Type>
+	<Type id="BPCorrelationPropertyRetrievalExpression">
+		<Tab id="Retrieval Expressions"/>
+	</Type>
+	<Type id="BPELAssignmentFromExpression">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELAssignmentFromPartnerLink">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELAssignmentFromProperty">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELAssignmentFromVariable">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELAssignmentToPartnerLink">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELAssignmentToProperty">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELAssignmentToVariable">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELCorrelation">
+		<Tab id="BPEL"/>
+	</Type>
+	<Type id="BPELCorrelationSet">
+		<Tab id="Properties"/>
+	</Type>
+	<Type id="BPGatewayAND">
+		<Tab id="Gates"/>
+	</Type>
+	<Type id="BPGatewayComplex">
+		<Tab id="Gates"/>
+	</Type>
+	<Type id="BPGatewayEventBasedXOR">
+		<Tab id="Gates"/>
+	</Type>
+	<Type id="BPGatewayOR">
+		<Tab id="Gates"/>
+	</Type>
+	<Type id="BPHumanPerformer">
+		<Tab id="Parameter Bindings"/>
+	</Type>
+	<Type id="BPInput">
+		<Tab id="Inputs"/>
+	</Type>
+	<Type id="BPManualTask">
+		<Tab id="Performers"/>
+	</Type>
+	<Type id="BPMultipleResult">
+		<Tab id="Results"/>
+	</Type>
+	<Type id="BPMultipleTrigger">
+		<Tab id="Triggers"/>
+	</Type>
+	<Type id="BPOutput">
+		<Tab id="Outputs"/>
+	</Type>
+	<Type id="BPParallelMultipleTrigger">
+		<Tab id="Triggers"/>
+	</Type>
+	<Type id="BPPerformer">
+		<Tab id="Parameter Bindings"/>
+	</Type>
+	<Type id="BPPotentialOwner">
+		<Tab id="Parameter Bindings"/>
+	</Type>
+	<Type id="BPResource">
+		<Tab id="Parameters"/>
+	</Type>
+	<Type id="BPSubProcess">
+		<Tab id="Procedures"/>
+	</Type>
+	<Type id="BPTask">
+		<Tab id="Procedures"/>
+	</Type>
+	<Type id="BPUserTask">
+		<Tab id="Performers"/>
+	</Type>
+	<Type id="BusinessRuleGroup">
+		<Tab id="Business Rules"/>
+	</Type>
+	<Type id="CMMNCase">
+		<Tab id="Case File Items"/>
+	</Type>
+	<Type id="CMMNCaseFile">
+		<Tab id="Case File Items"/>
+	</Type>
+	<Type id="CMMNCaseFileItem">
+		<Tab id="Child File Items"/>
+		<Tab id="Referenced File Items"/>
+	</Type>
+	<Type id="CMMNCaseFileItemDefinition">
+		<Tab id="Properties"/>
+	</Type>
+	<Type id="CMMNCasePlanModel">
+		<Tab id="Sentries"/>
+	</Type>
+	<Type id="CMMNCaseTaskDiscretionaryItem">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CMMNDecisionTaskDiscretionaryItem">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CMMNGeneralTaskDiscretionaryItem">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CMMNHumanTaskDiscretionaryItem">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CMMNPlanFragment">
+		<Tab id="Sentries"/>
+	</Type>
+	<Type id="CMMNPlanFragmentDiscretionaryItem">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CMMNPlanningTable">
+		<Tab id="Applicability Rules"/>
+	</Type>
+	<Type id="CMMNProcessTaskDiscretionaryItem">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CMMNSentry">
+		<Tab id="On Parts"/>
+	</Type>
+	<Type id="CMMNStage">
+		<Tab id="Sentries"/>
+	</Type>
+	<Type id="CMMNStageDiscretionaryItem">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CMMNUserEventListener">
+		<Tab id="Authorized Roles"/>
+	</Type>
+	<Type id="CallConversation">
+		<Tab id="Participant Associations"/>
+	</Type>
+	<Type id="CentralBufferNode">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="Class">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+		<Tab id="Receptions"/>
+	</Type>
+	<Type id="Clause">
+		<Tab id="Body"/>
+		<Tab id="Test"/>
+	</Type>
+	<Type id="Collaboration2">
+		<Tab id="Attributes"/>
+	</Type>
+	<Type id="CombinedFragment">
+		<Tab id="Covered LifeLines"/>
+		<Tab id="Interaction Operands"/>
+	</Type>
+	<Type id="Component">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="ConditionalNode">
+		<Tab id="Clauses"/>
+	</Type>
+	<Type id="Connector">
+		<Tab id="Redefined Connectors"/>
+	</Type>
+	<Type id="ConstraintElement">
+		<Tab id="Constrained Elements"/>
+	</Type>
+	<Type id="Continuation">
+		<Tab id="Covered LifeLines"/>
+	</Type>
+	<Type id="ControlFlow">
+		<Tab id="Duration Constraint"/>
+	</Type>
+	<Type id="ConversationCommunication">
+		<Tab id="Correlation Keys"/>
+		<Tab id="Message Flows"/>
+	</Type>
+	<Type id="DBForeignKey">
+		<Tab id="Foreign Key Column Mapping"/>
+	</Type>
+	<Type id="DBTable">
+		<Tab id="Columns"/>
+		<Tab id="Constraints"/>
+		<Tab id="Indices"/>
+	</Type>
+	<Type id="DBTableDomain">
+		<Tab id="Columns"/>
+		<Tab id="Constraints"/>
+		<Tab id="Indices"/>
+	</Type>
+	<Type id="DBTrigger">
+		<Tab id="Create Statement"/>
+	</Type>
+	<Type id="DBTriggerContainer">
+		<Tab id="Triggers"/>
+	</Type>
+	<Type id="DBView">
+		<Tab id="Columns"/>
+		<Tab id="Create Statement"/>
+	</Type>
+	<Type id="DMRuleFamily">
+		<Tab id="Conditions"/>
+		<Tab id="Sub-Conditions"/>
+	</Type>
+	<Type id="DataStoreNode">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="DeploymentSpecification">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="EnumerationLiteral">
+		<Tab id="Slots"/>
+	</Type>
+	<Type id="Event">
+		<Tab id="Parameters"/>
+	</Type>
+	<Type id="ExceptionHandler">
+		<Tab id="Exception Types"/>
+	</Type>
+	<Type id="ExpansionNode">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="FinalState2">
+		<Tab id="Deferrable Triggers"/>
+	</Type>
+	<Type id="Frame">
+		<Tab id="Gates"/>
+	</Type>
+	<Type id="GeneralizationSet">
+		<Tab id="Generalizations"/>
+	</Type>
+	<Type id="Glossary">
+		<Tab id="Attributes"/>
+	</Type>
+	<Type id="InformationFlow">
+		<Tab id="Conveyed"/>
+	</Type>
+	<Type id="InformationItem">
+		<Tab id="Represented"/>
+	</Type>
+	<Type id="InputPin">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="InstanceSpecification">
+		<Tab id="Classifiers"/>
+		<Tab id="Slots"/>
+	</Type>
+	<Type id="Interaction">
+		<Tab id="Duration Constraint"/>
+	</Type>
+	<Type id="InteractionDiagramDurationConstraint">
+		<Tab id="Constrained Elements"/>
+	</Type>
+	<Type id="InteractionLifeLine">
+		<Tab id="Attribute Links"/>
+	</Type>
+	<Type id="InteractionLifeLineLink">
+		<Tab id="Messages"/>
+	</Type>
+	<Type id="InteractionOccurrence">
+		<Tab id="Covered LifeLines"/>
+		<Tab id="Duration Constraint"/>
+	</Type>
+	<Type id="InteractionOperand">
+		<Tab id="Guard"/>
+		<Tab id="Messages"/>
+	</Type>
+	<Type id="InternalTransition">
+		<Tab id="Parameters"/>
+	</Type>
+	<Type id="Link">
+		<Tab id="Classifiers"/>
+		<Tab id="Slots"/>
+	</Type>
+	<Type id="Message">
+		<Tab id="Arguments"/>
+	</Type>
+	<Type id="NARY">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="Node">
+		<Tab id="Nested Nodes"/>
+		<Tab id="Resident Components"/>
+	</Type>
+	<Type id="ObjectNode">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="Operation">
+		<Tab id="ORM Operation Detail"/>
+		<Tab id="Parameters"/>
+	</Type>
+	<Type id="OutputPin">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="PERTTask">
+		<Tab id="RACI"/>
+	</Type>
+	<Type id="Procedure">
+		<Tab id="Create Statement"/>
+		<Tab id="Parameters"/>
+	</Type>
+	<Type id="ProcedureContainer">
+		<Tab id="Stored Procedures"/>
+	</Type>
+	<Type id="ProcedureResultSet">
+		<Tab id="Columns"/>
+	</Type>
+	<Type id="Region">
+		<Tab id="Internal Transitions"/>
+	</Type>
+	<Type id="Requirement">
+		<Tab id="Attributes"/>
+	</Type>
+	<Type id="RestResource">
+		<Tab id="Parameters"/>
+	</Type>
+	<Type id="Signal">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="Slot">
+		<Tab id="Values"/>
+	</Type>
+	<Type id="State2">
+		<Tab id="Deferrable Triggers"/>
+		<Tab id="Regions"/>
+	</Type>
+	<Type id="Stereotype">
+		<Tab id="Tagged Value Definitions"/>
+	</Type>
+	<Type id="SubConversation">
+		<Tab id="Correlation Keys"/>
+	</Type>
+	<Type id="SubmachineState2">
+		<Tab id="Deferrable Triggers"/>
+	</Type>
+	<Type id="Subsystem">
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="SysMLActivityBlock">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="SysMLBindingConnector">
+		<Tab id="Redefined Connectors"/>
+	</Type>
+	<Type id="SysMLBlock">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="SysMLConstraintBlock">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="SysMLFlowProperty">
+		<Tab id="Initial Values"/>
+	</Type>
+	<Type id="SysMLFlowSpecification">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="SysMLParticipantProperty">
+		<Tab id="Initial Values"/>
+	</Type>
+	<Type id="SysMLValueType">
+		<Tab id="Attributes"/>
+		<Tab id="Operations"/>
+	</Type>
+	<Type id="TestCase">
+		<Tab id="Test Plans"/>
+	</Type>
+	<Type id="TimeConstraint">
+		<Tab id="Constrained Elements"/>
+	</Type>
+	<Type id="Transition2">
+		<Tab id="Triggers"/>
+	</Type>
+	<Type id="UIButton">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UICheckBox">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIComboBox">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIFrame">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UILabel">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIList">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIMenubar">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIPasswordField">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIProgressBar">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIRadioButton">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIScrollBar">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UISeparator">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UISlider">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UISpinner">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UISpinnerDateModel">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UISpinnerListModel">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UISpinnerNumberModel">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UITabbedHeader">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UITable">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UITextArea">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UITextField">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIToggleButton">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UITree">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebButtonInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebCheckBoxInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebComboBox">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebFileInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebLabel">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebList">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebPasswordInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebRadioInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebResetInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebSubmitInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebTextArea">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UIWebTextInput">
+		<Tab id="UI"/>
+	</Type>
+	<Type id="UseCase">
+		<Tab id="Extension Points"/>
+	</Type>
+	<Type id="ValuePin">
+		<Tab id="InStates"/>
+	</Type>
+	<Type id="XPDLApplication">
+		<Tab id="Formal Parameters"/>
+	</Type>
+	<Type id="XPDLImplementation">
+		<Tab id="Tools"/>
+	</Type>
+	<Type id="XPDLTool">
+		<Tab id="Actual Parameters"/>
+	</Type>
+</ModelElementSpecTabVisibility>
