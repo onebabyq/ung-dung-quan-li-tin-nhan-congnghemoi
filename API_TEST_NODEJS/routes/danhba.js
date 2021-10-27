@@ -5,18 +5,18 @@ const router = express.Router();
 //Du lieu demo
 const accounts = [
 		{
-			"accountId": 1,
+			"id": 1,
       "username" : "sonmabu",
       "avatar" : "None",
 			"listFriend": [
           {
-            "accountId": 1,
+            "id": 1,
             "friendId": 2,
             "username": "toanlayloi",
             "avatar" : "None"
           },
           {
-            "accountId": 1,
+            "id": 1,
             "friendId": 3,
             "username": "lylulu",
             "avatar" : "None"
@@ -24,24 +24,24 @@ const accounts = [
       ]
 		},
 		{
-      "accountId": 2,
+      "id": 2,
       "username" : "toanlayloi",
       "avatar" : "None",
       "listFriend": [
           {
-            "accountId": 2,
+            "id": 2,
             "friendId": 1,
             "username": "sonmabu",
             "avatar" : "None"
           },
           {
-            "accountId": 2,
+            "id": 2,
             "friendId": 3,
             "username": "lylulu",
             "avatar" : "None"
           },
           {
-            "accountId": 2,
+            "id": 2,
             "friendId": 4,
             "username": "thythy",
             "avatar" : "None"
@@ -49,24 +49,24 @@ const accounts = [
       ]
     },
     {
-      "accountId": 3,
+      "id": 3,
       "username" : "lylulu",
       "avatar" : "None",
       "listFriend": [
           {
-            "accountId": 3,
+            "id": 3,
             "friendId": 2,
             "username": "toanlayloi",
             "avatar" : "None"
           },
           {
-            "accountId": 3,
+            "id": 3,
             "friendId": 1,
             "username": "sonmabu",
             "avatar" : "None"
           },
           {
-            "accountId": 3,
+            "id": 3,
             "friendId": 4,
             "username": "thythy",
             "avatar" : "None"
@@ -74,18 +74,18 @@ const accounts = [
       ]
     },
     {
-      "accountId": 4,
+      "id": 4,
       "username" : "thythy",
       "avatar" : "None",
       "listFriend": [
           {
-            "accountId": 4,
+            "id": 4,
             "friendId": 2,
             "username": "toanlayloi",
             "avatar" : "None"
           } ,
           {
-            "accountId": 4,
+            "id": 4,
             "friendId": 3,
             "username": "lylulu",
             "avatar" : "None"
@@ -95,9 +95,9 @@ const accounts = [
 	];
 
 
-//Lay danh sach ban be tu accountId
-router.get('/danhba/:accountId', (request, response) => {
-    const accountId = request.params.accountId;
+//Lay danh sach ban be tu id
+router.get('/danhba/:id', (request, response) => {
+    const id = request.params.id;
 
       for(let k = 0 ; k < accounts.length ; k++){
           console.log(accounts[k]);
@@ -111,9 +111,9 @@ router.get('/danhba/:accountId', (request, response) => {
 });
 
 //THem ban be 
-router.post('/danhba/:accountId/:friendId', (request, response) => {
+router.post('/danhba/:id/:friendId', (request, response) => {
   //Get parametter tu URL
-  const accountId = request.params.accountId;
+  const id = request.params.id;
   const friendId = request.params.friendId;
 
   //Khai bao username va avatar cua friend
@@ -128,16 +128,16 @@ router.post('/danhba/:accountId/:friendId', (request, response) => {
   }
   //Tim kiem username va avatar cua account
   for(let j = 0 ; j < accounts.length; j++){
-    if(accounts[j]['id'] == accountId){
+    if(accounts[j]['id'] == id){
         username_ac = accounts[j]['username'];
         avatar_ac = accounts[j]['avatar'];
     }
   }
   //Them account cua ban be vao listFriend cua minh
   for(let i = 0 ; i < accounts.length; i++){
-    if(accounts[i]['id'] == accountId){
+    if(accounts[i]['id'] == id){
         accounts[i]['listFriend'].push({
-          "accountId": accountId,
+          "id": id,
            "friendId": friendId,
            "username": username_fr,
            "avatar": avatar_fr
@@ -148,7 +148,7 @@ router.post('/danhba/:accountId/:friendId', (request, response) => {
   for(let i = 0 ; i < accounts.length; i++){
     if(accounts[i]['id'] == friendId){
         accounts[i]['listFriend'].push({
-          "accountId": accountId,
+          "id": id,
            "friendId": friendId,
            "username": username,
            "avatar": avatar
@@ -164,9 +164,9 @@ router.post('/danhba/:accountId/:friendId', (request, response) => {
 });
 
 
-router.delete('/danhba/:accountId/:friendId', (request, response) => {
+router.delete('/danhba/:id/:friendId', (request, response) => {
 	 //Get parametter tu URL
-  const accountId = request.params.accountId-1;
+  const id = request.params.id-1;
   const friendId = request.params.friendId-1;
 
 
