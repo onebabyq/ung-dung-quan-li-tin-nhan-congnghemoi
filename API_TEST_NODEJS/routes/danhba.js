@@ -10,17 +10,21 @@ const accounts = [
       "avatar" : "None",
 			"listFriend": [
           {
-            "id": 1,
-            "friendId": 2,
-            "username": "toanlayloi",
-            "avatar" : "None"
+            "accountId": 1,
+            "friend": {
+              "id": 2,
+              "username": "toanlayloi",
+              "avatar" : "None"
+            }
           },
           {
-            "id": 1,
-            "friendId": 3,
-            "username": "lylulu",
-            "avatar" : "None"
-          }
+            "accountId": 1,
+            "friend": {
+              "id": 3,
+              "username": "lylulu",
+              "avatar" : "None"
+            }
+          },
       ]
 		},
 		{
@@ -29,22 +33,28 @@ const accounts = [
       "avatar" : "None",
       "listFriend": [
           {
-            "id": 2,
-            "friendId": 1,
-            "username": "sonmabu",
-            "avatar" : "None"
+            "accountId": 2,
+            "friend": {
+              "id": 1,
+              "username": "sonmabu",
+              "avatar" : "None"
+            }
           },
           {
-            "id": 2,
-            "friendId": 3,
-            "username": "lylulu",
-            "avatar" : "None"
+            "accountId": 2,
+            "friend": {
+              "id": 3,
+              "username": "lylulu",
+              "avatar" : "None"
+            }
           },
           {
-            "id": 2,
-            "friendId": 4,
-            "username": "thythy",
-            "avatar" : "None"
+            "accountId": 2,
+            "friend": {
+              "id": 4,
+              "username": "thythy",
+              "avatar" : "None"
+            }
           }
       ]
     },
@@ -54,22 +64,28 @@ const accounts = [
       "avatar" : "None",
       "listFriend": [
           {
-            "id": 3,
-            "friendId": 2,
-            "username": "toanlayloi",
-            "avatar" : "None"
+            "accountId": 3,
+            "friend": {
+              "id": 2,
+              "username": "toanlayloi",
+              "avatar" : "None"
+            }
           },
           {
-            "id": 3,
-            "friendId": 1,
-            "username": "sonmabu",
-            "avatar" : "None"
+            "accountId": 3,
+            "friend": {
+              "id": 1,
+              "username": "sonmabu",
+              "avatar" : "None"
+            }
           },
           {
-            "id": 3,
-            "friendId": 4,
-            "username": "thythy",
-            "avatar" : "None"
+            "accountId": 3,
+            "friend": {
+              "id": 4,
+              "username": "thythy",
+              "avatar" : "None"
+            }
           }
       ]
     },
@@ -79,31 +95,48 @@ const accounts = [
       "avatar" : "None",
       "listFriend": [
           {
-            "id": 4,
-            "friendId": 2,
-            "username": "toanlayloi",
-            "avatar" : "None"
-          } ,
+            "accountId": 4,
+            "friend": {
+              "id": 2,
+              "username": "toanlayloi",
+              "avatar" : "None"
+            }
+          },
           {
-            "id": 4,
-            "friendId": 3,
-            "username": "lylulu",
-            "avatar" : "None"
-          }
+            "accountId": 4,
+            "friend": {
+              "id": 3,
+              "username": "lylulu",
+              "avatar" : "None"
+            }
+          },
       ]
     }
 	];
 
 
+// //Lay danh sach ban be tu id
+// router.get('/danhba/:id', (request, response) => {
+//     const id = request.params.id;
+
+//       for(let k = 0 ; k < accounts.length ; k++){
+//           if(accounts[k]['id']==id){
+//             console.log(accounts[k]);
+//             response.json(accounts[k]);
+//           }
+          
+//       }
 //Lay danh sach ban be tu id
 router.get('/danhba/:id', (request, response) => {
     const id = request.params.id;
 
       for(let k = 0 ; k < accounts.length ; k++){
-          console.log(accounts[k]);
-            response.json(accounts[k]);
-      }
-           
+          if(accounts[k]['id']==id){
+            console.log(accounts[k]['listFriend']);
+            response.json(accounts[k]['listFriend']);
+          }
+          
+      }      
        
 	   
 
@@ -158,7 +191,7 @@ router.post('/danhba/:id/:friendId', (request, response) => {
 
     for(let k = 0 ; k < accounts.length ; k++){
           console.log(accounts[k]);
-            response.json(accounts[k]);
+          response.json(accounts[k]);
       }
            
 });
