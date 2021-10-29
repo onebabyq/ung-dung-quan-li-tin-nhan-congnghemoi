@@ -134,9 +134,9 @@ router.get('/danhba/:id', (request, response) => {
           if(accounts[k]['id']==id){
             console.log(accounts[k]['listFriend']);
             response.json(accounts[k]['listFriend']);
-          }
+      }
           
-      }      
+}      
        
 	   
 
