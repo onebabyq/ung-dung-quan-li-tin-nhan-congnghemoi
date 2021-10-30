@@ -22,10 +22,12 @@ app.set('views', './views');
 
 
 
-app.use('/', require('./routes/user'));
+//app.use('/', require('./routes/userRotes'));
 app.use('/', require('./routes/room'));
 app.use('/', require('./routes/danhba'));
 
+
+require("./routes/userRotes.js")(app);
 app.listen(3000,()=>{
 	console.log('Server is running on port 3000!');
 });

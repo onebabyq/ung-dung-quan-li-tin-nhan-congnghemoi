@@ -108,4 +108,4 @@ User.removeAll = result => {
   });
 };
 
-module.exports = Customer;
+module.exports = User;

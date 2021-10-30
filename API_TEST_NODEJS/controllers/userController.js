@@ -16,7 +16,6 @@ exports.create = (req, res) => {
     password: req.body.password,
     enable: req.body.enable
   });
-
   // Save User in the database
   User.create(user, (err, data) => {
     if (err)
