@@ -27,7 +27,8 @@ app.use('/', require('./routes/room'));
 app.use('/', require('./routes/danhba'));
 
 
-require("./routes/userRotes.js")(app);
+require("./routes/userRoutes.js")(app);
+require("./routes/roleRoutes.js")(app);
 app.listen(3000,()=>{
 	console.log('Server is running on port 3000!');
 });
