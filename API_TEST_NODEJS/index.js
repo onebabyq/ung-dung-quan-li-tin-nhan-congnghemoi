@@ -28,6 +28,7 @@ app.use('/', require('./routes/danhba'));
 
 
 require("./routes/userRoutes.js")(app);
+require("./routes/accountRoutes.js")(app);
 require("./routes/roleRoutes.js")(app);
 app.listen(3000,()=>{
 	console.log('Server is running on port 3000!');
