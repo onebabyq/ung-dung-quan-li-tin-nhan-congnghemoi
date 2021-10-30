@@ -7,6 +7,7 @@ public class Room {
     private boolean deleted;
     private int adminId;
 
+
     public int getId() {
         return id;
     }
