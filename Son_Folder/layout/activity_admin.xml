@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.widget.Button
+        android:id="@+id/btn_thongke"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="34dp"
+        android:background="@color/green_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_qlnd"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="ADMIN"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.widget.Button
+        android:id="@+id/btn_qlnd"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="34dp"
+        android:background="@color/green_theme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <android.widget.Button
+        android:id="@+id/btn_ttcn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/green_theme"
+        app:layout_constraintStart_toStartOf="@+id/btn_qlnd"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <android.widget.Button
+        android:id="@+id/btn_dangxuat"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@color/green_theme"
+        app:layout_constraintEnd_toEndOf="@+id/btn_thongke"
+        app:layout_constraintTop_toTopOf="@+id/btn_ttcn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:text="Quản lý người dùng"
+        app:layout_constraintEnd_toEndOf="@+id/btn_qlnd"
+        app:layout_constraintTop_toBottomOf="@+id/btn_qlnd" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Đăng xuất"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/btn_dangxuat"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="@+id/btn_dangxuat"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dangxuat" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Thông tin cá nhân"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ttcn"
+        app:layout_constraintStart_toStartOf="@+id/btn_ttcn"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ttcn" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Thống kê"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/btn_thongke"
+        app:layout_constraintStart_toStartOf="@+id/btn_thongke"
+        app:layout_constraintTop_toBottomOf="@+id/btn_qlnd" />
+</androidx.constraintlayout.widget.ConstraintLayout>
