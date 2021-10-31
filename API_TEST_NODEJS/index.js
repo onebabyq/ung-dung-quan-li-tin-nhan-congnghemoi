@@ -23,13 +23,15 @@ app.set('views', './views');
 
 
 //app.use('/', require('./routes/userRotes'));
-app.use('/', require('./routes/room'));
-app.use('/', require('./routes/danhba'));
+//app.use('/', require('./routes/room'));
+//app.use('/', require('./routes/danhba'));
 
 
 require("./routes/userRoutes.js")(app);
 require("./routes/accountRoutes.js")(app);
 require("./routes/roleRoutes.js")(app);
+require("./routes/roomRoutes.js")(app);
+require("./routes/messageRoutes.js")(app);
 app.listen(3000,()=>{
 	console.log('Server is running on port 3000!');
 });
