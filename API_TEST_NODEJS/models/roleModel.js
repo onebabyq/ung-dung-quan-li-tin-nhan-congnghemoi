@@ -39,6 +39,28 @@ Role.findById = (roleId, result) => {
   });
 };
 
+Role.findByUserId = (userId,roles, result) => {
+  sql.query(`SELECT r.* FROM role r JOIN user_role ur ON r.roleId = ur.role_id WHERE ur.user_id = ${userId}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found role: ", res);
+      result(null, res);
+      for(let i = 0 ; i < res.length;i++){
+        roles.push(res[i]);
+      }
+      return roles;
+    }
+
+    // not found Customer with the roleId
+    result({ kind: "not_found" }, null);
+  });
+};
+
 Role.getAll = result => {
   sql.query("SELECT * FROM role", (err, res) => {
     if (err) {
