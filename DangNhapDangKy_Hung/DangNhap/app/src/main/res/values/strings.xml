@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">DangNhap</string>
+    <!-- Strings related to login -->
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="s_i_n_tho_i">Số Điện Thoại</string>
+    <string name="ng_nh_p">Đăng Nhập</string>
+    <string name="s_i_n_tho_i_ho_c_m_t_kh_u_kh_ng_ng">Số điện thoại hoặc mật khẩu không đúng</string>
+    <string name="ti_p_t_c">Tiếp Tục</string>
+    <string name="s_i_n_tho_i_c_s_d_ng">Số điện thoại đã được sử dụng</string>
+    <string name="t_n">Tên</string>
+    <string name="n">Nữ</string>
+    <string name="nam">Nam</string>
+    <string name="m_otg">Mã OTG</string>
+    <string name="m_otg_kh_ng_ch_nh_x_c">Mã OTG không chính xác</string>
+    <string name="m_t_kh_u_kh_ng_kh_p">Mật khẩu không khớp</string>
+    <string name="m_t_kh_u">Mật Khẩu</string>
+    <string name="nh_p_l_i_m_t_kh_u">Nhập Lại Mật Khẩu</string>
+    <string name="ng_k">Đăng Ký</string>
+    <string name="xin_chao">Xin Chao</string>
+</resources>
