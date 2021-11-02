@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Đăng nhập</title>
+    <style>
+        *{
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .login{
+            width: 330px;
+            height: 550px;
+            background-color: rgb(120, 120, 245);
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            padding: 70px 30px;
+        }
+        .avatar{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border-radius: 50%;
+            top: -50px;
+            left: 34%;
+        }
+        h1{
+            margin: 0;
+            padding: 0 0 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+        .login p{
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+        }
+        .login input{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .login input[type='text'],input[type = 'password']
+        {
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 16px;
+
+        }
+        .login input[type = 'submit']{
+            border: none;
+            background: #fb2525;
+            outline: none;
+            height: 40px;
+
+            color: #fff;
+            font-size: 18px;
+            border-radius: 20px;
+
+        }
+        .login input[type = 'submit']:hover{
+            cursor: pointer;
+            background: #cc954e;
+            color: rgb(189, 189, 255);
+        }
+        .login a{
+            text-decoration: none;
+            font-size: 12px;
+            line-height: 20px;
+            color: darkgrey;
+        }
+        .logim a:hover{
+            color: greenyellow;
+        }
+        #er, #ermk {
+            color: red;
+            font-style: italic;
+        }
+    </style>
+    <script>
+        function kiemtraten()
+        {
+            var regten =/^[A-Z][a-zA-Z ]*$/;
+            var gt = document.getElementById("txtname").value;
+           if (regten.test(gt))
+           {
+               document.getElementById("er").innerHTML = "";
+               return true;
+           }
+               
+           else
+           {
+               document.getElementById("er").innerHTML = "(*)Du lieu ko hop le!!!";
+               return false;
+               
+           }
+        }
+        function ktramk()
+           {
+               var regmk = /^[a-zA-Z0-9]+$/;
+               var mk = document.getElementById("password").value;
+               if(regmk.test(mk))
+               {
+                   document.getElementById("ermk").innerHTML = "";
+                   return true;
+               }
+               else
+               {
+                   document.getElementById("ermk").innerHTML = "Mat khau sai!!!";
+                   return false;
+               }
+
+           }
+           function mokhoa()
+            {
+                if (kiemtraten() == true && ktramk() == true)
+                document.getElementById("btntest").disabled = false;
+                
+            }
+    </script>
+    <body>
+        <div class="login">
+        <img src="none-avatar.png" class="avatar">
+            <h1>Đăng nhập</h1>
+            <form action="Trang_chu.html">
+                <p>Số điện thoại</p><span id="er">(*)</span>
+                <input type="text" name="" id="txtname" onblur="kiemtraten()"  placeholder="Nhập tên đăng nhập">
+               
+                <p>Mật Khẩu</p> <span id="ermk">(*)</span>
+                <input type="password" name="" id="password" onblur="ktramk();mokhoa();" placeholder="Mời nhập mật khẩu">
+                <input type="submit" name="" onclick="xuly()" disabled="disabled" id="btntest" value="Đăng Nhập">
+                <input type="submit" name="" onclick="xuly()" disabled="disabled" id="btntest" value="Đăng nhập bằng Google">
+                <input type="submit" name="" onclick="xuly()" disabled="disabled" id="btntest" value="Đăng nhập bằng số điện thoại">
+                <a href="#">Quên mật khẩu?</a><br>
+                <a href="dangky2.html">Chưa có tài khoản?</a>
+            </form>
+        
+        </div>
+    </body>
+    </head>
+</html>

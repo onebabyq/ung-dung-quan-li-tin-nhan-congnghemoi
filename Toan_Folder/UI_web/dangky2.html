@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Đăng ký</title>
+    <meta charset="UTF-8">
+    <style>
+        *{
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .login{
+            width: 390px;
+            height: 700px;
+            background-color: rgb(120, 120, 245);
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            padding: 70px 30px;
+        }
+        .avatar{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border-radius: 50%;
+            top: -50px;
+            left: 34%;
+        }
+        h1{
+            margin: 0;
+            padding: 0 0 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+        .login p{
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+        }
+        .login input{
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .login input[type='text'],input[type = 'password'], input[type = 'email']
+        {
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 16px;
+
+        }
+        .login input[type = 'submit']{
+            border: none;
+            background: #fb2525;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 20px;
+
+        }
+        .login input[type = 'submit']:hover{
+            cursor: pointer;
+            background: #cc954e;
+            color: rgb(189, 189, 255);
+        }
+        .login a{
+            text-decoration: none;
+            font-size: 12px;
+            line-height: 20px;
+            color: darkgrey;
+        }
+        .logim a:hover{
+            color: greenyellow;
+        }
+        #er, #ermk, #erremk, #er2, #er1 {
+            color: red;
+            font-style: italic;
+        }
+        
+    </style>
+    <script>
+        function kiemtraten()
+        {
+           
+            var regten =/^[A-Z][a-zA-Z ]*$/;
+            var gt = document.getElementById("txtname").value;
+           if (regten.test(gt))
+           {
+               document.getElementById("er").innerHTML = "";
+               return true;
+           }
+               
+           else
+           {
+                
+               document.getElementById("er").innerHTML = "(*)Du lieu ko hop le!!!";
+               return false;
+           }
+               
+           
+        }
+        function kiemtramk()
+        {
+            //Có tối thiểu 8 ký tự, Có ít nhất một kí tự viết thường (a-z), Có ít nhất một kí tự viết hoa (A-Z), Có ít nhất một chữ số (0-9), Có ít nhất một ký tự đặc biệt (!@#$%^&)
+            var regmk = /^[a-zA-Z0-9]+$/;
+               var mk = document.getElementById("password").value;
+               if(regmk.test(mk))
+               {
+                   document.getElementById("ermk").innerHTML = "";
+                   return true;
+               }
+               else
+               {
+                   document.getElementById("ermk").innerHTML = "Mat khau khong hop le!!!";
+                   return false;
+               }
+        }
+        function kiemtralaimk()
+           {
+               var mk=document.getElementById("password").value;
+               var mk2=document.getElementById("repassword").value;
+               if(kiemtramk()&&mk==mk2)
+               {
+                   document.getElementById("erremk").innerHTML = "";
+                   return true;
+               }
+               else
+               {
+                   document.getElementById("erremk").innerHTML = "Mat khau khong khop!!";
+                   return false;
+               }
+           }
+        function kiemtramail()
+            {
+                var remail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                var mail = document.getElementById("email").value;
+                if (remail.test(mail) == false) 
+                {
+                    document.getElementById("er1").innerHTML = "Mail không hơp lệ";
+                    return false;
+                }
+                else
+                    document.getElementById("er1").innerHTML = " ";
+                    return  true;
+            }
+        function kiemtrasdt()
+            {   
+                var regSDT = /^0\d{9}$/;
+                var sdt = document.getElementById("telephone").value;
+                if(regSDT.test(sdt))
+                {
+                    document.getElementById("er2").innerHTML = "";
+                }
+                else
+                {
+                    document.getElementById("er2").innerHTML = "So DT ko hop le!!!";
+                }
+            }
+    </script>
+    <body>
+        <div class="login">
+        <img src="none-avatar.png" class="avatar">
+            <h1>Đăng ký tài khoản</h1>
+            <form action="form_dang_nhap.html">
+                <p>Tên người dùng</p><span id="er">(*)</span>
+                <input type="text" id ="txtname" onblur="kiemtraten()" placeholder="Nhập tên đăng ký">
+                <p>Email</p><span id="er1">(*)</span>
+                <input type="email" name="" id="email" onblur="kiemtramail();" placeholder="Nhập email">
+                <p>Số điện thoại</p><span id="er2">(*)</span>
+                <input type="text" name="" id="telephone" onblur="kiemtrasdt();" placeholder="Nhập số điện thoại">
+                <p>Mật khẩu</p><span id="ermk">(*)</span>
+                <input type="password" name=""id="password" onblur="kiemtramk();" placeholder="Mời nhập mật khẩu">
+                <p>Nhập lại mật khẩu</p><span id="erremk">(*)</span>
+                <input type="password" name="" id="repassword" onblur="kiemtralaimk();" placeholder="Mời nhập lại mật khẩu">
+                <input type="submit" name="" value="Đăng Ký">
+                <a href="form_dang_nhap.html" >Đã có tài khoản</a>               
+            </form>
+        
+        </div>
+    </body>
+    </head>
+</html>
