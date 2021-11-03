@@ -7,6 +7,26 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
+/* widht */
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+/* track */
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb{
+    background: #888;
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover{
+    background: #555;
+}
+
 :root{
     --blue: #287bff;
     --white: #fff;
