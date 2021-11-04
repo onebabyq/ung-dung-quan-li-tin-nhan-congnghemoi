@@ -15,13 +15,13 @@
  
 </head>
 <body>
-    
     <div class="navigation">
         <ul>
             <li>
                 <a href="#">
                     <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-                    <span class="title">Admin</span>
+       <%--              <span class="title" id="name">${username}</span> --%>
+                     <span class="title" id="name" >${username}</span> 
                 </a>
             </li>
             <li>

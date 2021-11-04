@@ -22,14 +22,15 @@ window.onload = function exampleFunction() {
     // Function to be executed
 }
 function connect(event) {
-//alert("conect func");
-  //username = document.querySelector('#name').value.trim();
+	//alert(document.querySelector('#name').value.trim());
+  	username = document.querySelector('#name').textContent;
+	
 	if(!username){
 		username = "HoangSon";
 	}
-	alert("username 1: "+username);
+	//alert("username 1: "+username);
   if(username) {
-		alert("username: "+ username);
+		//alert("username: "+ username);
      // usernamePage.classList.add('hidden');
      // chatPage.classList.remove('hidden');
 
@@ -43,7 +44,7 @@ function connect(event) {
 
 
 function onConnected() {
-	//alert("onConnected");
+	alert("onConnected");
   // Subscribe to the Public Topic
   stompClient.subscribe('/topic/public', onMessageReceived);
 
@@ -81,7 +82,7 @@ function sendMessage(event) {
           type: 'CHAT'
       };
 		
-		alert(chatMessage);
+		//alert(chatMessage);
 		
       stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
       messageInput.value = '';
@@ -94,7 +95,9 @@ function onMessageReceived(payload) {
   var message = JSON.parse(payload.body);
 
   var messageElement = document.createElement('li');
-  messageElement.classList.add('me');
+	if(message.sender==username)
+  		messageElement.classList.add('me');	
+	else messageElement.classList.add('u');	
 
   if(message.type === 'JOIN') {
       messageElement.classList.add('event-message');
@@ -105,17 +108,17 @@ function onMessageReceived(payload) {
   } else {
       messageElement.classList.add('chat-message');
 
-      var avatarElement = document.createElement('i');
-      var avatarText = document.createTextNode(message.sender[0]);
-      avatarElement.appendChild(avatarText);
-      avatarElement.style['background-color'] = getAvatarColor(message.sender);
+      //var avatarElement = document.createElement('i');
+      //var avatarText = document.createTextNode(message.sender[0]);
+      //avatarElement.appendChild(avatarText);
+      //avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-      messageElement.appendChild(avatarElement);
+      //messageElement.appendChild(avatarElement);
 
-      var usernameElement = document.createElement('span');
-      var usernameText = document.createTextNode(message.sender);
-      usernameElement.appendChild(usernameText);
-      messageElement.appendChild(usernameElement);
+      //var usernameElement = document.createElement('span');
+      //var usernameText = document.createTextNode(message.sender);
+      //usernameElement.appendChild(usernameText);
+      //messageElement.appendChild(usernameElement);
   }
 
   var textElement = document.createElement('p');

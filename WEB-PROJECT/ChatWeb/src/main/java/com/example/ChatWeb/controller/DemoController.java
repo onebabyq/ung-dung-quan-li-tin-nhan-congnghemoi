@@ -16,9 +16,17 @@ public class DemoController {
 	 * bookService; }
 	 */
 
-    @GetMapping("/view/{username}")
-    public String viewBooks(@PathVariable("username") String username,Model model) {
-        model.addAttribute("username", username);
+    //@GetMapping("/view/{username}")
+   // public String viewBooks(@PathVariable("username") String username,Model model) {
+    @GetMapping("/view")
+    public String viewBooks(Model model) {
+        model.addAttribute("username", "sonmabu");
+    	//System.out.println("HELLO SON");
+        return "chat";
+    }
+    @GetMapping("/view2")
+    public String viewBooks2(Model model) {
+        model.addAttribute("username", "toanlayloi");
     	//System.out.println("HELLO SON");
         return "chat";
     }
