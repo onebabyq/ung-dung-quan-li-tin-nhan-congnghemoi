@@ -1,7 +1,7 @@
 .hero{
     position: relative;
     width: 100%;
-    background: #eff4fd;
+    background: #ffffff;
 }
 
 .hero img.logo{
@@ -16,18 +16,19 @@
 }
 
 .detel h1{
-    font-size: 50px;
+    font-size: 80px;
     color: #212121;
     margin-bottom: 20px;
 }
 
 .detel span{
-    color: orange;
+    color: #287bff;
 }
 
 .detel p{
+    font-size: 24px;
     color: #555;
-    line-height: 22px;
+    line-height: 30px;
 }
 
 .detel a{
@@ -62,9 +63,6 @@
     bottom: 40px;
 }
 
-.images:hover .app{
+.images .app{
     left: 45%;
-    height: 300px;
-    width: 300px;
-    border-radius: 50%;
 }

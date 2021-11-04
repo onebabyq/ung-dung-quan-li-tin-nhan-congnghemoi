@@ -1,61 +1,57 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:url value="css/style.css" var="jstlCss" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ</title>
-    <link rel="stylesheet" href="./resources/admin_dashboard.css">
-    <link rel="stylesheet" href="./resources/chat.css">
-    <link rel="stylesheet" href="./resources/home.css">
+    
+    <link rel="stylesheet" href="css/admin_dashboard.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/home.css">
+
 </head>
 <body>
-    <div class="navigation">
+	<div class="navigation">
         <ul>
             <li>
-                <a href="#">
+                <a href="/home">
                     <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-                    <span class="title">Lê Văn Toàn</span>
+       <%--              <span class="title" id="name">${username}</span> --%>
+                     <span class="title" id="name" >${username}</span> 
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/home">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="title">Trang Chủ</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/view">
                     <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
                     <span class="title">Tin Nhắn</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/info">
                     <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                     <span class="title">Cá Nhân</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                    <span class="title">Cài Đặt</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <span class="title">Mật Khẩu</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="/logout">
                     <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                     <span class="title">Đăng Xuất</span>
                 </a>
             </li>
         </ul>
     </div>
+    
     <div class="main">
         <div class="topbar">
             <div class="toggle">
@@ -68,22 +64,22 @@
                     
                 </nav>
                 <div class="detel">
-                    <h1>I'm <span>APPCHAT</span></h1>
+                    <h1>I'm <span>${appname}</span></h1>
                     <p>This is my official portfolio website to showes all <br>
                         Details and work exiprins web development
                     </p>
                     <a href="#">Try My App</a>
                 </div>
                 <div class="images">
-                    <img src="https://static.vecteezy.com/system/resources/previews/000/561/480/original/chat-app-logo-icon-vector.jpg" class="shape app" alt="">
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/561/480/original/chat-app-logo-icon-vector.jpg" class="shape" alt="">
                 </div>
             </div>
         </div>
     </div>
-
+    
+    
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> 
-
     <script>
 
         //Menu Toggle

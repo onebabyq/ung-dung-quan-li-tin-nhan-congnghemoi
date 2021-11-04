@@ -18,44 +18,32 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="#">
+                <a href="/home">
                     <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
        <%--              <span class="title" id="name">${username}</span> --%>
                      <span class="title" id="name" >${username}</span> 
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/home">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="title">Trang Chủ</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/view">
                     <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
                     <span class="title">Tin Nhắn</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/info">
                     <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                     <span class="title">Cá Nhân</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                    <span class="title">Cài Đặt</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <span class="title">Mật Khẩu</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="/logout">
                     <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                     <span class="title">Đăng Xuất</span>
                 </a>
