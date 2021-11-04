@@ -9,6 +9,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class ChatWebApplication {
 	
 	public static void main(String[] args) {
+		//System.out.println("HELLO WORLD");
 		SpringApplication.run(ChatWebApplication.class, args);
 	}
 

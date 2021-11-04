@@ -238,55 +238,21 @@
                     <span><ion-icon class="icon2" name="ellipsis-horizontal-outline"></ion-icon></span>
                 </div>
                 <div class="mid">
-                    <div class="me">
-                        <p>Chào! Khỏe không</p>
-                    </div>
-                    <div class="u">
-                        <p>Khỏe mày</p>
-                    </div>
-                    <div class="me">
-                        <p>Đi chơi không?</p>
-                    </div>
-                    <div class="u">
-                        <p>Bận rồi. Để mai đi mày</p>
-                    </div>
-                    <div class="me">
-                        <p>Ok, vậy thôi</p>
-                    </div>
-                    <div class="u">
-                        <p>Ok</p>
-                    </div>
-                    <div class="me">
-                        <p>Ok, vậy thôi</p>
-                    </div>
-                    <div class="u">
-                        <p>Ok</p>
-                    </div>
-                    <div class="me">
-                        <p>Ok, vậy thôi</p>
-                    </div>
-                    <div class="u">
-                        <p>Ok</p>
-                    </div>
-                    <div class="me">
-                        <p>Ok, vậy thôi</p>
-                    </div>
-                    <div class="u">
-                        <p>Ok</p>
-                    </div>
-                    <div class="me">
-                        <p>Ok, vậy thôi</p>
-                    </div>
-                    <div class="u">
-                        <p>Ok</p>
-                    </div>
+                	<ul id="messageArea">
+                		<li class="me">
+		                        <p>Chào! Khỏe không</p>
+		                </li>
+		                <li class="u">
+		                        <p>Chào! Khỏe không</p>
+	                   	</li>
+                    </ul>
                 </div>
-                <div class="btm">
-                    <form>
+                <div class="btm" >
+                    <form id="messageForm">
                         <div>+</div>
                         <input type="text" name="" placeholder="Bạn đang nghĩ gì?" class="in2">
                         <div class="ico3">
-                            <span><ion-icon class="send_svg" name="send-outline"></ion-icon></span>
+                            <button type="submit">Send</button>
                         </div>
                     </form>
                 </div>
@@ -323,5 +289,10 @@
         list.forEach((item) => 
         item.addEventListener('mouseover',activeLink))
     </script>
+    
+    
+    <script src="js/sockjs.min.js"></script>
+  	<script src="js/stomp.min.js"></script>
+  	<script src="js/main.js"></script>
 </body>
 </html>
