@@ -21,8 +21,7 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-    	log.info("CALL SUCCESSFULLY!!!!!!!");
-    	System.out.println("CALL SUCESsFUll!");
+    	log.info(chatMessage.toString());
         return chatMessage;
     }
 
@@ -30,7 +29,7 @@ public class ChatController {
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage, 
                                SimpMessageHeaderAccessor headerAccessor) {
-    	
+    	log.info(chatMessage.toString());
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;

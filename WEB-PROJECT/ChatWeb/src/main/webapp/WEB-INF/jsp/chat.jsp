@@ -248,11 +248,11 @@
                     </ul>
                 </div>
                 <div class="btm" >
-                    <form id="messageForm">
+                    <form >
                         <div>+</div>
-                        <input type="text" name="" placeholder="Bạn đang nghĩ gì?" class="in2">
+                        <input type="text" name="" placeholder="Bạn đang nghĩ gì?" class="in2" id="message" >
                         <div class="ico3">
-                            <button type="submit">Send</button>
+                            <button id="messageForm" name="messageForm">Send</button>
                         </div>
                     </form>
                 </div>
@@ -268,11 +268,13 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> 
 
     <script>
-
+    	//var messageForm = document.querySelector('#messageForm');
         //Menu Toggle
         let menuToggle = document.querySelector('.toggle');
         let navigation = document.querySelector('.navigation');
         let main = document.querySelector('.main');
+        
+       
         menuToggle.onclick = function(){
             //menuToggle.classList.toggle('active')
             navigation.classList.toggle('active');
@@ -291,8 +293,9 @@
     </script>
     
     
-    <script src="js/sockjs.min.js"></script>
-  	<script src="js/stomp.min.js"></script>
-  	<script src="js/main.js"></script>
+    <script src="js/sockjs.min.js" type="text/javascript"></script>
+  	<script src="js/stomp.min.js" type="text/javascript"></script>
+  	<script src="js/main.js" type="text/javascript"></script>
+  	
 </body>
 </html>

@@ -17,16 +17,21 @@ var colors = [
 ];
 
 window.onload = function exampleFunction() {
+	//alert("starting...");
   connect();
     // Function to be executed
 }
 function connect(event) {
-	//alert("connecting");
-  username = document.querySelector('#name').value.trim();
-
+//alert("conect func");
+  //username = document.querySelector('#name').value.trim();
+	if(!username){
+		username = "HoangSon";
+	}
+	alert("username 1: "+username);
   if(username) {
-      usernamePage.classList.add('hidden');
-      chatPage.classList.remove('hidden');
+		alert("username: "+ username);
+     // usernamePage.classList.add('hidden');
+     // chatPage.classList.remove('hidden');
 
       var socket = new SockJS('/ws');
       stompClient = Stomp.over(socket);
@@ -38,6 +43,7 @@ function connect(event) {
 
 
 function onConnected() {
+	//alert("onConnected");
   // Subscribe to the Public Topic
   stompClient.subscribe('/topic/public', onMessageReceived);
 
@@ -48,6 +54,7 @@ function onConnected() {
   )
 
   connectingElement.classList.add('hidden');
+	
 }
 
 
@@ -58,14 +65,24 @@ function onError(error) {
 
 
 function sendMessage(event) {
-	//alert("send message!!!");
-  var messageContent = messageInput.value.trim();
-  if(messageContent && stompClient) {
-      var chatMessage = {
+	//alert("func sendMessage!!!");
+  	var messageContent = messageInput.value.trim();
+ 	if(messageContent && stompClient) {
+	//if(stompClient) {
+	//alert("messageContent && stompClient = TRUE!!!");
+     /* var chatMessage = {
+          sender: username,
+          content: messageInput.value,
+          type: 'CHAT'
+      };*/
+		var chatMessage = {
           sender: username,
           content: messageInput.value,
           type: 'CHAT'
       };
+		
+		alert(chatMessage);
+		
       stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
       messageInput.value = '';
   }
@@ -77,6 +94,7 @@ function onMessageReceived(payload) {
   var message = JSON.parse(payload.body);
 
   var messageElement = document.createElement('li');
+  messageElement.classList.add('me');
 
   if(message.type === 'JOIN') {
       messageElement.classList.add('event-message');
@@ -119,6 +137,10 @@ function getAvatarColor(messageSender) {
   var index = Math.abs(hash % colors.length);
   return colors[index];
 }
-
+messageForm.onclick =  function(event){
+	//alert("Message Click Send");
+	event.preventDefault();
+	sendMessage();
+}
 usernameForm.addEventListener('submit', connect, true)
-messageForm.addEventListener('submit', sendMessage, true)
+//messageForm.addEventListener('submit', sendMessage, true)
