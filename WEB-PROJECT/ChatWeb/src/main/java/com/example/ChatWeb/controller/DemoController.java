@@ -18,6 +18,6 @@ public class DemoController {
     @GetMapping("/view")
     public String viewBooks() {
         //model.addAttribute("books", bookService.getBooks());
-        return "view-book";
+        return "chat";
     }
 }
