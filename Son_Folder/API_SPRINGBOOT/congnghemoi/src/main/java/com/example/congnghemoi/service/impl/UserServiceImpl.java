@@ -47,5 +47,13 @@ public class UserServiceImpl implements UserService {
 
 
 
+	@Override
+	public User findBySoDienThoai(String sdt) {
+		// TODO Auto-generated method stub
+		return userRepository.findBySoDienThoai(sdt).get();
+	}
+
+
+
 
 }

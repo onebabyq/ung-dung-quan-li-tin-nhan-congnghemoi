@@ -36,10 +36,10 @@ public class UserAPI {
 		
 		return userService.findById(id);
 	}
-	@GetMapping(value="/usersWithAccount/{id}")
-	public User getUserWithAccoutById(@PathVariable long id) {
+	@GetMapping(value="/users/bySoDienThoai/{sdt}")
+	public User getUserBySoDienThoai(@PathVariable String sdt) {
 		
-		return userService.findById(id);
+		return userService.findBySoDienThoai(sdt);
 	}
 	@PostMapping(value="/users")
 	public User saveUser(@RequestBody User newEntity) {

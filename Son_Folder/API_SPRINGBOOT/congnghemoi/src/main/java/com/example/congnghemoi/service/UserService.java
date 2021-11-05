@@ -11,5 +11,6 @@ public interface UserService {
 	User findById(long id);
 	User save(User userEntity);
 	void deleteById(long id);
+	User findBySoDienThoai(String sdt);
 	
 }

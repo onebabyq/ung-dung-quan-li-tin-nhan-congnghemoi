@@ -38,7 +38,7 @@ public class DemoController {
     	return "home";
     }
     
-    @GetMapping("/logout")
+    @GetMapping("/login")
     public String viewSignin(Model model) {
     	return "signin";
     }
