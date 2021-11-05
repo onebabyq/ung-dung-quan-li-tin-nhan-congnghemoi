@@ -26,7 +26,7 @@ public class Account extends BaseEntity implements Serializable{
     private String username;
     private String avatar;
     @OneToMany(mappedBy = "friend")
-    @JsonManagedReference(value="account-contact-movement")
+  //  @JsonManagedReference(value="account-contact-movement")
 	private List<Contact> listFriend = new ArrayList<>();
     
     @OneToMany(mappedBy = "from")

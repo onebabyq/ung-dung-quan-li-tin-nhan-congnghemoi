@@ -11,5 +11,6 @@ public interface AccountService {
 	Account findById(long id);
 	Account save(Account accountEntity);
 	void deleteById(long id);
+	Account findAccountBySoDienThoai(long id);
 	
 }

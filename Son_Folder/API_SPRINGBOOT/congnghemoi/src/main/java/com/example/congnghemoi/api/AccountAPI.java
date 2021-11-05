@@ -32,6 +32,11 @@ public class AccountAPI {
 		
 		return accountService.findById(id);
 	}
+	@GetMapping(value="/accounts/bySoDienThoai/{id}")
+	public Account getAccountBySoDienThoai(@PathVariable long id) {
+		
+		return accountService.findAccountBySoDienThoai(id);
+	}
 	@GetMapping(value="/accountsWithAccount/{id}")
 	public Account getAccountWithAccoutById(@PathVariable long id) {
 		

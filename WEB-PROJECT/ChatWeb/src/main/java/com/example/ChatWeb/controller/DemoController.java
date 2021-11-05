@@ -11,29 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class DemoController {
 
-	/*
-	 * private final BookService bookService;
-	 * 
-	 * public BookController(BookService bookService) { this.bookService =
-	 * bookService; }
-	 */
 
-    //@GetMapping("/view/{username}")
-   // public String viewBooks(@PathVariable("username") String username,Model model) {
-    @GetMapping("/chat")
-    public String viewBooks(Model model) {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        model.addAttribute("username", name);
-    	//System.out.println("HELLO SON");
-        return "chat";
-    }
-    @GetMapping("/view2")
-    public String viewBooks2(Model model) {
-        model.addAttribute("username", "toanlayloi");
-    	//System.out.println("HELLO SON");
-        return "chat";
-    }
     
     @GetMapping({"/home", "/"})
     public String viewHome(Model model) {
