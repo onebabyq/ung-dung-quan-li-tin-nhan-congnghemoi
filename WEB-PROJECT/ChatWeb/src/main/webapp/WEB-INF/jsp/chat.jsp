@@ -72,7 +72,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -85,7 +85,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p><span>Đang nhập ...</span></p>
@@ -98,7 +98,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -111,7 +111,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -124,7 +124,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -137,7 +137,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -150,7 +150,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -163,7 +163,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -176,7 +176,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -189,7 +189,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -202,7 +202,7 @@
                     <li>
                         <div class="friend">
                             <div class="img_name"></div>
-                            <img src="image//none-avatar.png" class="ava" alt="">
+                            <img src="image/none-avatar.png" class="ava" alt="">
                             <div>
                                 <h3>Hoàng Sơn</h3>
                                 <p>Chào Sơn!</p>
@@ -217,7 +217,7 @@
             <div class="right">
                 <div class="right_top">
                     <div class="img_name">
-                        <img src="image//none-avatar.png" class="ava" alt="">
+                        <img src="image/none-avatar.png" class="ava" alt="">
                         <div>
                             <h3>Hoàng Sơn</h3>
                             <p>Active 30 seconds ago...</p>

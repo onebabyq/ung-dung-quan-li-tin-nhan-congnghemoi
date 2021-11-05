@@ -26,11 +26,11 @@ public class Room extends BaseEntity implements Serializable {
     private int adminId;
     
     @OneToMany(mappedBy = "room")
-    @JsonManagedReference
+    @JsonManagedReference(value="room-message-movement")
     private List<Message> messages = new ArrayList<>();
    
     @ManyToMany(  mappedBy = "rooms")
-    @JsonBackReference
+    @JsonBackReference(value="room-account-movement")
     private List<Account> accounts = new ArrayList<>();
     
     

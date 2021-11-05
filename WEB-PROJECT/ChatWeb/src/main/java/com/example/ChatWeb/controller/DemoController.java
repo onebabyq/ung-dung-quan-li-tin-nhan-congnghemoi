@@ -42,10 +42,7 @@ public class DemoController {
     	return "home";
     }
     
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String viewSign(Model model) {
-    	return "signin";
-    }
+   
     
     @GetMapping("/info")
     public String viewInfo(Model model) {

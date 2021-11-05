@@ -12,10 +12,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class User extends BaseEntity implements Serializable {
 	/**
 	 * 
@@ -30,14 +31,19 @@ public class User extends BaseEntity implements Serializable {
 	@JoinTable(name = "user_role", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "role_id", referencedColumnName = "id") })
-	@JsonManagedReference
+	//@JsonManagedReference(value="user-role-movement")
 	private List<Role> roles = new ArrayList<>();
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "accountId", nullable = false, unique = true)
-	@JsonManagedReference
+	@JsonManagedReference(value="user-account-movement")
 	private Account account;
 	
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getSoDienThoai() {
 		return soDienThoai;
 	}

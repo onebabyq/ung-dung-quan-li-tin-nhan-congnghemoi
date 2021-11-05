@@ -19,7 +19,7 @@ public class Role extends BaseEntity implements Serializable{
 
 	private String roleName;
 	@ManyToMany(  mappedBy = "roles",fetch = FetchType.LAZY)
-	@JsonBackReference
+	@JsonBackReference(value="user-role-movement")
     private List<User> users = new ArrayList<>();
 	
 

@@ -15,7 +15,7 @@ public class Contact extends BaseEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 4806674609804322567L;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonBackReference
+	@JsonBackReference(value="account-contact-movement")
     private Account friend;
 
 	

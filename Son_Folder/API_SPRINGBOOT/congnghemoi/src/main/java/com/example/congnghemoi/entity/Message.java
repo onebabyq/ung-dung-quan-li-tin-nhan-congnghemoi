@@ -20,10 +20,10 @@ public class Message extends BaseEntity implements Serializable{
 	private String contentType;
 	private String readStatus;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonBackReference
+	@JsonBackReference(value="room-message-movement")
 	private Room room;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonBackReference
+	@JsonBackReference(value="message-account-movement")
 	private Account from;
 	
 	public String getContent() {
