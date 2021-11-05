@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2203125" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/acti_danhba.xml" value="0.20416666666666666" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/activity_adduser.xml" value="0.20416666666666666" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/activity_admin.xml" value="0.20416666666666666" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/activity_tinnhan.xml" value="0.18" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/activity_tinnhan1.xml" value="0.20416666666666666" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/activity_tuychon.xml" value="0.20416666666666666" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/activity_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/cuoctrochuyen.xml" value="0.18" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/item_message.xml" value="0.20416666666666666" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/Android_finally/app/src/main/res/layout/quanlycuoctrochuyen.xml" value="0.18" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

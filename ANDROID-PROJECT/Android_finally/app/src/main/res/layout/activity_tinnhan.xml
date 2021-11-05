@@ -1,124 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <View
-        android:id="@+id/view6"
-        android:layout_width="415dp"
-        android:layout_height="101dp"
-        android:background="#EEF3F6"
-        android:backgroundTint="#D1D1D1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageViewAvatar"
-        android:layout_width="72dp"
-        android:layout_height="76dp"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="@+id/view6"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64"
-        app:srcCompat="@drawable/user__1_" />
-
-    <TextView
-        android:id="@+id/textViewTen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/c_ng_l"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view6"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintHorizontal_bias="0.082"
-        app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <TextView
-        android:id="@+id/textViewTrangThai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/b_n_online"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        android:id="@+id/imageView"
+        android:layout_width="413dp"
+        android:layout_height="119dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTen"
-        app:layout_constraintVertical_bias="0.4" />
-
-    <View
-        android:id="@+id/view7"
-        android:layout_width="411dp"
-        android:layout_height="98dp"
-        android:background="#EEF3F6"
-        android:backgroundTint="#D1D1D1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view6"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle_header" />
+
+    <ImageView
+        android:id="@+id/imageGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@drawable/avt_group" />
+
+    <TextView
+        android:id="@+id/txtGroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Name Group"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageGroup"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="number mess"
+        app:layout_constraintStart_toEndOf="@+id/imageGroup"
+        app:layout_constraintTop_toBottomOf="@+id/txtGroupName" />
 
     <ImageButton
-        android:id="@+id/imagebutton"
-        android:layout_width="84dp"
-        android:layout_height="84dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/ps__button_instagram"
-        android:backgroundTint="#D1D1D1"
-        android:contentDescription="TODO"
-        android:scaleType="fitCenter"
-        android:src="@drawable/send"
-        app:layout_constraintBottom_toBottomOf="@+id/view7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view7"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/EditTextTinNhan"
-        android:layout_width="251dp"
+        android:id="@+id/btnPhone"
+        android:layout_width="50dp"
         android:layout_height="49dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imagebutton"
-        app:layout_constraintTop_toTopOf="@+id/view7" />
-
-    <ListView
-        android:id="@+id/listproduct"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/view7"
-        app:layout_constraintTop_toBottomOf="@+id/view6"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/btnMore"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@drawable/phone"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/imagebuttonFolder"
-        android:layout_width="84dp"
-        android:layout_height="84dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/ps__button_instagram"
-        android:backgroundTint="#D1D1D1"
-        android:scaleType="fitCenter"
-        android:src="@drawable/folder_3"
-        app:layout_constraintBottom_toBottomOf="@+id/view7"
-        app:layout_constraintStart_toStartOf="@+id/listproduct"
-        app:layout_constraintTop_toTopOf="@+id/view7"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/btnVideoCall"
+        android:layout_width="50dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/btnPhone"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@drawable/video"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnMore"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:srcCompat="@drawable/dots"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/btnGif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/gif"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toEndOf="@+id/txtEnterText"
+        app:srcCompat="@drawable/send"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtEnterText"
+        android:layout_width="254dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="#E6E6E6"
+        android:hint="Enter message ...."
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGif" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleChat"
+        android:layout_width="409dp"
+        android:layout_height="503dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtEnterText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
