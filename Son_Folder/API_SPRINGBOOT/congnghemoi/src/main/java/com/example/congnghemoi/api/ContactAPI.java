@@ -1,5 +1,6 @@
 package com.example.congnghemoi.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.congnghemoi.entity.Account;
 import com.example.congnghemoi.entity.Contact;
+import com.example.congnghemoi.service.AccountService;
 import com.example.congnghemoi.service.ContactService;
 
 @RestController
@@ -21,6 +24,8 @@ public class ContactAPI {
 	
 	@Autowired
 	private ContactService contactService;
+	@Autowired
+	private AccountService accountService;
 	
 	@GetMapping(value="/contacts")
 	public List<Contact> getContacts() {
@@ -32,6 +37,15 @@ public class ContactAPI {
 	public Contact getContactById(@PathVariable long id) {
 		
 		return contactService.findById(id);
+	}
+	@GetMapping(value="/contacts/getListFriendByAccountId/{id}")
+	public List<Account> getContactByAccountId(@PathVariable long id) {
+		List<Contact> listContact = contactService.findByAccountId(id);
+		List<Account> listAccount = new ArrayList<>();
+		for(Contact c : listContact) {
+			listAccount.add(accountService.findById(c.getFriendId()));
+		}
+		return listAccount;
 	}
 	@GetMapping(value="/contactsWithAccount/{id}")
 	public Contact getContactWithAccoutById(@PathVariable long id) {

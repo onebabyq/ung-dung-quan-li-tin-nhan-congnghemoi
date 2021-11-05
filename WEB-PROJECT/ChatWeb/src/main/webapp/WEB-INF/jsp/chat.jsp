@@ -60,7 +60,8 @@
         <div class="box">
             <div class="left">
                 <div class="topp">
-                    <h2>APPCHAT</h2>
+                    <!-- <h2>APPCHAT</h2> -->
+                    <h2 id="idSocket">${idSocket}</h2>
                 </div>
                 <div class="search_box">
                     <input class="in" type="text" placeholder="Tìm kiếm...">
@@ -69,149 +70,22 @@
                     </div>
                 </div>
                 <ul>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p><span>Đang nhập ...</span></p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="friend">
-                            <div class="img_name"></div>
-                            <img src="image/none-avatar.png" class="ava" alt="">
-                            <div>
-                                <h3>Hoàng Sơn</h3>
-                                <p>Chào Sơn!</p>
-                            </div>
-                            <div class="time">
-                                <p class="p">Today</p>
-                            </div>
-                        </div>
-                    </li>
+                	 <c:forEach items="${listFriend}" var="item">
+                	 	 <li>
+	                        <div class="friend">
+	                            <div class="img_name"></div>
+	                            <img src="image/none-avatar.png" class="ava" alt="">
+	                            <div>
+	                                <h3>${item.username}</h3>
+	                                <p>Chào ${item.username}!</p>
+	                            </div>
+	                            <div class="time">
+	                                <p class="p">Today</p>
+	                            </div>
+	                        </div>
+	                    </li>
+				    </c:forEach>
+                   
                 </ul>
             </div>
             <div class="right">

@@ -10,7 +10,7 @@ public class AccountDTO{
     private String username;
     private String avatar;
 
-	private List<ContactDTO> listFriend = new ArrayList<>();
+	private List<ContactDTO> listContact = new ArrayList<>();
     
  
     private List<MessageDTO> messages = new ArrayList<>();
@@ -37,9 +37,7 @@ public class AccountDTO{
 		this.user = user;
 	}
 
-	public List<ContactDTO> getListFriend() {
-        return listFriend;
-    }
+
 
     public List<MessageDTO> getMessageDTOs() {
 		return messages;
@@ -57,12 +55,34 @@ public class AccountDTO{
 		this.rooms = rooms;
 	}
 
-	public void setListFriend(List<ContactDTO> listFriend) {
-        this.listFriend = listFriend;
-    }
+	
 
     
 
+
+	public List<ContactDTO> getListContact() {
+		return listContact;
+	}
+
+	public void setListContact(List<ContactDTO> listContact) {
+		this.listContact = listContact;
+	}
+
+	public List<MessageDTO> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<MessageDTO> messages) {
+		this.messages = messages;
+	}
+
+	public List<RoomDTO> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<RoomDTO> rooms) {
+		this.rooms = rooms;
+	}
 
 	public String getUsername() {
         return username;
@@ -82,10 +102,11 @@ public class AccountDTO{
 
 	@Override
 	public String toString() {
-		return "Account [username=" + username + ", avatar=" + avatar + ", listFriend=" + listFriend + ", messages="
-				+ messages + ", rooms=" + rooms + ", user=" + user + "]";
+		return "AccountDTO [id=" + id + ", username=" + username + ", avatar=" + avatar + ", listContact=" + listContact
+				+ ", messages=" + messages + ", rooms=" + rooms + ", user=" + user + "]";
 	}
-    
+
+	
 
  
 }

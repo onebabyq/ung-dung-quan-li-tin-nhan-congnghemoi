@@ -47,5 +47,13 @@ public class ContactServiceImpl implements ContactService {
 
 
 
+	@Override
+	public List<Contact> findByAccountId(long id) {
+		// TODO Auto-generated method stub
+		return contactRepository.findByAccountId(id);
+	}
+
+
+
 
 }
