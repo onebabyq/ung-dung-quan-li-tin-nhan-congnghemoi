@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:url value="css/style.css" var="jstlCss" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,7 @@
 
 </head>
 <body>
+
 	<div class="container">
         <div class="blueBg">
             <div class="box signin">
@@ -27,10 +29,10 @@
         </div>
         <div class="formBx">
             <div class="form signinForm">
-                <form action="/home">
+                <form action="/perform_login" method="post">
                     <h3>Đăng Nhập</h3>
-                    <input type="tel" id="telephone" onblur="kiemtrasdt();" placeholder="Số điện thoại"><span hidden id="er">(*)</span>
-                    <input type="password" id="pass" onblur="kiemtramk();" placeholder="Mật khẩu"><span hidden id="ermk">(*)</span>
+                    <input type="tel" id="telephone" name="soDienThoai" value="user1" onblur="kiemtrasdt();" placeholder="Số điện thoại"><span hidden id="er">(*)</span>
+                    <input type="password" id="pass" name="password" value="user1Pass" onblur="kiemtramk();" placeholder="Mật khẩu"><span hidden id="ermk">(*)</span>
                     <input type="submit" value="Đăng Nhập">
                     <input type="submit" value="Đăng Nhập Google">
                     <a href="#" class="forgot">Quên mật khẩu</a>

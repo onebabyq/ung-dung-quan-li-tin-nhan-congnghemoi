@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class DemoController {
@@ -38,8 +39,8 @@ public class DemoController {
     	return "home";
     }
     
-    @GetMapping("/login")
-    public String viewSignin(Model model) {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String viewSign(Model model) {
     	return "signin";
     }
     

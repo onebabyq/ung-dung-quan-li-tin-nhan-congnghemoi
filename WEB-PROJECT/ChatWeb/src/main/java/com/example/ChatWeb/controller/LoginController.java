@@ -20,4 +20,5 @@ public class LoginController {
 			return "redirect:/login";
 		return user.toString();
 	}
+	
 }

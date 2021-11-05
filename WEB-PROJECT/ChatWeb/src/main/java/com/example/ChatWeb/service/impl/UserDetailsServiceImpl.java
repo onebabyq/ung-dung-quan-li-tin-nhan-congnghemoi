@@ -18,6 +18,8 @@ import com.example.ChatWeb.service.UserService;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+	
+	
 	@Autowired
 	private UserService userService;
 
@@ -25,6 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDTO user = userService.getUserBySoDienThoai(username);
+	
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 		for (RoleDTO role : user.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleName()));
