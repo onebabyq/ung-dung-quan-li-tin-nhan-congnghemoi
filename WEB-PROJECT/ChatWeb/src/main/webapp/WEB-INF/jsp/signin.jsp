@@ -43,8 +43,9 @@
                 <form:form action="/register" method="post" modelAttribute="user">
                     <h3>Đăng Ký</h3>
                     <form:input  id="telephone" path="soDienThoai" onblur="kiemtrasdt();" placeholder="Số điện thoại" /><span hidden id="er2">(*)</span>
+                    <input name="hoten" id="hoten" path="user.account.username" onblur="kiemtrasdt();" placeholder="Họ Tên" /><span hidden id="er2">(*)</span>
                     <form:password id="pass" path="password" onblur="kiemtramk();" placeholder="Mật khẩu" /><span hidden id="ermk">(*)</span>
-                    <input type="password" id="repass" onblur="kiemtralaimk();" placeholder="Nhập lại mật khẩu"><span hidden id="erremk">(*)</span>
+                    <input type="password" name="repass" id="repass" onblur="kiemtralaimk();" placeholder="Nhập lại mật khẩu"><span hidden id="erremk">(*)</span>
                     <input type="submit" value="Đăng Ký">
                 </form:form>
             </div>
