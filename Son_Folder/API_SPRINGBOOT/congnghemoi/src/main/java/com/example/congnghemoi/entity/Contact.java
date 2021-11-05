@@ -27,15 +27,18 @@ public class Contact extends BaseEntity implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonBackReference(value="account-contact-movement")
-    private Account friend;
+    private Account account;
+	
+	
+	private long friendId;
 
 	
-	public Account getFriend() {
-        return friend;
+	public long getFriendId() {
+        return friendId;
     }
 
-    public void setFriend(Account friend) {
-        this.friend = friend;
+    public void setFriendId(long friend) {
+        this.friendId = friend;
     }
 
 }

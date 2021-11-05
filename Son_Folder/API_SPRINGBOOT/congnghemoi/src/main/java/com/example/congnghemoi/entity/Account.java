@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -25,9 +24,9 @@ public class Account extends BaseEntity implements Serializable{
 
     private String username;
     private String avatar;
-    @OneToMany(mappedBy = "friend")
+    @OneToMany(mappedBy = "account")
   //  @JsonManagedReference(value="account-contact-movement")
-	private List<Contact> listFriend = new ArrayList<>();
+	private List<Contact> listContact = new ArrayList<>();
     
     @OneToMany(mappedBy = "from")
     @JsonBackReference(value="message-account-movement")
@@ -56,9 +55,7 @@ public class Account extends BaseEntity implements Serializable{
 		this.user = user;
 	}
 
-	public List<Contact> getListFriend() {
-        return listFriend;
-    }
+
 
     public List<Message> getMessages() {
 		return messages;
@@ -76,9 +73,7 @@ public class Account extends BaseEntity implements Serializable{
 		this.rooms = rooms;
 	}
 
-	public void setListFriend(List<Contact> listFriend) {
-        this.listFriend = listFriend;
-    }
+	
 
     
 
@@ -99,12 +94,21 @@ public class Account extends BaseEntity implements Serializable{
         this.avatar = avatar;
     }
 
+	public List<Contact> getListContact() {
+		return listContact;
+	}
+
+	public void setListContact(List<Contact> listContact) {
+		this.listContact = listContact;
+	}
+
 	@Override
 	public String toString() {
-		return "Account [username=" + username + ", avatar=" + avatar + ", listFriend=" + listFriend + ", messages="
+		return "Account [username=" + username + ", avatar=" + avatar + ", listContact=" + listContact + ", messages="
 				+ messages + ", rooms=" + rooms + ", user=" + user + "]";
 	}
-    
+
+
 
  
 }
