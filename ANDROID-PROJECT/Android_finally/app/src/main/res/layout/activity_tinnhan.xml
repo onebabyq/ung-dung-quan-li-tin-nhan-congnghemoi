@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="415dp"
+        android:layout_height="101dp"
+        android:background="#EEF3F6"
+        android:backgroundTint="#D1D1D1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="72dp"
+        android:layout_height="76dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="@+id/view6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.64"
+        app:srcCompat="@drawable/user__1_" />
+
+    <TextView
+        android:id="@+id/textViewTen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/c_ng_l"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253" />
+
+    <TextView
+        android:id="@+id/textViewTrangThai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/b_n_online"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTen"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="411dp"
+        android:layout_height="98dp"
+        android:background="#EEF3F6"
+        android:backgroundTint="#D1D1D1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/imagebutton"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/ps__button_instagram"
+        android:backgroundTint="#D1D1D1"
+        android:contentDescription="TODO"
+        android:scaleType="fitCenter"
+        android:src="@drawable/send"
+        app:layout_constraintBottom_toBottomOf="@+id/view7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view7"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/EditTextTinNhan"
+        android:layout_width="251dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imagebutton"
+        app:layout_constraintTop_toTopOf="@+id/view7" />
+
+    <ListView
+        android:id="@+id/listproduct"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/view7"
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/imagebuttonFolder"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/ps__button_instagram"
+        android:backgroundTint="#D1D1D1"
+        android:scaleType="fitCenter"
+        android:src="@drawable/folder_3"
+        app:layout_constraintBottom_toBottomOf="@+id/view7"
+        app:layout_constraintStart_toStartOf="@+id/listproduct"
+        app:layout_constraintTop_toTopOf="@+id/view7"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
