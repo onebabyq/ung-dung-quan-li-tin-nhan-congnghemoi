@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,7 +30,7 @@ public class UserService {
 		return user;
 	}
 
-	public String sendRegister( UserDTO user) {
+	public UserDTO sendRegister( UserDTO user) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<UserDTO> request = new HttpEntity<>(user,headers);
@@ -37,7 +38,7 @@ public class UserService {
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("got response succsessfully");
 		}
-		return "";
+		return user;
 	}
 
 	

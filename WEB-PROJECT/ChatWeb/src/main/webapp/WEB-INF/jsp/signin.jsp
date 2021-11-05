@@ -40,14 +40,13 @@
             </div>
 
             <div class="form signupForm">
-                <form action="/register" method="post">
+                <form:form action="/register" method="post" modelAttribute="user">
                     <h3>Đăng Ký</h3>
-                    <input type="text" id="telephone" name="soDienThoai" onblur="kiemtrasdt();" placeholder="Số điện thoại"><span hidden id="er2">(*)</span>
-                    <input type="email" id="email" name="email"  onblur="kiemtramail();" placeholder="Địa chỉ email"><span hidden id="er1">(*)</span>
-                    <input type="password" id="pass" name="password" onblur="kiemtramk();" placeholder="Mật khẩu"><span hidden id="ermk">(*)</span>
+                    <form:input  id="telephone" path="soDienThoai" onblur="kiemtrasdt();" placeholder="Số điện thoại" /><span hidden id="er2">(*)</span>
+                    <form:password id="pass" path="password" onblur="kiemtramk();" placeholder="Mật khẩu" /><span hidden id="ermk">(*)</span>
                     <input type="password" id="repass" onblur="kiemtralaimk();" placeholder="Nhập lại mật khẩu"><span hidden id="erremk">(*)</span>
                     <input type="submit" value="Đăng Ký">
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
