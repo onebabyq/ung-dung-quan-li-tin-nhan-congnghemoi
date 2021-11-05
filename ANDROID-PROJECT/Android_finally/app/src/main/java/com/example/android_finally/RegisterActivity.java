@@ -37,8 +37,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editPassword2;
     private TextView loi2;
     private TextView loi4;
-    String url = "http://192.168.1.23:3000/users";
-
+    String url = "http://localhost:9000/api/users";
+    String url2 = "http://localhost:9000/api/account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

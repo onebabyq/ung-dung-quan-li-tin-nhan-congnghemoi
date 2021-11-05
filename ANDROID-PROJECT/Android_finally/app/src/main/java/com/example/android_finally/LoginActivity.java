@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements OnClickListener 
     private EditText editUserName;
     private EditText editPassword;
     private TextView loi;
-    String url = "http://192.168.1.23:3000/users";
+    String url = "http://192.168.1.23:9000/api/users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

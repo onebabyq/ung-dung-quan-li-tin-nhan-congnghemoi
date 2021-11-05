@@ -40,8 +40,8 @@ public class QuenMKActivity extends AppCompatActivity implements View.OnClickLis
     private TextView loi2;
     private TextView loi4;
     private List<User> listUser;
-    String url = "http://192.168.1.23:3000/users";
-
+    String url = "http://localhost:9000/api/users";
+    String url2 = "http://localhost:9000/api/account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
