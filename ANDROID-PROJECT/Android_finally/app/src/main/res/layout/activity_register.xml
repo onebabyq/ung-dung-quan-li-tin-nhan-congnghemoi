@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textLoi2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/s_i_n_tho_i_c_s_d_ng"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSDT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soDienThoai"
+        app:layout_constraintVertical_bias="0.769" />
+
+    <TextView
+        android:id="@+id/textLoi4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/m_t_kh_u_kh_ng_kh_p"
+        android:textColor="#FF0000"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSDT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soDienThoai"
+        app:layout_constraintVertical_bias="0.958" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="412dp"
+        android:layout_height="84dp"
+        android:background="#49B9F8"
+        app:layout_constraintBottom_toTopOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/soDienThoai"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="204dp"
+        android:layout_marginEnd="24dp"
+        android:autofillHints=""
+        android:hint="@string/s_i_n_tho_i"
+        android:inputType="phone"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="413dp"
+        android:layout_height="96dp"
+        android:background="#49B9F8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soDienThoai"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonSDT"
+        android:layout_width="157dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="256dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#49B9F8"
+        android:text="@string/ti_p_t_c"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soDienThoai" />
+
+    <EditText
+        android:id="@+id/editTextMatKhau"
+        android:layout_width="363dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="156dp"
+        android:ems="10"
+        android:hint="@string/m_t_kh_u"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSDT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soDienThoai"
+        app:layout_constraintVertical_bias="0.481"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/editTextMatKhau2"
+        android:layout_width="363dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="116dp"
+        android:ems="10"
+        android:hint="@string/nh_p_l_i_m_t_kh_u"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSDT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="" />
+
+</android.support.constraint.ConstraintLayout>
