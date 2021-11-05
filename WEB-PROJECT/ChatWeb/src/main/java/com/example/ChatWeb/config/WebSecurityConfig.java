@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/home", true)
+                .defaultSuccessUrl("/chat", true)
                 .failureUrl("/login?error=true")
                // .failureHandler(authenticationFailureHandler())
                 .and()
