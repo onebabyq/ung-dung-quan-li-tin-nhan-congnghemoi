@@ -38,7 +38,7 @@ CREATE TABLE `account_room` (
 
 LOCK TABLES `account_room` WRITE;
 /*!40000 ALTER TABLE `account_room` DISABLE KEYS */;
-INSERT INTO `account_room` VALUES (1,1);
+INSERT INTO `account_room` VALUES (1,1),(2,1),(1,2),(5,2);
 /*!40000 ALTER TABLE `account_room` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-04  9:28:19
+-- Dump completed on 2021-11-06  8:52:25
