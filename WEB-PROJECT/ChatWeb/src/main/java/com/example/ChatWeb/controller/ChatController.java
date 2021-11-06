@@ -1,5 +1,6 @@
 package com.example.ChatWeb.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,12 +44,15 @@ public class ChatController {
 
 	@MessageMapping("/chat/{roomId}/sendMessage")
 	public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
+		log.info(chatMessage.toString());
+		messageService.createByChatMessage(chatMessage);
 		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
 	}
 
 	@MessageMapping("/chat/{roomId}/addUser")
 	public void addUser(@DestinationVariable String roomId, @Payload ChatMessage chatMessage,
 			SimpMessageHeaderAccessor headerAccessor) {
+		log.info(chatMessage.toString());
 		String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
 		if (currentRoomId != null) {
 			ChatMessage leaveMessage = new ChatMessage();
@@ -89,7 +93,7 @@ public class ChatController {
 			map.put(a, room.getId());
 		}
 		model.addAttribute("mapFriendRoom", map);
-		model.addAttribute("username", accountLogin.getUsername());
+		model.addAttribute("account", accountLogin);
 		// System.out.println("HELLO SON");
 		return "chat";
 	}
@@ -110,20 +114,16 @@ public class ChatController {
 		
 		RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), friendId);
 		List<MessageDTO> listMessage = messageService.getListMessageByMessageId(room.getId());
+		//Collections.sort(listMessage);
 		
 		
-		Map<MessageDTO,AccountDTO> mapMessage = new HashMap<>();
-		for(MessageDTO m : listMessage) {
-			AccountDTO a = m.getFrom();
-			mapMessage.put(m, a);
-		}
+		
 		
 		model.addAttribute("friendName", accountService.getAccountById(friendId).getUsername());
-		model.addAttribute("mapMessage", mapMessage);
+		model.addAttribute("listMessage", listMessage);
 		model.addAttribute("roomId", room.getId());
 		model.addAttribute("mapFriendRoom", map);
 		model.addAttribute("account", accountLogin);
-		
 
 		return "chat";
 	}

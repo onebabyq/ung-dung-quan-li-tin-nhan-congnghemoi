@@ -2,9 +2,11 @@ package com.example.ChatWeb.model;
 
 
 public class ChatMessage {
+	private long idSender;
     private MessageType type;
     private String content;
     private String sender;
+    private long roomId;
 
     public enum MessageType {
         CHAT,
@@ -12,11 +14,29 @@ public class ChatMessage {
         LEAVE
     }
 
-    public MessageType getType() {
+    
+    
+    public long getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(long roomId) {
+		this.roomId = roomId;
+	}
+
+	public MessageType getType() {
         return type;
     }
 
-    public void setType(MessageType type) {
+    public long getIdSender() {
+		return idSender;
+	}
+
+	public void setIdSender(long idSender) {
+		this.idSender = idSender;
+	}
+
+	public void setType(MessageType type) {
         this.type = type;
     }
 
@@ -38,7 +58,9 @@ public class ChatMessage {
 
 	@Override
 	public String toString() {
-		return "ChatMessage [type=" + type + ", content=" + content + ", sender=" + sender + "]";
+		return "ChatMessage [idSender=" + idSender + ", type=" + type + ", content=" + content + ", sender=" + sender
+				+ "]";
 	}
+
     
 }

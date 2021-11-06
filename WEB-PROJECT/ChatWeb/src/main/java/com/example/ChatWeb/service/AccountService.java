@@ -26,7 +26,7 @@ public class AccountService {
 		AccountDTO account = restTemplate.getForObject(LOCALHOST + "/accounts/bySoDienThoai/" + sdt, AccountDTO.class);
 		if (account == null)
 			return new AccountDTO();
-		System.out.println(account);
+		//System.out.println(account);
 
 		return account;
 	}
@@ -34,7 +34,7 @@ public class AccountService {
 		AccountDTO account = restTemplate.getForObject(LOCALHOST + "/accounts/" + id, AccountDTO.class);
 		if (account == null)
 			return new AccountDTO();
-		System.out.println(account);
+		//System.out.println(account);
 
 		return account;
 	}

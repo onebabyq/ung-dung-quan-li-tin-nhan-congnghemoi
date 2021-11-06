@@ -18,6 +18,7 @@ var topic = null;
 var roomId = null;
 var stompClient = null;
 var username = null;
+var idAccount = null;
 var socketName = null;
 var currentSubscription;
 
@@ -28,7 +29,7 @@ var colors = [
 
 
 window.onload = function exampleFunction() {
-	//alert("starting... : ");
+	//alert("starting... userName : ");
 	//roomId = roomInput.textContent;
 	//if(roomId!=0)
 	//if(roomInput.textContent==1)
@@ -39,10 +40,8 @@ window.onload = function exampleFunction() {
 function connect(event) {
 	//alert(document.querySelector('#name').value.trim());
 	username = document.querySelector('#name').textContent;
-
-	if (!username) {
-		username = "HoangSon";
-	}
+	idAccount = document.querySelector('#idAccount').textContent;
+	//alert("id_account: "+idAccount);
 	//alert("username 1: " + username);
 	if (username) {
 		//alert("username: "+ username);
@@ -76,9 +75,9 @@ function enterRoom(newRoomId) {
 
 	stompClient.send(`${topic}/addUser`,
 		{},
-		JSON.stringify({ sender: username, type: 'JOIN' })
+		JSON.stringify({ idSender: idAccount,sender: username, type: 'JOIN' })
 	);
-	//alert("Enter room: " + roomId)
+	//alert("Enter room: " + roomId);
 }
 
 function onConnected() {
@@ -101,9 +100,11 @@ function sendMessage(event) {
 	var messageContent = messageInput.value.trim();
 	if (messageContent && stompClient) {
 		var chatMessage = {
+			idSender: idAccount,
 			sender: username,
 			content: messageInput.value,
-			type: 'CHAT'
+			type: 'CHAT',
+			roomId: roomId
 		};
 		//stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
 		stompClient.send(`${topic}/sendMessage`, {}, JSON.stringify(chatMessage));

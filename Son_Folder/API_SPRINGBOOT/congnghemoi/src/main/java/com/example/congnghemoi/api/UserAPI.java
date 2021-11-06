@@ -42,7 +42,7 @@ public class UserAPI {
 	}
 	@GetMapping(value="/users/bySoDienThoai/{sdt}")
 	public User getUserBySoDienThoai(@PathVariable String sdt) {
-		System.out.println("SĐT query: "+sdt);
+		//System.out.println("SĐT query: "+sdt);
 		return userService.findBySoDienThoai(sdt);
 	}
 	@PostMapping(value="/users")

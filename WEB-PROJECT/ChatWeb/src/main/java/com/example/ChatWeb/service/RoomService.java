@@ -19,7 +19,7 @@ public class RoomService {
 		RoomDTO room = restTemplate.getForObject(LOCALHOST + "/rooms/byTwoAccountId/" + id1+"/"+id2, RoomDTO.class);
 		if (room == null)
 			return new RoomDTO();
-		System.out.println(room);
+		//System.out.println(room);
 
 		return room;
 	}
@@ -28,7 +28,7 @@ public class RoomService {
 		RoomDTO room = restTemplate.getForObject(LOCALHOST + "/rooms/"+id, RoomDTO.class);
 		if (room == null)
 			return new RoomDTO();
-		System.out.println(room);
+		//System.out.println(room);
 
 		return room;
 	}

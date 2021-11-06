@@ -56,5 +56,9 @@ public class Message extends BaseEntity implements Serializable{
 	public void setFrom(Account from) {
 		this.from = from;
 	}
-	
+	/*
+	 * @Override public String toString() { return "Message [content=" + content +
+	 * ", contentType=" + contentType + ", readStatus=" + readStatus + ", room=" +
+	 * room + ", from=" + from + "]"; }
+	 */
 }
