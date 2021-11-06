@@ -18,14 +18,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.ChatWeb.dto.AccountDTO;
+import com.example.ChatWeb.dto.MessageDTO;
 import com.example.ChatWeb.dto.RoomDTO;
 import com.example.ChatWeb.model.ChatMessage;
 import com.example.ChatWeb.model.ChatMessage.MessageType;
 import com.example.ChatWeb.service.AccountService;
+import com.example.ChatWeb.service.MessageService;
 import com.example.ChatWeb.service.RoomService;
 
 @Controller
@@ -34,6 +34,8 @@ public class ChatController {
 	private AccountService accountService;
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private MessageService messageService;
 	private static final Logger log = LoggerFactory.getLogger(ChatController.class);
 
 	@Autowired
@@ -107,10 +109,21 @@ public class ChatController {
 		model.addAttribute("mapFriendRoom", map);
 		
 		RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), friendId);
+		List<MessageDTO> listMessage = messageService.getListMessageByMessageId(room.getId());
+		
+		
+		Map<MessageDTO,AccountDTO> mapMessage = new HashMap<>();
+		for(MessageDTO m : listMessage) {
+			AccountDTO a = m.getFrom();
+			mapMessage.put(m, a);
+		}
+		
 		model.addAttribute("friendName", accountService.getAccountById(friendId).getUsername());
+		model.addAttribute("mapMessage", mapMessage);
 		model.addAttribute("roomId", room.getId());
 		model.addAttribute("mapFriendRoom", map);
-		model.addAttribute("username", accountLogin.getUsername());
+		model.addAttribute("account", accountLogin);
+		
 
 		return "chat";
 	}

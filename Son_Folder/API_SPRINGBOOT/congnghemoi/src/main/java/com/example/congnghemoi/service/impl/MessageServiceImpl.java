@@ -47,5 +47,13 @@ public class MessageServiceImpl implements MessageService {
 
 
 
+	@Override
+	public List<Message> findMessageByRoomId(long id) {
+		// TODO Auto-generated method stub
+		return messageRepository.findMessageByRoomId(id);
+	}
+
+
+
 
 }

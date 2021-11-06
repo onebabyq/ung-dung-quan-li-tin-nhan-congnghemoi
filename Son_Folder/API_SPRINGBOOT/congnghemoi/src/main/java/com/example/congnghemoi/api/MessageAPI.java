@@ -32,6 +32,11 @@ public class MessageAPI {
 		
 		return messageService.findById(id);
 	}
+	@GetMapping(value="/messages/byRoomId/{id}")
+	public List<Message> getMessageByRoomId(@PathVariable long id) {
+		
+		return messageService.findMessageByRoomId(id);
+	}
 	@GetMapping(value="/messagesWithAccount/{id}")
 	public Message getMessageWithAccoutById(@PathVariable long id) {
 		

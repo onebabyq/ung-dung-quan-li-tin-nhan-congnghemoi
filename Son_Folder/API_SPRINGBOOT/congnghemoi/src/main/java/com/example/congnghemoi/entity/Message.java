@@ -23,7 +23,7 @@ public class Message extends BaseEntity implements Serializable{
 	@JsonBackReference(value="room-message-movement")
 	private Room room;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonBackReference(value="message-account-movement")
+	//@JsonBackReference(value="message-account-movement")
 	private Account from;
 	
 	public String getContent() {

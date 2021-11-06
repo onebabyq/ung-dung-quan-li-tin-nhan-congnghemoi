@@ -12,6 +12,9 @@ public class MessageDTO {
 	private AccountDTO from;
 	
 	
+	public AccountDTO getFrom() {
+		return from;
+	}
 	public Long getId() {
 		return id;
 	}

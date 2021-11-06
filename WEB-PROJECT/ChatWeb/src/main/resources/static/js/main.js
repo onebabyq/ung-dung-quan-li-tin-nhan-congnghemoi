@@ -78,7 +78,7 @@ function enterRoom(newRoomId) {
 		{},
 		JSON.stringify({ sender: username, type: 'JOIN' })
 	);
-	alert("Enter room: " + roomId)
+	//alert("Enter room: " + roomId)
 }
 
 function onConnected() {
@@ -116,10 +116,7 @@ function sendMessage(event) {
 function onMessageReceived(payload) {
 	var message = JSON.parse(payload.body);
 
-	var messageElement = document.createElement('li');
-	if (message.sender == username)
-		messageElement.classList.add('me');
-	else messageElement.classList.add('u');
+
 
 	if (message.type === 'JOIN' && message.sender != username) {
 		hoat_dong.textContent = "Vừa mới hoạt động";
@@ -129,29 +126,22 @@ function onMessageReceived(payload) {
 		hoat_dong.textContent = "Hoạt động ít phút trước";
 		//messageElement.classList.add('event-message');
 		//message.content = message.sender + ' left!';
-	} else {
+	} else if (message.type === 'CHAT') {
+
+		var messageElement = document.createElement('li');
+		if (message.sender == username)
+			messageElement.classList.add('me');
+		else messageElement.classList.add('u');
 		messageElement.classList.add('chat-message');
 
-		//var avatarElement = document.createElement('i');
-		//var avatarText = document.createTextNode(message.sender[0]);
-		//avatarElement.appendChild(avatarText);
-		//avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-		//messageElement.appendChild(avatarElement);
-
-		//var usernameElement = document.createElement('span');
-		//var usernameText = document.createTextNode(message.sender);
-		//usernameElement.appendChild(usernameText);
-		//messageElement.appendChild(usernameElement);
 		var textElement = document.createElement('p');
 		var messageText = document.createTextNode(message.content);
 		textElement.appendChild(messageText);
-	
+
 		messageElement.appendChild(textElement);
-	
+
 		messageArea.appendChild(messageElement);
 		messageArea.scrollTop = messageArea.scrollHeight;
-		
 	}
 
 }
@@ -171,7 +161,7 @@ messageForm.onclick = function(event) {
 	sendMessage();
 }
 $(document).ready(function() {
-	
+
 	//if(roomInput.textContent!="")
 	//	connect();
 	/*  var savedName = Cookies.get('name');

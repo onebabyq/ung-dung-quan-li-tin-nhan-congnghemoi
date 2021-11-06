@@ -11,5 +11,6 @@ public interface MessageService {
 	Message findById(long id);
 	Message save(Message messageEntity);
 	void deleteById(long id);
+	List<Message> findMessageByRoomId(long id);
 	
 }

@@ -20,7 +20,7 @@
 		<ul>
 			<li><a href="/home"> <span class="icon"><ion-icon
 							name="person-circle-outline"></ion-icon></span> <%--              <span class="title" id="name">${username}</span> --%>
-					<span class="title" id="name">${username}</span>
+					<span class="title" id="name">${account.username}</span>
 			</a></li>
 			<li><a href="/home"> <span class="icon"><ion-icon
 							name="home-outline"></ion-icon></span> <span class="title">Trang
@@ -120,6 +120,20 @@
 				<div class="mid">
 					<ul id="messageArea">
 						<!-- This is message area -->
+						<c:if test="${not empty mapMessage}">
+							<c:forEach items="${mapMessage}" var="entry">
+								<c:if test="${entry.value.id == account.id}">
+									<li class="me">
+				                        <p>${entry.key.content}</p>
+				                    </li>	
+								</c:if>
+								<c:if test="${entry.value.id != account.id}">
+									<li class="u">
+				                       <p>${entry.key.content}/from:${entry.value.id}</p>
+				                    </li>	
+								</c:if>
+							</c:forEach>
+						</c:if>
 					</ul>
 				</div>
 				<div class="btm">
