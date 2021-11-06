@@ -1,6 +1,5 @@
 package com.example.ChatWeb.controller;
 
-
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -33,27 +32,27 @@ public class ChatController {
 	private RoomService roomService;
 	private static final Logger log = LoggerFactory.getLogger(ChatController.class);
 
-	  @Autowired
-	  private SimpMessageSendingOperations messagingTemplate;
+	@Autowired
+	private SimpMessageSendingOperations messagingTemplate;
 
-	  @MessageMapping("/chat/{roomId}/sendMessage")
-	  public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
-	    messagingTemplate.convertAndSend("/topic/"+ roomId, chatMessage);
-	  }
+	@MessageMapping("/chat/{roomId}/sendMessage")
+	public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
+		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
+	}
 
-	  @MessageMapping("/chat/{roomId}/addUser")
-	  public void addUser(@DestinationVariable String roomId, @Payload ChatMessage chatMessage,
-	      SimpMessageHeaderAccessor headerAccessor) {
-	    String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
-	    if (currentRoomId != null) {
-	      ChatMessage leaveMessage = new ChatMessage();
-	      leaveMessage.setType(MessageType.LEAVE);
-	      leaveMessage.setSender(chatMessage.getSender());
-	      messagingTemplate.convertAndSend("/topic/"+ currentRoomId, leaveMessage);
-	    }
-	    headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-	    messagingTemplate.convertAndSend("/topic/"+ roomId, chatMessage);
-	  }
+	@MessageMapping("/chat/{roomId}/addUser")
+	public void addUser(@DestinationVariable String roomId, @Payload ChatMessage chatMessage,
+			SimpMessageHeaderAccessor headerAccessor) {
+		String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
+		if (currentRoomId != null) {
+			ChatMessage leaveMessage = new ChatMessage();
+			leaveMessage.setType(MessageType.LEAVE);
+			leaveMessage.setSender(chatMessage.getSender());
+			messagingTemplate.convertAndSend("/topic/" + currentRoomId, leaveMessage);
+		}
+		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
+	}
 //    @MessageMapping("/chat.sendMessage")
 //    @SendTo("/topic/public")
 //    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
@@ -70,32 +69,34 @@ public class ChatController {
 //        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
 //        return chatMessage;
 //    }
-    
-    @GetMapping("/chat")
-    public String viewBooks(Model model) {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String sdt = auth.getName(); //get logged in username;
-        AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
-        List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
-      
-        model.addAttribute("listFriend", listFriend);
-        model.addAttribute("username", accountLogin.getUsername());
-    	//System.out.println("HELLO SON");
-        return "chat";
-    }
-    @GetMapping("/chat/withFriend/{fiendId}")
-    public String chatwithfriend(Model model,@PathVariable long fiendId) {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String sdt = auth.getName(); //get logged in username;
-        AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
-        List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
-      
-        RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), fiendId);
-        model.addAttribute("listFriend", listFriend);
-        model.addAttribute("testModel", "Hello SonMaBu");
-        model.addAttribute("username", accountLogin.getUsername());
-    	//System.out.println("HELLO SON");
-        return "chat";
-    }
+
+	@GetMapping("/chat")
+	public String viewBooks(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String sdt = auth.getName(); // get logged in username;
+		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+		List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
+
+		model.addAttribute("listFriend", listFriend);
+		model.addAttribute("username", accountLogin.getUsername());
+		// System.out.println("HELLO SON");
+		return "chat";
+	}
+
+	@GetMapping("/dual/withFriend/{friendId}") 
+	public String chatwithfriend(Model model,@PathVariable long friendId){
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String sdt = auth.getName(); // get logged in username;
+		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+		List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
+
+		RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), friendId);
+		model.addAttribute("roomId", room.getId());
+		model.addAttribute("listFriend", listFriend);
+		model.addAttribute("username", accountLogin.getUsername());
+
+		return "chat";
+	}
 
 }

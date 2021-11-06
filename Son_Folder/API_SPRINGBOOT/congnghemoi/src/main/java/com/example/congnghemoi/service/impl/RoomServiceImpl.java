@@ -19,7 +19,7 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		return roomRepository.findAll();
 	}
-
+	
 	
 
 	@Override

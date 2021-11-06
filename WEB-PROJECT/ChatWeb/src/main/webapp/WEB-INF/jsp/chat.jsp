@@ -11,8 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chat Room</title>
 
-<link rel="stylesheet" href="css/chat.css">
-<link rel="stylesheet" href="css/admin_dashboard.css">
+<link rel="stylesheet" href="${contextPath}/css/chat.css">
+<link rel="stylesheet" href="${contextPath}/css/admin_dashboard.css">
 
 </head>
 <body>
@@ -39,6 +39,7 @@
 						Xuất</span>
 			</a></li>
 		</ul>
+		<p style="position: absolute;bottom: 0;left: 0;">RoomId: <span id="room-id">${roomId}</span></p>
 	</div>
 
 	<div class="main">
@@ -50,8 +51,8 @@
 		<div class="box">
 			<div class="left">
 				<div class="topp">
-					<!-- <h2>APPCHAT</h2> -->
-					<h2 id="idSocket">${idSocket}</h2>
+					 <h2>APPCHAT</h2> 
+					<!-- <h2 id="room-id-display">1</h2> -->
 				</div>
 				<div class="search_box">
 					<input class="in" type="text" placeholder="Tìm kiếm...">
@@ -62,14 +63,12 @@
 				<ul>
 					<c:forEach items="${listFriend}" var="item">
 
-					
-<%-- 							<a href="${contextPath}/chat" onclick="document.getElementById('formID${item.id}').submit();">
- --%>				<a href="${contextPath}/chat">
+					 <a href="${contextPath}/dual/withFriend/${item.id}"> 
 							<li>
 								<div class="friend" id="divID${item.id}">
 
 									<div class="img_name"></div>
-									<img src="image/none-avatar.png" class="ava" alt="">
+									<img src="${contextPath}/image/none-avatar.png" class="ava" alt="">
  
 									<div>
 										<h3>${item.username}</h3>
@@ -92,7 +91,7 @@
 			<div class="right">
 				<div class="right_top">
 					<div class="img_name">
-						<img src="image/none-avatar.png" class="ava" alt="">
+						<img src="${contextPath}/image/none-avatar.png" class="ava" alt="">
 						<div>
 							<h3>Hoàng Sơn</h3>
 							<p>Active 30 seconds ago...</p>

@@ -1,5 +1,8 @@
 'use strict';
-var roomInput = $('#room-id');
+//var roomInput = $('#room-id');
+//var testModel = $('#testModel');
+
+var roomInput = document.querySelector('#room-id');
 var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
@@ -7,8 +10,10 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
-var roomIdDisplay = document.querySelector('#room-id-display');
+//var roomIdDisplay = document.querySelector('#room-id-display');
 
+var topic = null;
+var roomId=null;
 var stompClient = null;
 var username = null;
 var socketName = null;
@@ -19,8 +24,10 @@ var colors = [
 	'#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 window.onload = function exampleFunction() {
-	//alert("starting...");
-	connect();
+	alert("starting... : " );
+	roomId = roomInput.textContent;
+	//if(roomId!=0)
+		connect();
 	// Function to be executed
 }
 
@@ -31,12 +38,12 @@ function connect(event) {
 	if (!username) {
 		username = "HoangSon";
 	}
-	//alert("username 1: "+username);
+	alert("username 1: "+username);
 	if (username) {
 		//alert("username: "+ username);
 		// usernamePage.classList.add('hidden');
 		// chatPage.classList.remove('hidden');
-		var socketId = document.querySelector('#idSocket').textContent;
+		//var socketId = document.querySelector('#idSocket').textContent;
 
 
 		var socket = new SockJS('/ws');
@@ -50,8 +57,8 @@ function connect(event) {
 // Leave the current room and enter a new one.
 function enterRoom(newRoomId) {
 	roomId = newRoomId;
-	Cookies.set('roomId', roomId);
-	roomIdDisplay.textContent = roomId;
+	//Cookies.set('roomId', roomId);
+	//roomIdDisplay.textContent = roomId;
 	topic = `/app/chat/${newRoomId}`;
 
 	if (currentSubscription) {
@@ -63,11 +70,12 @@ function enterRoom(newRoomId) {
 		{},
 		JSON.stringify({ sender: username, type: 'JOIN' })
 	);
+	alert("Enter room: "+roomId)
 }
 
 function onConnected() {
-	alert("onConnected");
-	enterRoom(roomInput.val());
+	if(roomId!=0)
+		enterRoom(roomInput);
 
 	connectingElement.classList.add('hidden');
 
@@ -89,7 +97,8 @@ function sendMessage(event) {
 			content: messageInput.value,
 			type: 'CHAT'
 		};
-		stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+		//stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+		stompClient.send(`${topic}/sendMessage`, {}, JSON.stringify(chatMessage));
 		messageInput.value = '';
 	}
 	event.preventDefault();
@@ -151,7 +160,7 @@ messageForm.onclick = function(event) {
 	sendMessage();
 }
 $(document).ready(function() {
-  var savedName = Cookies.get('name');
+/*  var savedName = Cookies.get('name');
   if (savedName) {
     nameInput.val(savedName);
   }
@@ -159,7 +168,7 @@ $(document).ready(function() {
   var savedRoom = Cookies.get('roomId');
   if (savedRoom) {
     roomInput.val(savedRoom);
-  }
+  }*/
 	
   //usernamePage.classList.remove('hidden');
   usernameForm.addEventListener('submit', connect, true);
