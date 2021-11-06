@@ -47,5 +47,13 @@ public class RoomServiceImpl implements RoomService {
 
 
 
+	@Override
+	public Room findRoomDualByTwoAccountId(long id1, long id2) {
+		// TODO Auto-generated method stub
+		return roomRepository.findRoomDualByTwoAccountId(id1,id2);
+	}
+
+
+
 
 }

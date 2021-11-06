@@ -1,4 +1,9 @@
 'use strict';
+<<<<<<< Updated upstream
+=======
+//var roomInput = $('#room-id');
+var roomInput = document.querySelector('#room-id');
+>>>>>>> Stashed changes
 var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
@@ -10,6 +15,12 @@ var connectingElement = document.querySelector('.connecting');
 var stompClient = null;
 var username = null;
 var socketName = null;
+<<<<<<< Updated upstream
+=======
+var roomId = null;
+var currentSubscription;
+var topic = null;
+>>>>>>> Stashed changes
 
 var colors = [
 	'#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -30,10 +41,10 @@ function connect(event) {
 	}
 	//alert("username 1: "+username);
 	if (username) {
-		//alert("username: "+ username);
+		//alert("username: " + username);
 		// usernamePage.classList.add('hidden');
 		// chatPage.classList.remove('hidden');
-		var socketId = document.querySelector('#idSocket').textContent;
+		//var socketId = document.querySelector('#idSocket').textContent;
 
 
 		var socket = new SockJS('/ws');
@@ -44,6 +55,7 @@ function connect(event) {
 	}
 	event.preventDefault();
 }
+<<<<<<< Updated upstream
 
 
 function onConnected() {
@@ -56,6 +68,29 @@ function onConnected() {
 		{},
 		JSON.stringify({ sender: username, type: 'JOIN' })
 	)
+=======
+// Leave the current room and enter a new one.
+function enterRoom(newRoomId) {
+	alert("enter room");
+	roomId = newRoomId;
+	//Cookies.set('roomId', roomId);
+	roomIdDisplay.textContent = roomId;
+	topic = `/app/chat/${newRoomId}`;
+	if (currentSubscription) {
+		currentSubscription.unsubscribe();
+	}
+	currentSubscription = stompClient.subscribe(`/topic/${roomId}`, onMessageReceived);
+	stompClient.send(`${topic}/addUser`,
+		{},
+		JSON.stringify({ sender: username, type: 'JOIN' })
+	);
+	alert("enter room finish");
+}
+
+function onConnected() {
+	//alert("onConnected");
+	enterRoom(roomInput.textContent);
+>>>>>>> Stashed changes
 
 	connectingElement.classList.add('hidden');
 
@@ -84,10 +119,15 @@ function sendMessage(event) {
 			content: messageInput.value,
 			type: 'CHAT'
 		};
+<<<<<<< Updated upstream
 
 		//alert(chatMessage);
 
 		stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+=======
+		//stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+		 stompClient.send(`${topic}/sendMessage`, {}, JSON.stringify(chatMessage));
+>>>>>>> Stashed changes
 		messageInput.value = '';
 	}
 	event.preventDefault();
@@ -148,5 +188,27 @@ messageForm.onclick = function(event) {
 	event.preventDefault();
 	sendMessage();
 }
+<<<<<<< Updated upstream
 usernameForm.addEventListener('submit', connect, true)
 //messageForm.addEventListener('submit', sendMessage, true)
+=======
+$(document).ready(function() {
+	var savedName = Cookies.get('name');
+	if (savedName) {
+		// nameInput.val(savedName);
+		nameInput.textContent = savedName;
+	}
+
+	var savedRoom = Cookies.get('roomId');
+	if (savedRoom) {
+		//roomInput.val(savedRoom);
+		nameInput.textContent = savedName;
+	}
+
+	//usernamePage.classList.remove('hidden');
+	usernameForm.addEventListener('submit', connect, true);
+	messageForm.addEventListener('submit', sendMessage, true);
+
+});
+usernameForm.addEventListener('submit', connect, true);
+>>>>>>> Stashed changes

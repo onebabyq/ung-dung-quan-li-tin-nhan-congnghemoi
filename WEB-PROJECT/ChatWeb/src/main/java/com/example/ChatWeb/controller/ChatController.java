@@ -34,6 +34,7 @@ public class ChatController {
         return chatMessage;
     }
 
+<<<<<<< Updated upstream
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage, 
@@ -43,6 +44,47 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
+=======
+	  @Autowired
+	  private SimpMessageSendingOperations messagingTemplate;
+
+	  @MessageMapping("/chat/{roomId}/sendMessage")
+	  public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
+	    messagingTemplate.convertAndSend("/topic/"+ roomId, chatMessage);
+	  }
+
+	  @MessageMapping("/chat/{roomId}/addUser")
+	  public void addUser(@DestinationVariable String roomId, @Payload ChatMessage chatMessage,
+	      SimpMessageHeaderAccessor headerAccessor) {
+		  log.info(chatMessage.toString());
+		  //System.out.println("Mark : "+chatMessage.toString());
+	    String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
+	    if (currentRoomId != null) {
+	      ChatMessage leaveMessage = new ChatMessage();
+	      leaveMessage.setType(MessageType.LEAVE);
+	      leaveMessage.setSender(chatMessage.getSender());
+	      messagingTemplate.convertAndSend("/topic/"+ currentRoomId, leaveMessage);
+	    }
+	    headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+	    messagingTemplate.convertAndSend("/topic/"+ roomId, chatMessage);
+	  }
+//    @MessageMapping("/chat.sendMessage")
+//    @SendTo("/topic/public")
+//    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+//    	log.info(chatMessage.toString());
+//        return chatMessage;
+//    }
+//
+//    @MessageMapping("/chat.addUser")
+//    @SendTo("/topic/public")
+//    public ChatMessage addUser(@Payload ChatMessage chatMessage, 
+//                               SimpMessageHeaderAccessor headerAccessor) {
+//    	log.info(chatMessage.toString());
+//        // Add username in web socket session
+//        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+//        return chatMessage;
+//    }
+>>>>>>> Stashed changes
     
     @GetMapping("/chat")
     public String viewBooks(Model model) {
@@ -51,15 +93,24 @@ public class ChatController {
         AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
         List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
        
-        int idSocket;
-        if(accountLogin.getId()%2==1)
-        	idSocket = 1;
-        else idSocket=2;
-        model.addAttribute("idSocket", idSocket);
+      
+ 
         model.addAttribute("listFriend", listFriend);
         model.addAttribute("username", accountLogin.getUsername());
     	//System.out.println("HELLO SON");
         return "chat";
     }
-
+    @GetMapping("/chat/withFriend/{id}")
+    public String chatWithFriend(Model model,@PathVariable long id) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String sdt = auth.getName(); //get logged in username;
+        AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+        
+        
+      
+      
+        model.addAttribute("username", accountLogin.getUsername());
+    	//System.out.println("HELLO SON");
+        return "chat";
+    }
 }

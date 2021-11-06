@@ -15,6 +15,7 @@
  
 </head>
 <body>
+<<<<<<< Updated upstream
     <div class="navigation">
         <ul>
             <li>
@@ -130,6 +131,128 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> 
 
     <script>
+=======
+	<div class="navigation">
+		<ul>
+			<li><a href="/home"> <span class="icon"><ion-icon
+							name="person-circle-outline"></ion-icon></span> <%--              <span class="title" id="name">${username}</span> --%>
+					<span class="title" id="name">${username}</span>
+			</a></li>
+			<li><a href="/home"> <span class="icon"><ion-icon
+							name="home-outline"></ion-icon></span> <span class="title">Trang
+						Chủ</span>
+			</a></li>
+			<li><a href="/view"> <span class="icon"><ion-icon
+							name="chatbubbles-outline"></ion-icon></span> <span class="title">Tin
+						Nhắn</span>
+			</a></li>
+			<li><a href="/info"> <span class="icon"><ion-icon
+							name="person-outline"></ion-icon></span> <span class="title">Cá
+						Nhân</span>
+			</a></li>
+			<li><a href="/logout"> <span class="icon"><ion-icon
+							name="log-out-outline"></ion-icon></span> <span class="title">Đăng
+						Xuất</span>
+			</a></li>
+		</ul>
+	</div>
+
+	<div class="main">
+		<div class="topbar">
+			<div class="toggle">
+				<ion-icon name="menu-outline" class="open"></ion-icon>
+			</div>
+		</div>
+		<div class="box">
+			<div class="left">
+				<div class="topp">
+					<!-- <h2>APPCHAT</h2> -->
+					<h2 id="room-id">1</h2>
+					<h2 id="room-id-display">1</h2>
+				</div>
+				<div class="search_box">
+					<input class="in" type="text" placeholder="Tìm kiếm...">
+					<div class="ico">
+						<span><ion-icon class="icon1" name="search-outline"></ion-icon></span>
+					</div>
+				</div>
+				<ul>
+					<c:forEach items="${listFriend}" var="item">
+
+					
+<%-- 							<a href="${contextPath}/chat" onclick="document.getElementById('formID${item.id}').submit();">
+ --%>				<a href="${contextPath}/chat">
+							<li>
+								<div class="friend" id="divID${item.id}">
+
+									<div class="img_name"></div>
+									<img src="image/none-avatar.png" class="ava" alt="">
+ 
+									<div>
+										<h3>${item.username}</h3>
+										<p>Chào ${item.username}!</p>
+									</div>
+									
+									<div class="time">
+										<p class="p">Today</p>
+									</div>
+								</div>
+
+
+
+							</li>
+				</a>
+					</c:forEach>
+
+				</ul>
+			</div>
+			<div class="right">
+				<div class="right_top">
+					<div class="img_name">
+						<img src="image/none-avatar.png" class="ava" alt="">
+						<div>
+							<h3>Hoàng Sơn</h3>
+							<p>Active 30 seconds ago...</p>
+						</div>
+					</div>
+					<span><ion-icon class="icon2"
+							name="ellipsis-horizontal-outline"></ion-icon></span>
+				</div>
+				<div class="mid">
+					<ul id="messageArea">
+						<li class="me">
+							<p>Chào! Khỏe không</p>
+						</li>
+						<li class="u">
+							<p>Chào! Khỏe không</p>
+						</li>
+					</ul>
+				</div>
+				<div class="btm">
+					<form>
+						<div>+</div>
+						<input type="text" name="" placeholder="Bạn đang nghĩ gì?"
+							class="in2" id="message">
+						<div class="ico3">
+							<button id="messageForm" name="messageForm">Send</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<script type="module"
+		src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule
+		src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+	<script>
+>>>>>>> Stashed changes
     	//var messageForm = document.querySelector('#messageForm');
         //Menu Toggle
         let menuToggle = document.querySelector('.toggle');

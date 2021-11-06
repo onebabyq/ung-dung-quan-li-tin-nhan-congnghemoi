@@ -37,6 +37,11 @@ public class RoomAPI {
 		
 		return roomService.findById(id);
 	}
+	@GetMapping(value="/rooms/byTwoAccountId/{id1}/{id2}")
+	public Room getRoomDualByTwoAccountId(@PathVariable long id1,@PathVariable long id2) {
+		
+		return roomService.findRoomDualByTwoAccountId(id1,id2);
+	}
 	@PostMapping(value="/rooms")
 	public Room saveRoom(@RequestBody Room newEntity) {
 		
