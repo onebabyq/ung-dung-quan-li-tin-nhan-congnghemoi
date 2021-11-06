@@ -30,6 +30,14 @@ public class AccountService {
 
 		return account;
 	}
+	public AccountDTO getAccountById(long id) {
+		AccountDTO account = restTemplate.getForObject(LOCALHOST + "/accounts/" + id, AccountDTO.class);
+		if (account == null)
+			return new AccountDTO();
+		System.out.println(account);
+
+		return account;
+	}
 
 	public List<AccountDTO> getListFriendByAccountId(Long id) {
 		ResponseEntity<List<AccountDTO>> responseEntity =

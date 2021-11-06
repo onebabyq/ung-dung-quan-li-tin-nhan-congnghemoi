@@ -24,6 +24,14 @@ public class RoomService {
 		return room;
 	}
 
+	public RoomDTO getRoomById(long id) {
+		RoomDTO room = restTemplate.getForObject(LOCALHOST + "/rooms/"+id, RoomDTO.class);
+		if (room == null)
+			return new RoomDTO();
+		System.out.println(room);
+
+		return room;
+	}
 
 
 

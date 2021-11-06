@@ -39,7 +39,20 @@
 						Xuất</span>
 			</a></li>
 		</ul>
-		<p style="position: absolute;bottom: 0;left: 0;">RoomId: <span id="room-id">${roomId}</span></p>
+		<c:if test="${not empty roomId}">
+			<p style="position: absolute; bottom: 0; left: 0;">
+				RoomId: <span id="room-id">${roomId}</span>
+			</p>
+			
+		</c:if>
+		<c:if test="${empty roomId}">
+			<p style="position: absolute; bottom: 0; left: 0;">
+				RoomId: <span id="room-id">1</span>
+			</p>
+			
+		</c:if>
+		 
+		
 	</div>
 
 	<div class="main">
@@ -51,7 +64,7 @@
 		<div class="box">
 			<div class="left">
 				<div class="topp">
-					 <h2>APPCHAT</h2> 
+					<h2>APPCHAT</h2>
 					<!-- <h2 id="room-id-display">1</h2> -->
 				</div>
 				<div class="search_box">
@@ -61,29 +74,33 @@
 					</div>
 				</div>
 				<ul>
-					<c:forEach items="${listFriend}" var="item">
+					<c:forEach items="${mapFriendRoom}" var="entry">
+						<a href="${contextPath}/dual/withFriend/${entry.key.id}">
+				
+								<input name="roomId" type="hidden" value="${entry.value}">
+								<li class="connect_btn">
+									<div class="friend">
 
-					 <a href="${contextPath}/dual/withFriend/${item.id}"> 
-							<li>
-								<div class="friend" id="divID${item.id}">
+										<div class="img_name"></div>
+										<img src="${contextPath}/image/none-avatar.png" class="ava"
+											alt="">
 
-									<div class="img_name"></div>
-									<img src="${contextPath}/image/none-avatar.png" class="ava" alt="">
- 
-									<div>
-										<h3>${item.username}</h3>
-										<p>Chào ${item.username}!</p>
+										<div>
+											<h3>${entry.key.username}</h3>
+											<p>
+												ID Room: <span>${entry.value}</span>
+											</p>
+										</div>
+
+										<div class="time">
+											<p class="p">Today</p>
+										</div>
 									</div>
-									
-									<div class="time">
-										<p class="p">Today</p>
-									</div>
-								</div>
 
 
 
-							</li>
-				</a>
+								</li>
+								</a>
 					</c:forEach>
 
 				</ul>
@@ -93,8 +110,8 @@
 					<div class="img_name">
 						<img src="${contextPath}/image/none-avatar.png" class="ava" alt="">
 						<div>
-							<h3>Hoàng Sơn</h3>
-							<p>Active 30 seconds ago...</p>
+							<h3 id="friend-name">${friendName}</h3>
+							<p id="hoat-dong">Active 30 seconds ago...</p>
 						</div>
 					</div>
 					<span><ion-icon class="icon2"
@@ -102,12 +119,7 @@
 				</div>
 				<div class="mid">
 					<ul id="messageArea">
-						<li class="me">
-							<p>Chào! Khỏe không</p>
-						</li>
-						<li class="u">
-							<p>Chào! Khỏe không</p>
-						</li>
+						<!-- This is message area -->
 					</ul>
 				</div>
 				<div class="btm">
@@ -159,9 +171,9 @@
     </script>
 
 
-	<script src="js/sockjs.min.js" type="text/javascript"></script>
-	<script src="js/stomp.min.js" type="text/javascript"></script>
-	<script src="js/main.js" type="text/javascript"></script>
+	<script src="${contextPath}/js/sockjs.min.js" type="text/javascript"></script>
+	<script src="${contextPath}/js/stomp.min.js" type="text/javascript"></script>
+	<script src="${contextPath}/js/main.js" type="text/javascript"></script>
 
 </body>
 </html>

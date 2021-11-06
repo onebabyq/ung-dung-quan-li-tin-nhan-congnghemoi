@@ -1,6 +1,8 @@
 package com.example.ChatWeb.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.ChatWeb.dto.AccountDTO;
 import com.example.ChatWeb.dto.RoomDTO;
@@ -76,8 +80,13 @@ public class ChatController {
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
 		List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
-
-		model.addAttribute("listFriend", listFriend);
+		
+		Map<AccountDTO,Long> map = new HashMap<>();
+		for(AccountDTO a : listFriend) {
+			RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), a.getId());
+			map.put(a, room.getId());
+		}
+		model.addAttribute("mapFriendRoom", map);
 		model.addAttribute("username", accountLogin.getUsername());
 		// System.out.println("HELLO SON");
 		return "chat";
@@ -90,13 +99,42 @@ public class ChatController {
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
 		List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
-
+		Map<AccountDTO,Long> map = new HashMap<>();
+		for(AccountDTO a : listFriend) {
+			RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), a.getId());
+			map.put(a, room.getId());
+		}
+		model.addAttribute("mapFriendRoom", map);
+		
 		RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), friendId);
+		model.addAttribute("friendName", accountService.getAccountById(friendId).getUsername());
 		model.addAttribute("roomId", room.getId());
-		model.addAttribute("listFriend", listFriend);
+		model.addAttribute("mapFriendRoom", map);
 		model.addAttribute("username", accountLogin.getUsername());
 
 		return "chat";
 	}
-
+//	
+//	@PostMapping("/dual/withFriend") 
+//	public String chatwithfriends(Model model,@RequestParam long roomId){
+//
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//		String sdt = auth.getName(); // get logged in username;
+//		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+//		List<AccountDTO> listFriend = accountService.getListFriendByAccountId(accountLogin.getId());
+//		Map<AccountDTO,Long> map = new HashMap<>();
+//		for(AccountDTO a : listFriend) {
+//			RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), a.getId());
+//			map.put(a, room.getId());
+//		}
+//		model.addAttribute("mapFriendRoom", map);
+//		
+//
+//		RoomDTO room = roomService.getRoomById(roomId);
+//		model.addAttribute("roomId", room.getId());
+//		model.addAttribute("mapFriendRoom", map);
+//		model.addAttribute("username", accountLogin.getUsername());
+//
+//		return "chat";
+//	}
 }

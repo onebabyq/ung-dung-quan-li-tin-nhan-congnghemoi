@@ -1,8 +1,10 @@
 'use strict';
+
 //var roomInput = $('#room-id');
 //var testModel = $('#testModel');
-
+//var connect_btn = document.querySelector('#connect_btn');
 var roomInput = document.querySelector('#room-id');
+var hoat_dong = document.querySelector('#hoat-dong');
 var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
@@ -13,7 +15,7 @@ var connectingElement = document.querySelector('.connecting');
 //var roomIdDisplay = document.querySelector('#room-id-display');
 
 var topic = null;
-var roomId=null;
+var roomId = null;
 var stompClient = null;
 var username = null;
 var socketName = null;
@@ -23,11 +25,14 @@ var colors = [
 	'#2196F3', '#32c787', '#00BCD4', '#ff5652',
 	'#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
+
+
 window.onload = function exampleFunction() {
-	alert("starting... : " );
-	roomId = roomInput.textContent;
+	//alert("starting... : ");
+	//roomId = roomInput.textContent;
 	//if(roomId!=0)
-		connect();
+	//if(roomInput.textContent==1)
+	connect();
 	// Function to be executed
 }
 
@@ -38,24 +43,27 @@ function connect(event) {
 	if (!username) {
 		username = "HoangSon";
 	}
-	alert("username 1: "+username);
+	//alert("username 1: " + username);
 	if (username) {
 		//alert("username: "+ username);
+		//alert("conect 1 ");
 		// usernamePage.classList.add('hidden');
 		// chatPage.classList.remove('hidden');
 		//var socketId = document.querySelector('#idSocket').textContent;
 
 
 		var socket = new SockJS('/ws');
-
+		//alert("conect 2 ");
 		stompClient = Stomp.over(socket);
-
+		//alert("conect 3 ");
 		stompClient.connect({}, onConnected, onError);
 	}
+	//alert("conect 4 ");
 	event.preventDefault();
 }
 // Leave the current room and enter a new one.
 function enterRoom(newRoomId) {
+	//alert("Enter room: Start");
 	roomId = newRoomId;
 	//Cookies.set('roomId', roomId);
 	//roomIdDisplay.textContent = roomId;
@@ -70,12 +78,12 @@ function enterRoom(newRoomId) {
 		{},
 		JSON.stringify({ sender: username, type: 'JOIN' })
 	);
-	alert("Enter room: "+roomId)
+	alert("Enter room: " + roomId)
 }
 
 function onConnected() {
-	if(roomId!=0)
-		enterRoom(roomInput);
+	//alert("onConnected");
+	enterRoom(roomInput.textContent);
 
 	connectingElement.classList.add('hidden');
 
@@ -113,12 +121,14 @@ function onMessageReceived(payload) {
 		messageElement.classList.add('me');
 	else messageElement.classList.add('u');
 
-	if (message.type === 'JOIN') {
-		messageElement.classList.add('event-message');
-		message.content = message.sender + ' joined!';
-	} else if (message.type === 'LEAVE') {
-		messageElement.classList.add('event-message');
-		message.content = message.sender + ' left!';
+	if (message.type === 'JOIN' && message.sender != username) {
+		hoat_dong.textContent = "Vừa mới hoạt động";
+		//messageElement.classList.add('event-message');
+		//message.content = message.sender + ' joined!';
+	} else if (message.type === 'LEAVE' && message.sender != username) {
+		hoat_dong.textContent = "Hoạt động ít phút trước";
+		//messageElement.classList.add('event-message');
+		//message.content = message.sender + ' left!';
 	} else {
 		messageElement.classList.add('chat-message');
 
@@ -133,16 +143,17 @@ function onMessageReceived(payload) {
 		//var usernameText = document.createTextNode(message.sender);
 		//usernameElement.appendChild(usernameText);
 		//messageElement.appendChild(usernameElement);
+		var textElement = document.createElement('p');
+		var messageText = document.createTextNode(message.content);
+		textElement.appendChild(messageText);
+	
+		messageElement.appendChild(textElement);
+	
+		messageArea.appendChild(messageElement);
+		messageArea.scrollTop = messageArea.scrollHeight;
+		
 	}
 
-	var textElement = document.createElement('p');
-	var messageText = document.createTextNode(message.content);
-	textElement.appendChild(messageText);
-
-	messageElement.appendChild(textElement);
-
-	messageArea.appendChild(messageElement);
-	messageArea.scrollTop = messageArea.scrollHeight;
 }
 
 
@@ -160,18 +171,21 @@ messageForm.onclick = function(event) {
 	sendMessage();
 }
 $(document).ready(function() {
-/*  var savedName = Cookies.get('name');
-  if (savedName) {
-    nameInput.val(savedName);
-  }
+	
+	//if(roomInput.textContent!="")
+	//	connect();
+	/*  var savedName = Cookies.get('name');
+	  if (savedName) {
+		nameInput.val(savedName);
+	  }
+	
+	  var savedRoom = Cookies.get('roomId');
+	  if (savedRoom) {
+		roomInput.val(savedRoom);
+	  }*/
 
-  var savedRoom = Cookies.get('roomId');
-  if (savedRoom) {
-    roomInput.val(savedRoom);
-  }*/
-	
-  //usernamePage.classList.remove('hidden');
-  usernameForm.addEventListener('submit', connect, true);
-  messageForm.addEventListener('submit', sendMessage, true);
-	
+	//usernamePage.classList.remove('hidden');
+	usernameForm.addEventListener('submit', connect, true);
+	messageForm.addEventListener('submit', sendMessage, true);
+
 });
