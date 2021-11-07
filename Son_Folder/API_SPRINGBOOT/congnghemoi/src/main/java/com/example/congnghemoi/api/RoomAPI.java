@@ -37,10 +37,22 @@ public class RoomAPI {
 		
 		return roomService.findById(id);
 	}
+	@GetMapping(value="/rooms/byTwoAccountId/{id1}/{id2}")
+	public Room getRoomDualByTwoAccountId(@PathVariable long id1,@PathVariable long id2) {
+		
+		return roomService.findRoomDualByTwoAccountId(id1,id2);
+	}
 	@PostMapping(value="/rooms")
 	public Room saveRoom(@RequestBody Room newEntity) {
-		
-		return roomService.save(newEntity);
+		Room room =  roomService.save(newEntity);
+		return room;
+	}
+	@PostMapping(value="/rooms/byTwoAccountId/{accountId}/{friendId}")
+	public Room saveRoomTwoAccountId(@RequestBody Room newEntity,@PathVariable long accountId,@PathVariable long friendId) {
+		Room room =  roomService.save(newEntity);
+		roomService.insertAccoutRoom(accountId, room.getId());
+		roomService.insertAccoutRoom(friendId, room.getId());
+		return room;
 	}
 	@PutMapping(value="/rooms/{id}")
 	public Room updateRoom(@RequestBody Room newEntity) {

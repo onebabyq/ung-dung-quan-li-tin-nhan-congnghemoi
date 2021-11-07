@@ -24,16 +24,13 @@ public class MyChairAdapter extends RecyclerView.Adapter<MyChairAdapter.MyViewHo
         this.friendList = friendList;
         this.context = context;
     }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view  = inflater.inflate(R.layout.item_danhba, parent,false);
-
         return new MyViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder h, int position) {
         Friend friend = friendList.get(position);
@@ -42,16 +39,13 @@ public class MyChairAdapter extends RecyclerView.Adapter<MyChairAdapter.MyViewHo
         h.imageMess.setImageResource(friend.getImageMess());
         h.imageCall.setImageResource(friend.getImageCall());
     }
-
     @Override
     public int getItemCount() {
         if (friendList!=null)
         return friendList.size();
         return 0;
     }
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
-
         TextView txtText;
         ImageView imageAVT,imageMess,imageCall;
         CardView cardView;
@@ -59,7 +53,6 @@ public class MyChairAdapter extends RecyclerView.Adapter<MyChairAdapter.MyViewHo
             super(itemView);
             imageAVT = itemView.findViewById(R.id.imageAVT);
             txtText= itemView.findViewById(R.id.txtText);
-
             imageMess = itemView.findViewById(R.id.imageMess);
             imageCall = itemView.findViewById(R.id.imageCall);
             cardView = itemView.findViewById(R.id.cardView);

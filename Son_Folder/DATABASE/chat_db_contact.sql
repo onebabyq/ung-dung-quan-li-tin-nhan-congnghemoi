@@ -29,10 +29,14 @@ CREATE TABLE `contact` (
   `modified_by` varchar(255) DEFAULT NULL,
   `modified_date` datetime(6) DEFAULT NULL,
   `friend_id` bigint DEFAULT NULL,
+  `account_id` bigint DEFAULT NULL,
+  `accept` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FKik3y2av4uju4i638x36kogv80` (`friend_id`),
+  KEY `FK3ctagodg5h629t8ltnam39l5w` (`account_id`),
+  CONSTRAINT `FK3ctagodg5h629t8ltnam39l5w` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`),
   CONSTRAINT `FKik3y2av4uju4i638x36kogv80` FOREIGN KEY (`friend_id`) REFERENCES `account` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +45,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (1,NULL,NULL,NULL,NULL,1);
+INSERT INTO `contact` VALUES (1,NULL,NULL,NULL,NULL,2,1,1),(2,NULL,NULL,NULL,NULL,5,1,1),(4,NULL,NULL,NULL,NULL,6,1,1),(5,NULL,NULL,NULL,NULL,7,1,1),(6,NULL,NULL,NULL,NULL,1,2,1),(7,NULL,NULL,NULL,NULL,1,5,1),(8,NULL,NULL,NULL,NULL,1,6,1),(9,NULL,NULL,NULL,NULL,1,7,1);
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-04  9:28:19
+-- Dump completed on 2021-11-07  8:28:02

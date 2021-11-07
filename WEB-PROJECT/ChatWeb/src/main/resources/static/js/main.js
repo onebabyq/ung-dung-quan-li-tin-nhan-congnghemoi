@@ -1,5 +1,14 @@
 'use strict';
 
+//var roomInput = $('#room-id');
+//var testModel = $('#testModel');
+//var connect_btn = document.querySelector('#connect_btn');
+var contextPath = 'http://localhost:8080';
+var friendArea = document.querySelector('#FriendArea');
+var searchButton = document.querySelector('#searchButton');
+var searchKey = document.querySelector('#searchKey');
+var roomInput = document.querySelector('#room-id');
+var hoat_dong = document.querySelector('#hoat-dong');
 var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
@@ -8,142 +17,225 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
+//var roomIdDisplay = document.querySelector('#room-id-display');
+
+var topic = null;
+var roomId = null;
 var stompClient = null;
 var username = null;
+var idAccount = null;
+var socketName = null;
+var currentSubscription;
+
 
 var colors = [
-  '#2196F3', '#32c787', '#00BCD4', '#ff5652',
-  '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+	'#2196F3', '#32c787', '#00BCD4', '#ff5652',
+	'#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
+
 window.onload = function exampleFunction() {
-	//alert("starting...");
-  connect();
-    // Function to be executed
+	//alert("starting... userName : ");
+	//roomId = roomInput.textContent;
+	//if(roomId!=0)
+	//if(roomInput.textContent!=0)
+	connect();
+	// Function to be executed
 }
+
 function connect(event) {
 	//alert(document.querySelector('#name').value.trim());
-  	username = document.querySelector('#name').textContent;
-	
-	if(!username){
-		username = "HoangSon";
-	}
-	//alert("username 1: "+username);
-  if(username) {
+	username = document.querySelector('#name').textContent;
+	idAccount = document.querySelector('#idAccount').textContent;
+	//alert("id_account: "+idAccount);
+	//alert("username 1: " + username);
+	if (username) {
 		//alert("username: "+ username);
-     // usernamePage.classList.add('hidden');
-     // chatPage.classList.remove('hidden');
+		//alert("conect 1 ");
+		// usernamePage.classList.add('hidden');
+		// chatPage.classList.remove('hidden');
+		//var socketId = document.querySelector('#idSocket').textContent;
 
-      var socket = new SockJS('/ws');
-      stompClient = Stomp.over(socket);
 
-      stompClient.connect({}, onConnected, onError);
-  }
-  event.preventDefault();
+		var socket = new SockJS('/ws');
+		//alert("conect 2 ");
+		stompClient = Stomp.over(socket);
+		//alert("conect 3 ");
+		stompClient.connect({}, onConnected, onError);
+	}
+	//alert("conect 4 ");
+	event.preventDefault();
+}
+// Leave the current room and enter a new one.
+function enterRoom(newRoomId) {
+	//alert("Enter room: Start");
+	roomId = newRoomId;
+	//Cookies.set('roomId', roomId);
+	//roomIdDisplay.textContent = roomId;
+	topic = `/app/chat/${newRoomId}`;
+
+	if (currentSubscription) {
+		currentSubscription.unsubscribe();
+	}
+	currentSubscription = stompClient.subscribe(`/topic/${roomId}`, onMessageReceived);
+
+	stompClient.send(`${topic}/addUser`,
+		{},
+		JSON.stringify({ idSender: idAccount,sender: username, type: 'JOIN' })
+	);
+	//alert("Enter room: " + roomId);
 }
 
-
 function onConnected() {
-	alert("onConnected");
-  // Subscribe to the Public Topic
-  stompClient.subscribe('/topic/public', onMessageReceived);
+	//alert("onConnected");
+	enterRoom(roomInput.textContent);
 
-  // Tell your username to the server
-  stompClient.send("/app/chat.addUser",
-      {},
-      JSON.stringify({sender: username, type: 'JOIN'})
-  )
+	connectingElement.classList.add('hidden');
 
-  connectingElement.classList.add('hidden');
-	
 }
 
 
 function onError(error) {
-  connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
-  connectingElement.style.color = 'red';
+	connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
+	connectingElement.style.color = 'red';
 }
 
 
 function sendMessage(event) {
 	//alert("func sendMessage!!!");
-  	var messageContent = messageInput.value.trim();
- 	if(messageContent && stompClient) {
-	//if(stompClient) {
-	//alert("messageContent && stompClient = TRUE!!!");
-     /* var chatMessage = {
-          sender: username,
-          content: messageInput.value,
-          type: 'CHAT'
-      };*/
+	var messageContent = messageInput.value.trim();
+	if (messageContent && stompClient) {
 		var chatMessage = {
-          sender: username,
-          content: messageInput.value,
-          type: 'CHAT'
-      };
-		
-		//alert(chatMessage);
-		
-      stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
-      messageInput.value = '';
-  }
-  event.preventDefault();
+			idSender: idAccount,
+			sender: username,
+			content: messageInput.value,
+			type: 'CHAT',
+			roomId: roomId
+		};
+		//stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+		stompClient.send(`${topic}/sendMessage`, {}, JSON.stringify(chatMessage));
+		messageInput.value = '';
+	}
+	event.preventDefault();
+}
+function sendInvite(event) {
+	//alert("telReceiver: 0");
+	var messageContent = searchKey.value.trim();
+	//alert("telReceiver: 1");
+	if (messageContent && stompClient) {
+		//alert("telReceiver: 2");
+		//alert("messageContent: "+messageContent);
+		var inviteMessage = {
+			idSender: idAccount,
+			sender: username,
+			content:"Lời mời kết bạn!!!",
+			type: 'INVITE',
+			telReceiver: messageContent
+		};
+		//alert("telReceiver: "+chatMessage.telReceiver);
+		stompClient.send(`${topic}/sendInvite`, {}, JSON.stringify(inviteMessage));
+		messageInput.value = '';
+		//alert("telReceiver: 3");
+	}
+	event.preventDefault();
+	//alert("step finish!!!");
 }
 
-
 function onMessageReceived(payload) {
-  var message = JSON.parse(payload.body);
+	var message = JSON.parse(payload.body);
+	if (message.type === 'INVITE' && idAccount == message.idReceiver) {
+	
+		
+		
+		var div3Element = document.createElement('div');
+		var h3Element =  document.createElement('h3');
+		h3Element.textContent = message.sender;
+		var pElement =  document.createElement('p');
+		var spanElement =  document.createElement('span');
+		spanElement.textContent = message.content;
+		var buttonElement =  document.createElement('button');
+		buttonElement.textContent = "Chấp nhận";
+		var aElement = document.createElement('a');
+		aElement.href = contextPath+'/accept/'+message.idSender;
+		aElement.appendChild(buttonElement);
+		var button2Element =  document.createElement('button');
+		button2Element.textContent = "Từ chối";
+		pElement.appendChild(spanElement);
+		pElement.appendChild(aElement);
+		pElement.appendChild(button2Element);
+		div3Element.appendChild(h3Element);
+		div3Element.appendChild(pElement);
+		
+		var divElement = document.createElement('div');
+		divElement.classList.add('friend');
+		//divElement.appendChild(imgElement);
+		divElement.appendChild(div3Element);
+		friendArea.appendChild(divElement);
+	}
+	if (message.type === 'JOIN' && message.sender != username) {
+		hoat_dong.textContent = "Vừa mới hoạt động";
+		//messageElement.classList.add('event-message');
+		//message.content = message.sender + ' joined!';
+	} else if (message.type === 'LEAVE' && message.sender != username) {
+		hoat_dong.textContent = "Hoạt động ít phút trước";
+		//messageElement.classList.add('event-message');
+		//message.content = message.sender + ' left!';
+	} else if (message.type === 'CHAT') {
 
-  var messageElement = document.createElement('li');
-	if(message.sender==username)
-  		messageElement.classList.add('me');	
-	else messageElement.classList.add('u');	
+		var messageElement = document.createElement('li');
+		if (message.sender == username)
+			messageElement.classList.add('me');
+		else messageElement.classList.add('u');
+		messageElement.classList.add('chat-message');
 
-  if(message.type === 'JOIN') {
-      messageElement.classList.add('event-message');
-      message.content = message.sender + ' joined!';
-  } else if (message.type === 'LEAVE') {
-      messageElement.classList.add('event-message');
-      message.content = message.sender + ' left!';
-  } else {
-      messageElement.classList.add('chat-message');
+		var textElement = document.createElement('p');
+		var messageText = document.createTextNode(message.content);
+		textElement.appendChild(messageText);
 
-      //var avatarElement = document.createElement('i');
-      //var avatarText = document.createTextNode(message.sender[0]);
-      //avatarElement.appendChild(avatarText);
-      //avatarElement.style['background-color'] = getAvatarColor(message.sender);
+		messageElement.appendChild(textElement);
 
-      //messageElement.appendChild(avatarElement);
+		messageArea.appendChild(messageElement);
+		messageArea.scrollTop = messageArea.scrollHeight;
+		
+	}
 
-      //var usernameElement = document.createElement('span');
-      //var usernameText = document.createTextNode(message.sender);
-      //usernameElement.appendChild(usernameText);
-      //messageElement.appendChild(usernameElement);
-  }
-
-  var textElement = document.createElement('p');
-  var messageText = document.createTextNode(message.content);
-  textElement.appendChild(messageText);
-
-  messageElement.appendChild(textElement);
-
-  messageArea.appendChild(messageElement);
-  messageArea.scrollTop = messageArea.scrollHeight;
 }
 
 
 function getAvatarColor(messageSender) {
-  var hash = 0;
-  for (var i = 0; i < messageSender.length; i++) {
-      hash = 31 * hash + messageSender.charCodeAt(i);
-  }
-  var index = Math.abs(hash % colors.length);
-  return colors[index];
+	var hash = 0;
+	for (var i = 0; i < messageSender.length; i++) {
+		hash = 31 * hash + messageSender.charCodeAt(i);
+	}
+	var index = Math.abs(hash % colors.length);
+	return colors[index];
 }
-messageForm.onclick =  function(event){
+messageForm.onclick = function(event) {
 	//alert("Message Click Send");
 	event.preventDefault();
 	sendMessage();
 }
-usernameForm.addEventListener('submit', connect, true)
-//messageForm.addEventListener('submit', sendMessage, true)
+searchButton.onclick = function(event) {
+	//alert("Search Click Send");
+	event.preventDefault();
+	sendInvite();
+}
+$(document).ready(function() {
+
+	//if(roomInput.textContent!="")
+	//	connect();
+	/*  var savedName = Cookies.get('name');
+	  if (savedName) {
+		nameInput.val(savedName);
+	  }
+	
+	  var savedRoom = Cookies.get('roomId');
+	  if (savedRoom) {
+		roomInput.val(savedRoom);
+	  }*/
+
+	//usernamePage.classList.remove('hidden');
+	usernameForm.addEventListener('submit', connect, true);
+	messageForm.addEventListener('submit', sendMessage, true);
+
+});

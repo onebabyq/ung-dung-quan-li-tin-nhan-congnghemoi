@@ -25,7 +25,7 @@ public class UserService {
 		UserDTO user = restTemplate.getForObject(LOCALHOST + "/api/users/bySoDienThoai/" + sdt, UserDTO.class);
 		if (user == null)
 			return new UserDTO();
-		System.out.println(user);
+	//	System.out.println(user);
 
 		return user;
 	}

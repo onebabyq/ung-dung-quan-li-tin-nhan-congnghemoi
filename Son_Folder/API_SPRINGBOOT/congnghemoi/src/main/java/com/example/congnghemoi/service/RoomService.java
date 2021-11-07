@@ -11,5 +11,6 @@ public interface RoomService {
 	Room findById(long id);
 	Room save(Room roomEntity);
 	void deleteById(long id);
-	
+	Room findRoomDualByTwoAccountId(long id1, long id2);
+	void insertAccoutRoom(long accId,long roomId);
 }

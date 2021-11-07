@@ -25,7 +25,7 @@ public class Account extends BaseEntity implements Serializable{
     private String username;
     private String avatar;
     @OneToMany(mappedBy = "account")
-  //  @JsonManagedReference(value="account-contact-movement")
+    @JsonBackReference(value="account-contact-movement")
 	private List<Contact> listContact = new ArrayList<>();
     
     @OneToMany(mappedBy = "from")
@@ -39,6 +39,7 @@ public class Account extends BaseEntity implements Serializable{
             inverseJoinColumns = {
                     @JoinColumn(name = "room_id", referencedColumnName = "id")})
    //@JsonManagedReference(value="room-account-movement")
+    @JsonBackReference(value="room-account-movement")
    private List<Room> rooms = new ArrayList<>();
    // private List<Contact> listFriend;
     

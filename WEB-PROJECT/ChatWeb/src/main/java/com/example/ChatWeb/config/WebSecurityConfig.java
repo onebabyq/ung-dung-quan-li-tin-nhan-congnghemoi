@@ -53,12 +53,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginPage("/login")
                 .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/chat", true)
+                .defaultSuccessUrl("/home", true)
                 .failureUrl("/login?error=true")
                // .failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
-                .logoutUrl("/info")
+                .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID");
                // .logoutSuccessHandler(logoutSuccessHandler());
         //.and()

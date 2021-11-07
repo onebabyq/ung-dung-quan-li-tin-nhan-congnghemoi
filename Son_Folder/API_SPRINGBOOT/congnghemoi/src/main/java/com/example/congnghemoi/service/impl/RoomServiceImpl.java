@@ -19,7 +19,7 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		return roomRepository.findAll();
 	}
-
+	
 	
 
 	@Override
@@ -43,6 +43,22 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		
 		roomRepository.deleteById(id);
+	}
+
+
+
+	@Override
+	public Room findRoomDualByTwoAccountId(long id1, long id2) {
+		// TODO Auto-generated method stub
+		return roomRepository.findRoomDualByTwoAccountId(id1,id2);
+	}
+
+
+
+	@Override
+	public void insertAccoutRoom(long accId, long roomId) {
+		// TODO Auto-generated method stub
+		roomRepository.insertAccoutRoom(accId,roomId);
 	}
 
 

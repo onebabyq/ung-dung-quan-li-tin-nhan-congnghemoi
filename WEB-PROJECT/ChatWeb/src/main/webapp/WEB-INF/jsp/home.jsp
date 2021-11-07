@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:url value="css/style.css" var="jstlCss" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,41 +11,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ</title>
     
-    <link rel="stylesheet" href="css/admin_dashboard.css">
-    <link rel="stylesheet" href="css/chat.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="${contextPath}/css/admin_dashboard.css">
+    <link rel="stylesheet" href="${contextPath}/css/chat.css">
+    <link rel="stylesheet" href="${contextPath}/css/home.css">
 
 </head>
 <body>
 	<div class="navigation">
         <ul>
             <li>
-                <a href="/home">
+                <a href="${contextPath}/home">
                     <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
        <%--              <span class="title" id="name">${username}</span> --%>
                      <span class="title" id="name" >${username}</span> 
                 </a>
             </li>
             <li>
-                <a href="/home">
+                <a href="${contextPath}/home">
                     <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                     <span class="title">Trang Chủ</span>
                 </a>
             </li>
             <li>
-                <a href="/view">
+                <a href="${contextPath}/chat">
                     <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
                     <span class="title">Tin Nhắn</span>
                 </a>
             </li>
             <li>
-                <a href="/info">
+                <a href="${contextPath}/info">
                     <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                     <span class="title">Cá Nhân</span>
                 </a>
             </li>
             <li>
-                <a href="/logout">
+                <a href="${contextPath}/logout">
                     <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                     <span class="title">Đăng Xuất</span>
                 </a>
@@ -68,7 +69,7 @@
                     <p>This is my official portfolio website to showes all <br>
                         Details and work exiprins web development
                     </p>
-                    <a href="#">Try My App</a>
+                    <a href="${contextPath}/#">Try My App</a>
                 </div>
                 <div class="images">
                     <img src="https://static.vecteezy.com/system/resources/previews/000/561/480/original/chat-app-logo-icon-vector.jpg" class="shape" alt="">
