@@ -1,13 +1,46 @@
 package com.example.ChatWeb.dto;
 
-public class ContactDTO {
+public class ContactDTO  {
 	private Long id;
-    private AccountDTO friend;
+	private AccountDTO account;
+	private boolean accept;
+	private long friendId;
 
-	
+	private AccountDTO friend;
 
-    
-    public Long getId() {
+	public AccountDTO getFriend() {
+		return friend;
+	}
+
+	public void setFriend(AccountDTO friend) {
+		this.friend = friend;
+	}
+
+	public AccountDTO getAccount() {
+		return account;
+	}
+
+	public void setAccount(AccountDTO account) {
+		this.account = account;
+	}
+
+	public boolean isAccept() {
+		return accept;
+	}
+
+	public void setAccept(boolean accept) {
+		this.accept = accept;
+	}
+
+	public long getFriendId() {
+		return friendId;
+	}
+
+	public void setFriendId(long friendId) {
+		this.friendId = friendId;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -15,12 +48,12 @@ public class ContactDTO {
 		this.id = id;
 	}
 
-	public AccountDTO getFriend() {
-        return friend;
-    }
+	@Override
+	public String toString() {
+		return "ContactDTO [id=" + id + ", account=" + account + ", accept=" + accept + ", friendId=" + friendId
+				+ ", friend=" + friend + "]";
+	}
 
-    public void setFriend(AccountDTO friend) {
-        this.friend = friend;
-    }
+
 
 }

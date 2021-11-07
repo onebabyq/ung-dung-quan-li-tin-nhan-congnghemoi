@@ -118,12 +118,12 @@ function sendMessage(event) {
 	event.preventDefault();
 }
 function sendInvite(event) {
-	alert("telReceiver: 0");
+	//alert("telReceiver: 0");
 	var messageContent = searchKey.value.trim();
-	alert("telReceiver: 1");
+	//alert("telReceiver: 1");
 	if (messageContent && stompClient) {
 		//alert("telReceiver: 2");
-		alert("messageContent: "+messageContent);
+		//alert("messageContent: "+messageContent);
 		var inviteMessage = {
 			idSender: idAccount,
 			sender: username,

@@ -47,6 +47,11 @@ public class ContactAPI {
 		}
 		return listAccount;
 	}
+	@GetMapping(value="/contacts/getListContactByAccountId/{id}")
+	public List<Contact> getListContactByAccountId(@PathVariable long id) {
+		List<Contact> listContact = contactService.findByAccountId(id);
+		return listContact;
+	}
 	@GetMapping(value="/contactsWithAccount/{id}")
 	public Contact getContactWithAccoutById(@PathVariable long id) {
 		

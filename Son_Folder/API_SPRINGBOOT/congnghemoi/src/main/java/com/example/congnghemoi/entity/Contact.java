@@ -26,7 +26,7 @@ public class Contact extends BaseEntity implements Serializable {
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonBackReference(value="account-contact-movement")
+	//@JsonBackReference(value="account-contact-movement")
     private Account account;
 	@Column(columnDefinition = "boolean default false")
 	private boolean accept;

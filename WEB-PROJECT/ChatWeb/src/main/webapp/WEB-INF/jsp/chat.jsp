@@ -79,32 +79,36 @@
 				</div>
 				
 				<ul id="FriendArea">
-					<c:forEach items="${mapFriendRoom}" var="entry">
-						<a href="${contextPath}/dual/withFriend/${entry.key.id}"> <input
-							name="roomId" type="hidden" value="${entry.value}">
-							<li class="connect_btn">
-								<div class="friend">
-
-									<div class="img_name"></div>
-									<img src="${contextPath}/image/none-avatar.png" class="ava"
-										alt="">
-
-									<div>
-										<h3>${entry.key.username}</h3>
-										<p>
-											ID Room: <span>${entry.value}</span>
-										</p>
+					<c:forEach items="${listContact}" var="item">
+						<c:if test="${item.accept == true}">
+							<a href="${contextPath}/dual/withFriend/${item.friend.id}"> 
+							<%-- <input name="roomId" type="hidden" value="${entry.value}"> --%>
+								<li class="connect_btn">
+									<div class="friend">
+										<div class="img_name"></div>
+										<img src="${contextPath}/image/none-avatar.png" class="ava"
+											alt="">
+										<div>
+											<h3>${item.friend.username}</h3>
+											<p>
+												Chào: <span>${item.friend.username}</span>
+											</p>
+										</div>
+										<div class="time">
+											<p class="p">Today</p>
+										</div>
 									</div>
-
-									<div class="time">
-										<p class="p">Today</p>
-									</div>
-								</div>
-
-
-
-						</li>
-						</a>
+								</li>
+							</a>
+						</c:if>
+						<c:if test="${item.accept == false}">
+							
+							<div>
+                                <h3>${item.friend.username}</h3>
+                                <p>Lời mời kết bạn<a href="${contextPath}/accept/${tem.account.id}/${tem.friend.id}"><button>Chấp nhận</button> </a><button>Từ chối</button></p>
+                            </div>
+                            
+						</c:if>
 					</c:forEach>
 
 				</ul>
