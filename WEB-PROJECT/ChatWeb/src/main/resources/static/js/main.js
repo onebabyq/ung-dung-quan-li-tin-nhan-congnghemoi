@@ -3,6 +3,9 @@
 //var roomInput = $('#room-id');
 //var testModel = $('#testModel');
 //var connect_btn = document.querySelector('#connect_btn');
+var friendArea = document.querySelector('#FriendArea');
+var searchButton = document.querySelector('#searchButton');
+var searchKey = document.querySelector('#searchKey');
 var roomInput = document.querySelector('#room-id');
 var hoat_dong = document.querySelector('#hoat-dong');
 var usernamePage = document.querySelector('#username-page');
@@ -12,6 +15,7 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+
 //var roomIdDisplay = document.querySelector('#room-id-display');
 
 var topic = null;
@@ -21,6 +25,7 @@ var username = null;
 var idAccount = null;
 var socketName = null;
 var currentSubscription;
+
 
 var colors = [
 	'#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -32,7 +37,7 @@ window.onload = function exampleFunction() {
 	//alert("starting... userName : ");
 	//roomId = roomInput.textContent;
 	//if(roomId!=0)
-	//if(roomInput.textContent==1)
+	//if(roomInput.textContent!=0)
 	connect();
 	// Function to be executed
 }
@@ -112,13 +117,57 @@ function sendMessage(event) {
 	}
 	event.preventDefault();
 }
-
+function sendInvite(event) {
+	alert("telReceiver: 0");
+	var messageContent = searchKey.value.trim();
+	alert("telReceiver: 1");
+	if (messageContent && stompClient) {
+		//alert("telReceiver: 2");
+		alert("messageContent: "+messageContent);
+		var inviteMessage = {
+			idSender: idAccount,
+			sender: username,
+			content:"Lời mời kết bạn!!!",
+			type: 'INVITE',
+			telReceiver: messageContent
+		};
+		//alert("telReceiver: "+chatMessage.telReceiver);
+		stompClient.send(`${topic}/sendInvite`, {}, JSON.stringify(inviteMessage));
+		messageInput.value = '';
+		//alert("telReceiver: 3");
+	}
+	event.preventDefault();
+	//alert("step finish!!!");
+}
 
 function onMessageReceived(payload) {
 	var message = JSON.parse(payload.body);
-
-
-
+	if (message.type === 'INVITE' && idAccount == message.idReceiver) {
+	
+		
+		
+		var div3Element = document.createElement('div');
+		var h3Element =  document.createElement('h3');
+		h3Element.textContent = message.sender;
+		var pElement =  document.createElement('p');
+		var spanElement =  document.createElement('span');
+		spanElement.textContent = message.content;
+		var buttonElement =  document.createElement('button');
+		buttonElement.textContent = "Chấp nhận";
+		var button2Element =  document.createElement('button');
+		button2Element.textContent = "Từ chối";
+		pElement.appendChild(spanElement);
+		pElement.appendChild(buttonElement);
+		pElement.appendChild(button2Element);
+		div3Element.appendChild(h3Element);
+		div3Element.appendChild(pElement);
+		
+		var divElement = document.createElement('div');
+		divElement.classList.add('friend');
+		//divElement.appendChild(imgElement);
+		divElement.appendChild(div3Element);
+		friendArea.appendChild(divElement);
+	}
 	if (message.type === 'JOIN' && message.sender != username) {
 		hoat_dong.textContent = "Vừa mới hoạt động";
 		//messageElement.classList.add('event-message');
@@ -143,6 +192,7 @@ function onMessageReceived(payload) {
 
 		messageArea.appendChild(messageElement);
 		messageArea.scrollTop = messageArea.scrollHeight;
+		
 	}
 
 }
@@ -160,6 +210,11 @@ messageForm.onclick = function(event) {
 	//alert("Message Click Send");
 	event.preventDefault();
 	sendMessage();
+}
+searchButton.onclick = function(event) {
+	//alert("Search Click Send");
+	event.preventDefault();
+	sendInvite();
 }
 $(document).ready(function() {
 

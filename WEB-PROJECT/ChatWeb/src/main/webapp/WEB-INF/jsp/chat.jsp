@@ -18,24 +18,24 @@
 <body>
 	<div class="navigation">
 		<ul>
-			<li><a href="/home"> <span class="icon"><ion-icon
+			<li><a href="${contextPath}/home"> <span class="icon"><ion-icon
 							name="person-circle-outline"></ion-icon></span> <%--              <span class="title" id="name">${username}</span> --%>
-					<span class="title" id="name">${account.username}</span>
-					<span class="title" id="idAccount">${account.id}</span>
+					<span class="title" id="name">${account.username}</span> <span
+					class="title" id="idAccount">${account.id}</span>
 			</a></li>
-			<li><a href="/home"> <span class="icon"><ion-icon
+			<li><a href="${contextPath}/home"> <span class="icon"><ion-icon
 							name="home-outline"></ion-icon></span> <span class="title">Trang
 						Chủ</span>
 			</a></li>
-			<li><a href="/view"> <span class="icon"><ion-icon
+			<li><a href="${contextPath}/chat"> <span class="icon"><ion-icon
 							name="chatbubbles-outline"></ion-icon></span> <span class="title">Tin
 						Nhắn</span>
 			</a></li>
-			<li><a href="/info"> <span class="icon"><ion-icon
+			<li><a href="${contextPath}/info"> <span class="icon"><ion-icon
 							name="person-outline"></ion-icon></span> <span class="title">Cá
 						Nhân</span>
 			</a></li>
-			<li><a href="/logout"> <span class="icon"><ion-icon
+			<li><a href="${contextPath}/logout"> <span class="icon"><ion-icon
 							name="log-out-outline"></ion-icon></span> <span class="title">Đăng
 						Xuất</span>
 			</a></li>
@@ -44,16 +44,16 @@
 			<p style="position: absolute; bottom: 0; left: 0;">
 				RoomId: <span id="room-id">${roomId}</span>
 			</p>
-			
+
 		</c:if>
 		<c:if test="${empty roomId}">
 			<p style="position: absolute; bottom: 0; left: 0;">
-				RoomId: <span id="room-id">1</span>
+				RoomId: <span id="room-id">0</span>
 			</p>
-			
+
 		</c:if>
-		 
-		
+
+
 	</div>
 
 	<div class="main">
@@ -68,40 +68,43 @@
 					<h2>APPCHAT</h2>
 					<!-- <h2 id="room-id-display">1</h2> -->
 				</div>
+				
 				<div class="search_box">
-					<input class="in" type="text" placeholder="Tìm kiếm...">
-					<div class="ico">
+					<form>
+					<input class="in" type="text" placeholder="Tìm kiếm..." id="searchKey">
+					<div class="ico" id="searchButton">
 						<span><ion-icon class="icon1" name="search-outline"></ion-icon></span>
 					</div>
+					</form>
 				</div>
-				<ul>
-					<c:forEach items="${mapFriendRoom}" var="entry">
-						<a href="${contextPath}/dual/withFriend/${entry.key.id}">
 				
-								<input name="roomId" type="hidden" value="${entry.value}">
-								<li class="connect_btn">
-									<div class="friend">
+				<ul id="FriendArea">
+					<c:forEach items="${mapFriendRoom}" var="entry">
+						<a href="${contextPath}/dual/withFriend/${entry.key.id}"> <input
+							name="roomId" type="hidden" value="${entry.value}">
+							<li class="connect_btn">
+								<div class="friend">
 
-										<div class="img_name"></div>
-										<img src="${contextPath}/image/none-avatar.png" class="ava"
-											alt="">
+									<div class="img_name"></div>
+									<img src="${contextPath}/image/none-avatar.png" class="ava"
+										alt="">
 
-										<div>
-											<h3>${entry.key.username}</h3>
-											<p>
-												ID Room: <span>${entry.value}</span>
-											</p>
-										</div>
-
-										<div class="time">
-											<p class="p">Today</p>
-										</div>
+									<div>
+										<h3>${entry.key.username}</h3>
+										<p>
+											ID Room: <span>${entry.value}</span>
+										</p>
 									</div>
 
+									<div class="time">
+										<p class="p">Today</p>
+									</div>
+								</div>
 
 
-								</li>
-								</a>
+
+						</li>
+						</a>
 					</c:forEach>
 
 				</ul>
@@ -125,28 +128,34 @@
 							<c:forEach items="${listMessage}" var="item">
 								<c:if test="${item.from.id == account.id}">
 									<li class="me">
-				                        <p>${item.content}</p>
-				                    </li>	
+										<p>${item.content}</p>
+									</li>
 								</c:if>
 								<c:if test="${item.from.id != account.id}">
 									<li class="u">
-				                       <p>${item.content}</p>
-				                    </li>	
+										<p>${item.content}</p>
+									</li>
 								</c:if>
 							</c:forEach>
 						</c:if>
 					</ul>
 				</div>
+
 				<div class="btm">
 					<form>
 						<div>+</div>
 						<input type="text" name="" placeholder="Bạn đang nghĩ gì?"
 							class="in2" id="message">
 						<div class="ico3">
-							<button id="messageForm" name="messageForm">Send</button>
+
+							<span><ion-icon type='submit' class="send_svg"
+									name="send-outline" id="messageForm"></ion-icon></span>
+
+							<!-- <button id="messageForm" name="messageForm">Send</button> -->
 						</div>
 					</form>
 				</div>
+
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,5 @@
 package com.example.ChatWeb.controller;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +22,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.example.ChatWeb.dto.AccountDTO;
 import com.example.ChatWeb.dto.MessageDTO;
 import com.example.ChatWeb.dto.RoomDTO;
+import com.example.ChatWeb.dto.UserDTO;
 import com.example.ChatWeb.model.ChatMessage;
 import com.example.ChatWeb.model.ChatMessage.MessageType;
+import com.example.ChatWeb.model.InviteMessage;
 import com.example.ChatWeb.service.AccountService;
 import com.example.ChatWeb.service.MessageService;
 import com.example.ChatWeb.service.RoomService;
+import com.example.ChatWeb.service.UserService;
 
 @Controller
 public class ChatController {
@@ -37,6 +39,8 @@ public class ChatController {
 	private RoomService roomService;
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private UserService userService;
 	private static final Logger log = LoggerFactory.getLogger(ChatController.class);
 
 	@Autowired
@@ -47,6 +51,13 @@ public class ChatController {
 		log.info(chatMessage.toString());
 		messageService.createByChatMessage(chatMessage);
 		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
+	}
+	@MessageMapping("/chat/{roomId}/sendInvite")
+	public void sendInvite(@DestinationVariable String roomId, @Payload InviteMessage inviteMessage) {
+		log.info(inviteMessage.toString());
+		UserDTO user = userService.getUserBySoDienThoai(inviteMessage.getTelReceiver());
+		inviteMessage.setIdReceiver(user.getId());
+		messagingTemplate.convertAndSend("/topic/" + roomId, inviteMessage);
 	}
 
 	@MessageMapping("/chat/{roomId}/addUser")

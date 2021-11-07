@@ -7,16 +7,18 @@ public class ChatMessage {
     private String content;
     private String sender;
     private long roomId;
-
+    
     public enum MessageType {
         CHAT,
         JOIN,
-        LEAVE
+        LEAVE,
+        INVITE
     }
 
     
     
-    public long getRoomId() {
+
+	public long getRoomId() {
 		return roomId;
 	}
 
@@ -59,8 +61,10 @@ public class ChatMessage {
 	@Override
 	public String toString() {
 		return "ChatMessage [idSender=" + idSender + ", type=" + type + ", content=" + content + ", sender=" + sender
-				+ "]";
+				+ ", roomId=" + roomId + "]";
 	}
 
+	
+	
     
 }

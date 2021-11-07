@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                // .failureHandler(authenticationFailureHandler())
                 .and()
                 .logout()
-                .logoutUrl("/info")
+                .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID");
                // .logoutSuccessHandler(logoutSuccessHandler());
         //.and()
