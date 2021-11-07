@@ -29,7 +29,7 @@ public class LoginController {
 	    }
 	 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = {"application/x-www-form-urlencoded"} )
-    public UserDTO register( UserDTO user,@RequestParam String hoten) {
+    public String register( UserDTO user,@RequestParam String hoten) {
 	//public String register() {
 		AccountDTO account = new AccountDTO();
 		account.setUsername(hoten);
@@ -37,7 +37,7 @@ public class LoginController {
 		user.setEnable(true);
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		//userService.sendRegister(user);
-		
-    	return userService.sendRegister(user);
+		userService.sendRegister(user);
+    	return "login";
     }
 }

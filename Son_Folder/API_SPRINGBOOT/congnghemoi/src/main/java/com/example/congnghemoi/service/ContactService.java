@@ -12,5 +12,7 @@ public interface ContactService {
 	Contact save(Contact contactEntity);
 	void deleteById(long id);
 	List<Contact> findByAccountId(long id);
+	void updateContactByTwoId(Long accountId, Long friendId);
+
 	
 }

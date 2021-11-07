@@ -1,5 +1,6 @@
 package com.example.ChatWeb.controller;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -105,6 +106,54 @@ public class ChatController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+		
+		return callChatPage(model, accountLogin);
+	}
+
+	@GetMapping("/dual/withFriend/{friendId}")
+	public String chatwithfriend(Model model, @PathVariable long friendId) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String sdt = auth.getName(); // get logged in username;
+		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+		RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), friendId);
+		List<MessageDTO> listMessage = messageService.getListMessageByMessageId(room.getId());
+		// Collections.sort(listMessage);
+		model.addAttribute("friendName", accountService.getAccountById(friendId).getUsername());
+		model.addAttribute("listMessage", listMessage);
+		model.addAttribute("roomId", room.getId());
+		return callChatPage(model, accountLogin);
+	}
+	@GetMapping("/accept/{friendId}")
+	public String acceptFriend(Model model, @PathVariable long friendId) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String sdt = auth.getName(); // get logged in username;
+		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+		
+		long accountId = accountLogin.getId();
+		
+		
+		
+		RoomDTO newRoom = new RoomDTO();
+		newRoom.setAdminId(accountLogin.getId());
+		newRoom.setDeleted(false);
+		newRoom.setType("Dual");
+		
+		roomService.createRoom(newRoom, accountId, friendId);
+		contactService.updateAcceptContact(accountId, friendId);
+		
+		
+		List<AccountDTO> listAccount = new ArrayList<AccountDTO>();
+		listAccount.add(accountLogin);
+		listAccount.add(accountService.getAccountById(friendId));
+		newRoom.setAccounts(listAccount);
+
+		return callChatPage(model, accountLogin);
+	}
+	
+	public String callChatPage(Model model,AccountDTO accountLogin) {
+		
+		
 		List<ContactDTO> listContact = contactService.getListContactByAccountId(accountLogin.getId());
 		for(ContactDTO c : listContact) {
 			c.setFriend(accountService.getAccountById(c.getFriendId()));
@@ -113,32 +162,6 @@ public class ChatController {
 		model.addAttribute("account", accountLogin);
 		// System.out.println("HELLO SON");
 		return "chat";
+
 	}
-
-	@GetMapping("/dual/withFriend/{friendId}")
-	public String chatwithfriend(Model model, @PathVariable long friendId) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String sdt = auth.getName(); // get logged in username;
-		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
-		List<ContactDTO> listContact = contactService.getListContactByAccountId(accountLogin.getId());
-		for(ContactDTO c : listContact) {
-			c.setFriend(accountService.getAccountById(c.getFriendId()));
-		}
-		
-
-		RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), friendId);
-		List<MessageDTO> listMessage = messageService.getListMessageByMessageId(room.getId());
-		// Collections.sort(listMessage);
-
-		model.addAttribute("friendName", accountService.getAccountById(friendId).getUsername());
-		model.addAttribute("listMessage", listMessage);
-		model.addAttribute("roomId", room.getId());
-		model.addAttribute("listContact", listContact);
-		model.addAttribute("account", accountLogin);
-
-		return "chat";
-	}
-
-
 }

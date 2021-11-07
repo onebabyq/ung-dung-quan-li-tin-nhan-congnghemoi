@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.example.ChatWeb.dto.AccountDTO;
 import com.example.ChatWeb.dto.ContactDTO;
 import com.example.ChatWeb.dto.MessageDTO;
+import com.example.ChatWeb.dto.RoomDTO;
 import com.example.ChatWeb.model.InviteMessage;
 @Service
 public class ContactService {
@@ -37,6 +38,10 @@ public class ContactService {
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("Insert Contact Successfully!!!");
 		}
+	}
+	public void updateAcceptContact(long accountId,long friendId) {
+		restTemplate.getForObject(LOCALHOST + "/contacts/accept/"+accountId+"/"+friendId, String.class);
+		
 	}
 	public void createByInviteMessage(InviteMessage inviteMessage) {
 		ContactDTO contact = new ContactDTO();

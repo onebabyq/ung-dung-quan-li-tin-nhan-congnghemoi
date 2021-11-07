@@ -11,7 +11,7 @@ public class RoomDTO  {
     private String type;
   
     private boolean deleted;
-    private int adminId;
+    private Long adminId;
     
     
    
@@ -72,13 +72,21 @@ public class RoomDTO  {
         this.deleted = deleted;
     }
 
-    public int getAdminId() {
-        return adminId;
-    }
+	public Long getAdminId() {
+		return adminId;
+	}
 
-    public void setAdminId(int adminId) {
-        this.adminId = adminId;
-    }
+	public void setAdminId(Long adminId) {
+		this.adminId = adminId;
+	}
+
+	@Override
+	public String toString() {
+		return "RoomDTO [id=" + id + ", lastMessageId=" + lastMessageId + ", type=" + type + ", deleted=" + deleted
+				+ ", adminId=" + adminId + ", messages=" + messages + ", accounts=" + accounts + "]";
+	}
+
+   
 
   
 }

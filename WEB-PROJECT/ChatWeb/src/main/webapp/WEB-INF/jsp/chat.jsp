@@ -105,7 +105,7 @@
 							
 							<div>
                                 <h3>${item.friend.username}</h3>
-                                <p>Lời mời kết bạn<a href="${contextPath}/accept/${tem.account.id}/${tem.friend.id}"><button>Chấp nhận</button> </a><button>Từ chối</button></p>
+                                <p><span>Lời mời kết bạn</span><a href="${contextPath}/accept/${item.friend.id}"><button>Chấp nhận</button> </a><button>Từ chối</button></p>
                             </div>
                             
 						</c:if>

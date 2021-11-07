@@ -55,5 +55,13 @@ public class ContactServiceImpl implements ContactService {
 
 
 
+	@Override
+	public void updateContactByTwoId(Long accountId, Long friendId) {
+		// TODO Auto-generated method stub
+		contactRepository.updateContactByTwoId(accountId,friendId);
+	}
+
+
+
 
 }

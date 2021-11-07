@@ -55,5 +55,13 @@ public class RoomServiceImpl implements RoomService {
 
 
 
+	@Override
+	public void insertAccoutRoom(long accId, long roomId) {
+		// TODO Auto-generated method stub
+		roomRepository.insertAccoutRoom(accId,roomId);
+	}
+
+
+
 
 }

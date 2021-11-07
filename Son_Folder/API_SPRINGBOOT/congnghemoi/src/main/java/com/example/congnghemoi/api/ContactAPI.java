@@ -69,6 +69,11 @@ public class ContactAPI {
 			return null;
 		return contactService.save(newEntity);
 	}
+	@GetMapping(value="/contacts/accept/{accountId}/{friendId}")
+	public void updateAccept(@PathVariable Long accountId , @PathVariable Long friendId) {
+		contactService.updateContactByTwoId(accountId,friendId);
+		contactService.updateContactByTwoId(friendId,accountId);
+	}
 	@DeleteMapping(value="/contacts/{id}")
 	public String deleteContact(@PathVariable long id) {
 		contactService.deleteById(id);

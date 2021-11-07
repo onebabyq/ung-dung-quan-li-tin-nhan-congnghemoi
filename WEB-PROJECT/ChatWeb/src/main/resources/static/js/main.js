@@ -3,6 +3,7 @@
 //var roomInput = $('#room-id');
 //var testModel = $('#testModel');
 //var connect_btn = document.querySelector('#connect_btn');
+var contextPath = 'http://localhost:8080';
 var friendArea = document.querySelector('#FriendArea');
 var searchButton = document.querySelector('#searchButton');
 var searchKey = document.querySelector('#searchKey');
@@ -154,10 +155,13 @@ function onMessageReceived(payload) {
 		spanElement.textContent = message.content;
 		var buttonElement =  document.createElement('button');
 		buttonElement.textContent = "Chấp nhận";
+		var aElement = document.createElement('a');
+		aElement.href = contextPath+'/accept/'+message.idSender;
+		aElement.appendChild(buttonElement);
 		var button2Element =  document.createElement('button');
 		button2Element.textContent = "Từ chối";
 		pElement.appendChild(spanElement);
-		pElement.appendChild(buttonElement);
+		pElement.appendChild(aElement);
 		pElement.appendChild(button2Element);
 		div3Element.appendChild(h3Element);
 		div3Element.appendChild(pElement);

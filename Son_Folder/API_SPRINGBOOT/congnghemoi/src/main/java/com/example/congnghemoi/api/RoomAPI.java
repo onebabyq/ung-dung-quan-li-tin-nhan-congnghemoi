@@ -44,8 +44,15 @@ public class RoomAPI {
 	}
 	@PostMapping(value="/rooms")
 	public Room saveRoom(@RequestBody Room newEntity) {
-		
-		return roomService.save(newEntity);
+		Room room =  roomService.save(newEntity);
+		return room;
+	}
+	@PostMapping(value="/rooms/byTwoAccountId/{accountId}/{friendId}")
+	public Room saveRoomTwoAccountId(@RequestBody Room newEntity,@PathVariable long accountId,@PathVariable long friendId) {
+		Room room =  roomService.save(newEntity);
+		roomService.insertAccoutRoom(accountId, room.getId());
+		roomService.insertAccoutRoom(friendId, room.getId());
+		return room;
 	}
 	@PutMapping(value="/rooms/{id}")
 	public Room updateRoom(@RequestBody Room newEntity) {
