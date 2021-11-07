@@ -13,7 +13,9 @@
 
 <link rel="stylesheet" href="${contextPath}/css/chat.css">
 <link rel="stylesheet" href="${contextPath}/css/admin_dashboard.css">
-
+  <style>
+    a { text-decoration: none; }
+  </style>
 </head>
 <body>
 	<div class="navigation">
@@ -70,7 +72,7 @@
 				</div>
 				
 				<div class="search_box">
-					<form>
+					<form class="form-css">
 					<input class="in" type="text" placeholder="Tìm kiếm..." id="searchKey">
 					<div class="ico" id="searchButton">
 						<span><ion-icon class="icon1" name="search-outline"></ion-icon></span>
@@ -122,6 +124,10 @@
 							<p id="hoat-dong">Active 30 seconds ago...</p>
 						</div>
 					</div>
+					<form  class="img_up" id="form-file-id" method="POST" action="${contextPath}/upload/${friendId}" enctype="multipart/form-data">
+                         <input type="file" name="file" class="img_up" id="file-id" onChange="changeImage();">
+                    </form>
+                   
 					<span><ion-icon class="icon2"
 							name="ellipsis-horizontal-outline"></ion-icon></span>
 				</div>
@@ -132,12 +138,22 @@
 							<c:forEach items="${listMessage}" var="item">
 								<c:if test="${item.from.id == account.id}">
 									<li class="me">
-										<p>${item.content}</p>
+										<c:if test="${item.contentType=='TEXT'}">
+											<p>${item.content}</p>
+										</c:if>
+										<c:if test="${item.contentType=='IMAGE'}">
+											<img src="${item.content}" width="200" height="200">
+										</c:if>
 									</li>
 								</c:if>
 								<c:if test="${item.from.id != account.id}">
 									<li class="u">
-										<p>${item.content}</p>
+										<c:if test="${item.contentType=='TEXT'}">
+											<p>${item.content}</p>
+										</c:if>
+										<c:if test="${item.contentType=='IMAGE'}">
+											<img src="${item.content}" width="200" height="200">
+										</c:if>
 									</li>
 								</c:if>
 							</c:forEach>
@@ -146,7 +162,7 @@
 				</div>
 
 				<div class="btm">
-					<form>
+					<form class="form-css">
 						<div>+</div>
 						<input type="text" name="" placeholder="Bạn đang nghĩ gì?"
 							class="in2" id="message">

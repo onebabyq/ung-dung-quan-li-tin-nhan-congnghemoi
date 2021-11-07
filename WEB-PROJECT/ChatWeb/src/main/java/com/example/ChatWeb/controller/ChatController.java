@@ -32,12 +32,15 @@ import com.example.ChatWeb.model.ChatMessage.MessageType;
 import com.example.ChatWeb.model.InviteMessage;
 import com.example.ChatWeb.service.AccountService;
 import com.example.ChatWeb.service.ContactService;
+import com.example.ChatWeb.service.FilesStorageService;
 import com.example.ChatWeb.service.MessageService;
 import com.example.ChatWeb.service.RoomService;
 import com.example.ChatWeb.service.UserService;
 
 @Controller
 public class ChatController {
+	@Autowired
+	FilesStorageService storageService;
 	@Autowired
 	private AccountService accountService;
 	@Autowired
@@ -120,6 +123,7 @@ public class ChatController {
 		// Collections.sort(listMessage);
 		model.addAttribute("friendName", accountService.getAccountById(friendId).getUsername());
 		model.addAttribute("listMessage", listMessage);
+		model.addAttribute("friendId", friendId);
 		model.addAttribute("roomId", room.getId());
 		return callChatPage(model, accountLogin);
 	}

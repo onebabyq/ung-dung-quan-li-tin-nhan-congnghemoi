@@ -52,7 +52,7 @@ public class MessageService {
 		MessageDTO message = new MessageDTO();
 		message.setContent(chatmessage.getContent());
 		message.setFrom(accountService.getAccountById(chatmessage.getIdSender()));
-		message.setContentType("text");
+		message.setContentType(chatmessage.getContentType());
 		message.setReadStatus("Đã xem");
 		message.setRoom(roomService.getRoomById(chatmessage.getRoomId()));
 		message = createMessage( message);

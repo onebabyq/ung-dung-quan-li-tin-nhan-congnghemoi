@@ -180,6 +180,13 @@ span{
     width: 23px;
     color: var(--blue);
 }
+.img_up{
+    margin-right: -350px;
+    height: 23px;
+    width: 70px;
+    color: var(--blue);
+}
+
 
 .mid{
     overflow-y: auto;
@@ -196,7 +203,7 @@ span{
     width: 100%;
 }
 
-form{
+form.form-css{
     width: 90%;
     display: flex;
     align-items: center;

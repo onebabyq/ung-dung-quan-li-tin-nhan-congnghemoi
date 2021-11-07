@@ -5,6 +5,7 @@ public class ChatMessage {
 	private long idSender;
     private MessageType type;
     private String content;
+    private String contentType;
     private String sender;
     private long roomId;
     
@@ -14,9 +15,18 @@ public class ChatMessage {
         LEAVE,
         INVITE
     }
+    
+    
+    
 
-    
-    
+	
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
 
 	public long getRoomId() {
 		return roomId;
@@ -60,10 +70,11 @@ public class ChatMessage {
 
 	@Override
 	public String toString() {
-		return "ChatMessage [idSender=" + idSender + ", type=" + type + ", content=" + content + ", sender=" + sender
-				+ ", roomId=" + roomId + "]";
+		return "ChatMessage [idSender=" + idSender + ", type=" + type + ", content=" + content + ", contentType="
+				+ contentType + ", sender=" + sender + ", roomId=" + roomId + "]";
 	}
 
+	
 	
 	
     
