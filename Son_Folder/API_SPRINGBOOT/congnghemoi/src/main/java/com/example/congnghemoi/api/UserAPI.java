@@ -40,6 +40,7 @@ public class UserAPI {
 		
 		return userService.findById(id);
 	}
+	
 	@GetMapping(value="/users/bySoDienThoai/{sdt}")
 	public User getUserBySoDienThoai(@PathVariable String sdt) {
 		System.out.println("SĐT query: "+sdt);
@@ -47,10 +48,7 @@ public class UserAPI {
 	}
 	@PostMapping(value="/users")
 	public User saveUser(@RequestBody User newEntity) {
-		Account account = new Account();
-		account.setUsername(newEntity.getAccount().getUsername());
-		account = accountService.save(account);
-		
+		Account account = accountService.save(new Account());
 		newEntity.setAccount(account);
 		return userService.save(newEntity);
 	}

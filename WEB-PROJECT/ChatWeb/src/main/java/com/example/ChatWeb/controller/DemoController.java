@@ -20,8 +20,6 @@ public class DemoController {
     	return "home";
     }
     
-   
-    
     @GetMapping("/info")
     public String viewInfo(Model model) {
     	model.addAttribute("firstname","Toàn");

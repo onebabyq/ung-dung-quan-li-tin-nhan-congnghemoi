@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="APPCHAT"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="72px"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageView15"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtSoDienThoai"
+        android:layout_width="371dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Số điện thoại"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
+    <EditText
+        android:id="@+id/txtMatKhau"
+        android:layout_width="371dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Mật khẩu"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSoDienThoai" />
+
+    <Button
+        android:id="@+id/btnDangNhap"
+        android:layout_width="369dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="24dp"
+        android:text="Đăng Nhập"
+        android:textSize="48px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMatKhau" />
+
+    <Button
+        android:id="@+id/btnQuenMatKhau"
+        android:layout_width="207dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:text="Quên mật khẩu"
+        android:textSize="28px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDangNhapGoogle" />
+
+    <Button
+        android:id="@+id/btnDangNhapGoogle"
+        android:layout_width="369dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="24dp"
+        android:text="Đăng nhập bằng Google"
+        android:textSize="48px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDangNhap" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="133dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_app" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
