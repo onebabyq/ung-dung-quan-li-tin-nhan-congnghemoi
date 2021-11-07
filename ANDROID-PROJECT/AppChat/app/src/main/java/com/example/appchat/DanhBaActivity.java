@@ -63,7 +63,7 @@ public class DanhBaActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         Contact p = gson.fromJson(String.valueOf(object), Contact.class);
 
-                        fiendList.add(new Friend(R.drawable._061334, p.getFriend().toString(),R.drawable._21014,R.drawable._762106));
+                        fiendList.add(new Friend(R.drawable._061334, p.getFriend().toString(),R.drawable.chat,R.drawable.phone));
                         myChairAdapter.notifyDataSetChanged();
 
 

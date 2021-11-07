@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/acti_danhba.xml" value="0.18" />
         <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/activity_dangky.xml" value="0.20416666666666666" />
         <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/activity_itemuser.xml" value="0.20416666666666666" />
         <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
@@ -10,6 +11,7 @@
         <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/activity_tuychon.xml" value="0.20416666666666666" />
         <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/item_danhba.xml" value="0.18" />
         <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/item_mesage.xml" value="0.22" />
+        <entry key="..\:/IUH_University/HocKy_I(2021-2022)/CongNgheMoiTrongPhatTrienPhanMemCNTT/Project/ung-dung-quan-li-tin-nhan-congnghemoi/ANDROID-PROJECT/AppChat/app/src/main/res/layout/item_user.xml" value="0.18568840579710144" />
       </map>
     </option>
   </component>

@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".ChatActivity" />
         <activity android:name=".DanhBaActivity" />
+        <activity android:name=".DangKyActivity" />
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
 package com.example.appchat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -16,6 +18,22 @@ public class DangKyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dangky);
 
         initViews();
+
+        mBtnDaCoTaiKhoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DangKyActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mBtnDangKy_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DangKyActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void initViews(){

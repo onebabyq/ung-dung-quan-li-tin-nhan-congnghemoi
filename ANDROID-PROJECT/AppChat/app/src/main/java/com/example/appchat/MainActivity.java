@@ -41,7 +41,15 @@ public class MainActivity extends AppCompatActivity {
         mBtnDangNhap_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                Intent intent = new Intent(MainActivity.this, DanhBaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mBtnDangKy_signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, DangKyActivity.class);
                 startActivity(intent);
             }
         });
