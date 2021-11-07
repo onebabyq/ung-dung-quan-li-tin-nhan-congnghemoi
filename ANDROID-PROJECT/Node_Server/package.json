@@ -1,0 +1,18 @@
+{
+  "name": "test-socket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "*",
+    "nodemon": "^2.0.14",
+    "socket.io": "*",
+    "socketio-file-upload": "^0.7.3"
+  }
+}
