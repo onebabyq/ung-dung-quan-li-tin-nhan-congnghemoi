@@ -18,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.ChatWeb.dto.AccountDTO;
 import com.example.ChatWeb.dto.ContactDTO;
@@ -153,6 +155,19 @@ public class ChatController {
 		listAccount.add(accountService.getAccountById(friendId));
 		newRoom.setAccounts(listAccount);
 
+		return callChatPage(model, accountLogin);
+	}
+	@PostMapping("/findSDT")
+	public String findSDT(Model model, @RequestParam String soDienThoai) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String sdt = auth.getName(); // get logged in username;
+		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+		
+		
+		UserDTO userFinded = userService.getUserBySoDienThoai(soDienThoai);
+		
+		model.addAttribute("userFinded", userFinded);
 		return callChatPage(model, accountLogin);
 	}
 	

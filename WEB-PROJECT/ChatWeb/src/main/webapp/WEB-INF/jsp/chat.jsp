@@ -26,7 +26,7 @@ a {
 			<li><a href="${contextPath}/home"> <span class="icon"><ion-icon
 							name="person-circle-outline"></ion-icon></span> <%--              <span class="title" id="name">${username}</span> --%>
 					<span class="title" id="name">${account.username}</span> <span
-					class="title" id="idAccount">${account.id}</span>
+					class="title" id="idAccount" style="color:var(--blue);">${account.id}</span>
 			</a></li>
 			<li><a href="${contextPath}/home"> <span class="icon"><ion-icon
 							name="home-outline"></ion-icon></span> <span class="title">Trang
@@ -75,16 +75,29 @@ a {
 				</div>
 
 				<div class="search_box">
-					<form class="form-css">
+					<form class="form-css" action="${contextPath}/findSDT" method="POST">
 						<input class="in" type="text" placeholder="Tìm kiếm..."
-							id="searchKey">
-						<div class="ico" id="searchButton">
-							<span><ion-icon class="icon1" name="search-outline"></ion-icon></span>
+							name="soDienThoai">
+						<div class="ico" >
+							<button class="button buttonsearch" type="submit" ><span><ion-icon class="icon1" name="search-outline"></ion-icon></span></button>
 						</div>
 					</form>
 				</div>
 
 				<ul id="FriendArea">
+					<c:if test="${not empty userFinded}">
+						<li class="kb_area">
+	                        <form class="formNone" action="${contextPath}/chat" method="GET">
+	                            <div class="friend">
+	                                <div>
+	                                	<input  type="hidden" id="PhoneNeedInvite" value="${userFinded.soDienThoai}">
+	                                    <h3>${userFinded.account.username} (Phone: ${userFinded.soDienThoai})</h3>
+	                                    <p>Gửi kết bạn <button id="btnSendInvite" class="button button2">Kết bạn</button> </p>
+	                                </div>
+	                            </div>
+	                         </form>
+	                    </li>
+					</c:if>
 					<c:forEach items="${listContact}" var="item">
 						<c:if test="${item.accept == true}">
 							<a href="${contextPath}/dual/withFriend/${item.friend.id}"> <%-- <input name="roomId" type="hidden" value="${entry.value}"> --%>
@@ -197,8 +210,8 @@ a {
 							class="in2" id="message">
 						<div class="ico3">
 
-							<span><ion-icon type='submit' class="send_svg"
-									name="send-outline" id="messageForm"></ion-icon></span>
+							<button id="messageForm" class="button buttonsearch" type="submit"><span><ion-icon type='submit' class="send_svg"
+									name="send-outline" ></ion-icon></span></button>
 
 							<!-- <button id="messageForm" name="messageForm">Send</button> -->
 						</div>

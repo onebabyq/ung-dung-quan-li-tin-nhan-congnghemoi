@@ -5,11 +5,12 @@
 //var connect_btn = document.querySelector('#connect_btn');
 
 var contextPath = 'http://localhost:8080';
+var btnSendInvite = document.querySelector('#btnSendInvite');
 var formSubmitImage = document.querySelector('#form-file-id');
 var inputImage = document.querySelector('#file-id');
 var friendArea = document.querySelector('#FriendArea');
-var searchButton = document.querySelector('#searchButton');
-var searchKey = document.querySelector('#searchKey');
+//var searchButton = document.querySelector('#searchButton');
+var PhoneNeedInvite = document.querySelector('#PhoneNeedInvite');
 var roomInput = document.querySelector('#room-id');
 var hoat_dong = document.querySelector('#hoat-dong');
 var usernamePage = document.querySelector('#username-page');
@@ -47,7 +48,7 @@ window.onload = function exampleFunction() {
 	//roomId = roomInput.textContent;
 	//if(roomId!=0)
 	//if(roomInput.textContent!=0)
-
+	messageArea.scrollTop = messageArea.scrollHeight;
 	connect();
 	// Function to be executed
 }
@@ -147,7 +148,7 @@ function sendMessage(event) {
 }
 function sendInvite(event) {
 	//alert("telReceiver: 0");
-	var messageContent = searchKey.value.trim();
+	var messageContent = PhoneNeedInvite.value.trim();
 	//alert("telReceiver: 1");
 	if (messageContent && stompClient) {
 		//alert("telReceiver: 2");
@@ -169,7 +170,7 @@ function sendInvite(event) {
 }
 function onMessageReceivedMain(payload) {
 	var message = JSON.parse(payload.body);
-	if (message.type === 'INVITE' && idAccount == message.idReceiver) {
+	if (message.type === 'INVITE' && idAccount == message.idReceiver ) {
 
 		var div3Element = document.createElement('div');
 		var h3Element = document.createElement('h3');
@@ -307,20 +308,21 @@ messageForm.onclick = function(event) {
 	event.preventDefault();
 	sendMessage();
 }
-searchButton.onclick = function(event) {
-	//alert("Search Click Send");
-	event.preventDefault();
-	sendInvite();
-}
-function changeImage() {
+
+function changeImage(event) {
 	fileName = inputImage.files[0].name;
 	urlImage = contextPath + '/files/' + fileName;
 	// Regular expression for file extension.
 	fileExtension = fileName.split('.').pop();
 	sendImage();
 	document.getElementById('form-file-id').submit();
+	event.preventDefault();
 }
-
+btnSendInvite.onclick = function(event){
+	//event.preventDefault();
+	sendInvite();
+	//document.querySelector('#kb_area').remove();
+}
 $(document).ready(function() {
 
 	//if(roomInput.textContent!="")

@@ -97,17 +97,26 @@
     padding: 5px;
     border-radius: 5px;
 }
+.ico button{
+    background: var(--blue);
+    border: 0px;
+   /* padding: 5px;*/
+   /* border-radius: 5px;*/
+}
 
 .icon1{
     color: white;
     width: 23px;
-    height: 23px;
+    height: 18px;
+/*    width: 15px;
+    height: 15px;*/
 }
 
 .in{
     border: none;
     outline: none;
-    background: var(--c);
+/*    background: var(--c);*/
+    background: white;
     padding: 10px 15px;
     border-radius: 5px;
     width: 220px;
@@ -174,7 +183,9 @@ span{
     align-items: center;
     justify-content: space-between;
 }
+form.formNone{
 
+}
 .icon2{
     margin-left: 120px;
     margin-right: 20px;
@@ -215,7 +226,7 @@ form.form-css{
     border: 1px solid lightgrey;
 }
 
-.ico3, form div{
+.ico3, form:not(.formNone) div{
     background: var(--blue);
     padding: 7px;
     color: white;
@@ -226,8 +237,8 @@ form.form-css{
 }
 
 .send_svg{
-    height: 23px;
-    width: 23px;
+    height: 15px;
+    width: 40px;
     color: white;
 }
 
