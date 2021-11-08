@@ -99,10 +99,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Remove User"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/imgBtnRemoveUser" />
+        app:layout_constraintTop_toBottomOf="@+id/imgBtnRemoveUser"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView8"
@@ -114,16 +116,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnRemoveGroup" />
 
-    <ListView
-        android:id="@+id/lvDanhSachThanhVien"
-        android:layout_width="406dp"
-        android:layout_height="342dp"
-        android:layout_marginTop="36dp"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="412dp"
+        android:layout_height="346dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ListView
+            android:id="@+id/lvDanhSachThanhVien"
+            android:layout_width="match_parent"
+            android:layout_height="351dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

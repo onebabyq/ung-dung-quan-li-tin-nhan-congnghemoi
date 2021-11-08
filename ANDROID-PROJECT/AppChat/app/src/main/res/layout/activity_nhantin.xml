@@ -52,7 +52,7 @@
         android:layout_height="49dp"
         android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/btnTuyChon"
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnTuyChon"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:srcCompat="@drawable/phone"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -69,7 +69,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/btnTuyChon"
+        android:id="@+id/imgBtnTuyChon"
         android:layout_width="30dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -79,20 +79,20 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="409dp"
-        android:layout_height="520dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="475dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="HardcodedText">
 
         <ListView
             android:id="@+id/listMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="3dp"/>
+            android:padding="3dp" />
 
 
     </LinearLayout>
@@ -102,9 +102,10 @@
         android:layout_width="409dp"
         android:layout_height="72dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <ImageButton
             android:id="@+id/imgBtnGif"
@@ -122,9 +123,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="Nhập tin nhắn ..."
-            android:textSize="20sp"
             android:inputType="textPersonName"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <ImageButton
             android:id="@+id/imgBtnGui"
@@ -134,6 +135,49 @@
             app:srcCompat="@drawable/send"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/view12"
+        android:layout_width="407dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imgBtnDanhBa"
+        android:layout_width="58dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view12"
+        app:srcCompat="@drawable/contact"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imgBtnTinNhan"
+        android:layout_width="61dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnCaNhan"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toEndOf="@+id/imgBtnDanhBa"
+        app:layout_constraintTop_toTopOf="@+id/view12"
+        app:srcCompat="@drawable/mail"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/imgBtnCaNhan"
+        android:layout_width="55dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view12"
+        app:srcCompat="@drawable/user"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

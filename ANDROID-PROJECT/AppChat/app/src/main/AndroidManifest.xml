@@ -24,6 +24,8 @@
         <activity android:name=".ChatActivity" />
         <activity android:name=".DanhBaActivity" />
         <activity android:name=".DangKyActivity" />
+        <activity android:name=".TuyChonActivity" />
+        <activity android:name=".CaNhanActivity" />
     </application>
 
 </manifest>

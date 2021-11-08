@@ -36,8 +36,8 @@ import com.example.ChatWeb.service.UserService;
 
 @Controller
 public class ChatController {
-	@Autowired
-	FilesStorageService storageService;
+	//@Autowired
+	//FilesStorageService storageService;
 	@Autowired
 	private AccountService accountService;
 	@Autowired
