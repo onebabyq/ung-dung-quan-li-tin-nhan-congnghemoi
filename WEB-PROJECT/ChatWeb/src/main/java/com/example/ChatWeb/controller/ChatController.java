@@ -57,7 +57,7 @@ public class ChatController {
 	public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
 		log.info(chatMessage.toString());
 		messageService.createByChatMessage(chatMessage);
-		if(chatMessage.getContentType().equals("FILE"))
+		if(chatMessage.getContentType().equals("FILE")||chatMessage.getContentType().equals("VIDEO"))
 			chatMessage.setFileName(convertUrlToFileName(chatMessage.getContent()));
 		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
 	}

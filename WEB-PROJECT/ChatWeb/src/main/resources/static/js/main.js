@@ -24,7 +24,7 @@ var connectingElement = document.querySelector('.connecting');
 
 var topic = null;
 var urlImage = null;
-var fileExtension=null;
+var fileExtension = null;
 var roomId = null;
 var stompClient = null;
 var stompClientMain = null;
@@ -105,11 +105,13 @@ function sendImage(event) {
 	//alert("func sendMessage!!!");
 	var messageContent = urlImage;
 	//alert(fileExtension);
-	var content_type=null;
-	if(fileExtension=='jpg' || fileExtension=='png' || fileExtension=='jpeg' )
+	var content_type = null;
+	if (fileExtension == 'jpg' || fileExtension == 'png' || fileExtension == 'jpeg')
 		content_type = 'IMAGE';
+	else if (fileExtension == 'mp4')
+		content_type = 'VIDEO';
 	else content_type = 'FILE';
-		
+
 	if (messageContent && stompClient) {
 		var chatMessage = {
 			idSender: idAccount,
@@ -216,7 +218,7 @@ function onMessageReceived(payload) {
 			messageElement.classList.add('me');
 		else messageElement.classList.add('u');
 		messageElement.classList.add('chat-message');
-	
+
 		if (message.contentType == 'TEXT') {
 			var textElement = document.createElement('p');
 			var messageText = document.createTextNode(message.content);
@@ -227,17 +229,17 @@ function onMessageReceived(payload) {
 			var imgElement = document.createElement('img');
 			imgElement.src = message.content;
 			imgElement.width = 200;
-			imgElement.height =200;
+			imgElement.height = 200;
 			messageElement.appendChild(imgElement);
 		}
 		if (message.contentType == 'FILE') {
 			var imgElement = document.createElement('img');
-			imgElement.src = contextPath+'/image/file-image.jpg';
+			imgElement.src = contextPath + '/image/file-image.jpg';
 			imgElement.width = 200;
-			imgElement.height =200;
+			imgElement.height = 200;
 			// <a href="#">fileabc.xlsx</a>
 			var aElement = document.createElement('a');
-			aElement.href= message.content;
+			aElement.href = message.content;
 			var messageText = document.createTextNode(message.fileName);
 			aElement.appendChild(messageText);
 			var brElement = document.createElement('br');
@@ -245,7 +247,34 @@ function onMessageReceived(payload) {
 			messageElement.appendChild(brElement);
 			messageElement.appendChild(aElement);
 		}
-		
+		if (message.contentType == 'VIDEO') {
+
+			//<video width="320" height="240" controls>
+			//       <source src="video-test.mp4" type="video/mp4">
+			//    </video><br>
+			//     <a href="#">fileabc.xlsx</a>
+			var videoElement = document.createElement('video');
+			
+			videoElement.width = 400;
+			videoElement.height = 400;
+			videoElement.controls = true;
+			
+			var sourceElement = document.createElement('source');
+			sourceElement.src = message.content;
+			sourceElement.type='video/mp4';
+			
+			videoElement.appendChild(sourceElement);
+			
+			// <a href="#">fileabc.xlsx</a>
+			var aElement = document.createElement('a');
+			aElement.href = message.content;
+			var messageText = document.createTextNode(message.fileName);
+			aElement.appendChild(messageText);
+			var brElement = document.createElement('br');
+			messageElement.appendChild(videoElement);
+			messageElement.appendChild(brElement);
+			messageElement.appendChild(aElement);
+		}
 		messageArea.appendChild(messageElement);
 		messageArea.scrollTop = messageArea.scrollHeight;
 
@@ -276,7 +305,7 @@ function changeImage() {
 	fileName = inputImage.files[0].name;
 	urlImage = contextPath + '/files/' + fileName;
 	// Regular expression for file extension.
- 	fileExtension = fileName.split('.').pop();
+	fileExtension = fileName.split('.').pop();
 	sendImage();
 	document.getElementById('form-file-id').submit();
 }
