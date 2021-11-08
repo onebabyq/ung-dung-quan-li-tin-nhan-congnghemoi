@@ -5,6 +5,7 @@ public class ChatMessage {
 	private long idSender;
     private MessageType type;
     private String content;
+    private String fileName;
     private String contentType;
     private String sender;
     private long roomId;
@@ -20,6 +21,14 @@ public class ChatMessage {
     
 
 	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
 	public String getContentType() {
 		return contentType;
 	}
@@ -70,10 +79,11 @@ public class ChatMessage {
 
 	@Override
 	public String toString() {
-		return "ChatMessage [idSender=" + idSender + ", type=" + type + ", content=" + content + ", contentType="
-				+ contentType + ", sender=" + sender + ", roomId=" + roomId + "]";
+		return "ChatMessage [idSender=" + idSender + ", type=" + type + ", content=" + content + ", fileName="
+				+ fileName + ", contentType=" + contentType + ", sender=" + sender + ", roomId=" + roomId + "]";
 	}
 
+	
 	
 	
 	

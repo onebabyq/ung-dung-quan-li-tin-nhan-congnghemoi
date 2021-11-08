@@ -24,11 +24,13 @@ var connectingElement = document.querySelector('.connecting');
 
 var topic = null;
 var urlImage = null;
+var fileExtension=null;
 var roomId = null;
 var stompClient = null;
 var stompClientMain = null;
 var username = null;
 var idAccount = null;
+var fileName = null;
 var socketName = null;
 var currentSubscription;
 var currentSubscriptionMain;
@@ -102,11 +104,17 @@ function onError(error) {
 function sendImage(event) {
 	//alert("func sendMessage!!!");
 	var messageContent = urlImage;
+	//alert(fileExtension);
+	var content_type=null;
+	if(fileExtension=='jpg' || fileExtension=='png' || fileExtension=='jpeg' )
+		content_type = 'IMAGE';
+	else content_type = 'FILE';
+		
 	if (messageContent && stompClient) {
 		var chatMessage = {
 			idSender: idAccount,
 			sender: username,
-			contentType: 'IMAGE',
+			contentType: content_type,
 			content: messageContent,
 			type: 'CHAT',
 			roomId: roomId
@@ -222,6 +230,21 @@ function onMessageReceived(payload) {
 			imgElement.height =200;
 			messageElement.appendChild(imgElement);
 		}
+		if (message.contentType == 'FILE') {
+			var imgElement = document.createElement('img');
+			imgElement.src = contextPath+'/image/file-image.jpg';
+			imgElement.width = 200;
+			imgElement.height =200;
+			// <a href="#">fileabc.xlsx</a>
+			var aElement = document.createElement('a');
+			aElement.href= message.content;
+			var messageText = document.createTextNode(message.fileName);
+			aElement.appendChild(messageText);
+			var brElement = document.createElement('br');
+			messageElement.appendChild(imgElement);
+			messageElement.appendChild(brElement);
+			messageElement.appendChild(aElement);
+		}
 		
 		messageArea.appendChild(messageElement);
 		messageArea.scrollTop = messageArea.scrollHeight;
@@ -250,10 +273,10 @@ searchButton.onclick = function(event) {
 	sendInvite();
 }
 function changeImage() {
-	//alert('On changed');
-	var fileName = inputImage.files[0].name;
-	//alert('FileName: '+fileName);
+	fileName = inputImage.files[0].name;
 	urlImage = contextPath + '/files/' + fileName;
+	// Regular expression for file extension.
+ 	fileExtension = fileName.split('.').pop();
 	sendImage();
 	document.getElementById('form-file-id').submit();
 }

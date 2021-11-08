@@ -8,12 +8,20 @@ public class MessageDTO implements Comparable<MessageDTO> {
 	private String content;
 	private String contentType;
 	private String readStatus;
-
+	private String fileName;
 	private Date createDate;
 
 	private RoomDTO room;
 
 	private AccountDTO from;
+	
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
 	@Override
 	public int compareTo(MessageDTO o) {
@@ -79,7 +87,10 @@ public class MessageDTO implements Comparable<MessageDTO> {
 	@Override
 	public String toString() {
 		return "MessageDTO [id=" + id + ", content=" + content + ", contentType=" + contentType + ", readStatus="
-				+ readStatus + ", createDate=" + createDate + ", room=" + room + ", from=" + from + "]";
+				+ readStatus + ", fileName=" + fileName + ", createDate=" + createDate + ", room=" + room + ", from="
+				+ from + "]";
 	}
+
+
 
 }

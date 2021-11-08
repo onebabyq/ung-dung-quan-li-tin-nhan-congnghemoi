@@ -144,6 +144,10 @@
 										<c:if test="${item.contentType=='IMAGE'}">
 											<img src="${item.content}" width="200" height="200">
 										</c:if>
+										<c:if test="${item.contentType=='FILE'}">
+											<img src="${contextPath}/image/file-image.jpg" width="200" height="200"><br>
+                        					<a href="${item.content}">${item.fileName}</a>
+										</c:if>
 									</li>
 								</c:if>
 								<c:if test="${item.from.id != account.id}">
@@ -153,6 +157,10 @@
 										</c:if>
 										<c:if test="${item.contentType=='IMAGE'}">
 											<img src="${item.content}" width="200" height="200">
+										</c:if>
+										<c:if test="${item.contentType=='FILE'}">
+											<img src="${contextPath}/image/file-image.jpg" width="200" height="200"><br>
+                        					<a href="${item.content}">${item.fileName}</a>
 										</c:if>
 									</li>
 								</c:if>

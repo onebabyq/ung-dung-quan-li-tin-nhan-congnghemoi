@@ -1,11 +1,8 @@
 package com.example.ChatWeb.controller;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,6 +57,8 @@ public class ChatController {
 	public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
 		log.info(chatMessage.toString());
 		messageService.createByChatMessage(chatMessage);
+		if(chatMessage.getContentType().equals("FILE"))
+			chatMessage.setFileName(convertUrlToFileName(chatMessage.getContent()));
 		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
 	}
 
@@ -120,7 +119,7 @@ public class ChatController {
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
 		RoomDTO room = roomService.getRoomDualByTwoAccountId(accountLogin.getId(), friendId);
 		List<MessageDTO> listMessage = messageService.getListMessageByMessageId(room.getId());
-		// Collections.sort(listMessage);
+		setFileName(listMessage);
 		model.addAttribute("friendName", accountService.getAccountById(friendId).getUsername());
 		model.addAttribute("listMessage", listMessage);
 		model.addAttribute("friendId", friendId);
@@ -167,5 +166,16 @@ public class ChatController {
 		// System.out.println("HELLO SON");
 		return "chat";
 
+	}
+	public void setFileName(List<MessageDTO> listMessage) {
+		for(MessageDTO m : listMessage) {
+			if(m.getContentType().equals("FILE")) {
+				m.setFileName(convertUrlToFileName(m.getContent()));
+			}
+		}
+	}
+	public String convertUrlToFileName(String url) {
+		File f = new File(url);
+		return f.getName();
 	}
 }
