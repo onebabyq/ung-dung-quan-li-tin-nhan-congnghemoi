@@ -1,6 +1,10 @@
 package com.example.appchat;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,30 +33,55 @@ public class DanhBaActivity extends AppCompatActivity {
     List<Friend> fiendList;
     List<Contact> listFriend;
     MyChairAdapter myChairAdapter;
+    ImageButton mImgBtnTinNhan, mImgBtnCaNhan;
+    EditText mEditTimBanBe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initViews();
         listFriend = new ArrayList<>();
 //        listAccount = new ArrayList<>();
         fiendList = new ArrayList<>();
 
-
         getDanhBaById(1);
         setContentView(R.layout.acti_danhba);
-        recyclerView = findViewById(R.id.recyclerView);
+
         myChairAdapter = new MyChairAdapter(fiendList,this);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView.setAdapter(myChairAdapter);
 
+        mImgBtnTinNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DanhBaActivity.this, ChatActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        mImgBtnCaNhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DanhBaActivity.this, CaNhanActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
+
+    private void initViews() {
+        recyclerView = findViewById(R.id.recyclerView);
+        mImgBtnTinNhan = (ImageButton) findViewById(R.id.imgBtnTinNhan);
+        mImgBtnCaNhan = (ImageButton) findViewById(R.id.imgBtnCaNhan);
+        mEditTimBanBe = (EditText) findViewById(R.id.editTimBanBe);
+    }
+
     public void getDanhBaById(int id) {
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.242.9:3000/danhba/"+id;
+        String url = "http://192.168.24:3000/danhba/"+id;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {

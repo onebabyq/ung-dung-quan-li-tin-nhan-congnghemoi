@@ -12,6 +12,8 @@
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="104dp"
         android:text="Đăng Xuất"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnDangXuat" />
@@ -23,6 +25,8 @@
         android:layout_marginStart="56dp"
         android:layout_marginBottom="104dp"
         android:text="Quản Lý Cá Nhân"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView12"
         app:layout_constraintHorizontal_bias="0.019"
@@ -104,6 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Quản Lý Người Dùng"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
         app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +122,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="56dp"
         android:text="Quản Lý Thống Kê"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBtnQLThongKe" />
 </androidx.constraintlayout.widget.ConstraintLayout>

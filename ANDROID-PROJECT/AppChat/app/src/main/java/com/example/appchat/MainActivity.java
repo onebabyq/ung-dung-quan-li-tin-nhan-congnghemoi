@@ -3,13 +3,19 @@ package com.example.appchat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 
 import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -41,7 +47,16 @@ public class MainActivity extends AppCompatActivity {
         mBtnDangNhap_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DanhBaActivity.class);
+                String sdt, password;
+                Handler handler = new Handler();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
+                //new Task().execute();
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,5 +77,19 @@ public class MainActivity extends AppCompatActivity {
         mBtnDangNhapGoogle = (Button) findViewById(R.id.btnDangNhapGoogle);
         mBtnDangKy_signin = (Button) findViewById(R.id.btnDangKy_signin);
         mBtnQuenMatKhau = (Button) findViewById(R.id.btnQuenMatKhau);
+    }
+
+    class Task extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.8:9000/chat_db", "root","sapassword");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return null;
+        }
     }
 }
