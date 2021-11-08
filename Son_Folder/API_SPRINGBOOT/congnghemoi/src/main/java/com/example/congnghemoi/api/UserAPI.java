@@ -48,7 +48,9 @@ public class UserAPI {
 	}
 	@PostMapping(value="/users")
 	public User saveUser(@RequestBody User newEntity) {
-		Account account = accountService.save(new Account());
+		Account temp = new Account();
+		temp.setUsername(newEntity.getAccount().getUsername());
+		Account account = accountService.save(temp);
 		newEntity.setAccount(account);
 		return userService.save(newEntity);
 	}

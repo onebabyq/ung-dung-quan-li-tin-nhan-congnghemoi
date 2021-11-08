@@ -78,7 +78,8 @@ body{
 
 .navigation ul li:hover,
 .navigation ul li.hovered{
-    background: var(--white);
+   /* background: var(--white);*/
+
 }
 
 .navigation ul li:nth-child(1){
@@ -98,7 +99,7 @@ body{
 
 .navigation ul li:hover a,
 .navigation ul li.hovered a{
-    color: var(--blue);
+  /*  color: var(--blue);*/
 }
 
 .navigation ul li a .icon{
@@ -108,6 +109,7 @@ body{
     height: 60px;
     line-height: 70px;
     text-align: center;
+    color: white;
 }
 
 .navigation ul li a .icon ion-icon{
@@ -122,6 +124,7 @@ body{
     line-height: 60px;
     text-align: start;
     white-space: nowrap;
+    color: white;
 }
 
 .navigation ul li:hover a::before,

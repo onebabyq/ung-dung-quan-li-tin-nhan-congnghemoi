@@ -2,6 +2,7 @@ package com.example.ChatWeb.model;
 
 public class InviteMessage {
 	private long idSender;
+	private String sender;
 	private MessageType type;
 	private String content;
 	private String telReceiver;
@@ -9,6 +10,14 @@ public class InviteMessage {
 
 	public enum MessageType {
 		CHAT, JOIN, LEAVE, INVITE
+	}
+	
+	public String getSender() {
+		return sender;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
 	}
 
 	public long getIdSender() {
@@ -53,8 +62,9 @@ public class InviteMessage {
 
 	@Override
 	public String toString() {
-		return "InviteMessage [idSender=" + idSender + ", type=" + type + ", content=" + content + ", telReceiver="
-				+ telReceiver + ", idReceiver=" + idReceiver + "]";
+		return "InviteMessage [idSender=" + idSender + ", sender=" + sender + ", type=" + type + ", content=" + content
+				+ ", telReceiver=" + telReceiver + ", idReceiver=" + idReceiver + "]";
 	}
+
 	
 }

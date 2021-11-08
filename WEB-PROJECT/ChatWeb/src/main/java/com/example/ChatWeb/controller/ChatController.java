@@ -64,10 +64,11 @@ public class ChatController {
 
 	@MessageMapping("/chat/{roomId}/sendInvite")
 	public void sendInvite(@DestinationVariable String roomId, @Payload InviteMessage inviteMessage) {
-		log.info(inviteMessage.toString());
+		
 
 		UserDTO user = userService.getUserBySoDienThoai(inviteMessage.getTelReceiver());
 		inviteMessage.setIdReceiver(user.getId());
+		log.info(inviteMessage.toString());
 		contactService.createByInviteMessage(inviteMessage);
 		messagingTemplate.convertAndSend("/topic/" + roomId, inviteMessage);
 	}
@@ -78,6 +79,7 @@ public class ChatController {
 		log.info(chatMessage.toString());
 		String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
 		if (currentRoomId != null) {
+			System.out.println(chatMessage.getSender()+" vừa rời khỏi phòng "+roomId);
 			ChatMessage leaveMessage = new ChatMessage();
 			leaveMessage.setType(MessageType.LEAVE);
 			leaveMessage.setSender(chatMessage.getSender());

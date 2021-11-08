@@ -171,27 +171,38 @@ function onMessageReceivedMain(payload) {
 	var message = JSON.parse(payload.body);
 	if (message.type === 'INVITE' && idAccount == message.idReceiver) {
 
-
-
 		var div3Element = document.createElement('div');
 		var h3Element = document.createElement('h3');
+		
 		h3Element.textContent = message.sender;
 		var pElement = document.createElement('p');
+		
 		var spanElement = document.createElement('span');
+	
 		spanElement.textContent = message.content;
+		
 		var buttonElement = document.createElement('button');
+		
+		buttonElement.classList.add('button');
+		buttonElement.classList.add('button1');
+		
 		buttonElement.textContent = "Chấp nhận";
+		
 		var aElement = document.createElement('a');
+		
 		aElement.href = contextPath + '/accept/' + message.idSender;
 		aElement.appendChild(buttonElement);
 		var button2Element = document.createElement('button');
+		button2Element.classList.add('button');
+		button2Element.classList.add('button3');
 		button2Element.textContent = "Từ chối";
+		
 		pElement.appendChild(spanElement);
 		pElement.appendChild(aElement);
 		pElement.appendChild(button2Element);
 		div3Element.appendChild(h3Element);
 		div3Element.appendChild(pElement);
-
+		
 		var divElement = document.createElement('div');
 		divElement.classList.add('friend');
 		//divElement.appendChild(imgElement);
@@ -255,8 +266,8 @@ function onMessageReceived(payload) {
 			//     <a href="#">fileabc.xlsx</a>
 			var videoElement = document.createElement('video');
 			
-			videoElement.width = 400;
-			videoElement.height = 400;
+			videoElement.width = 320;
+			videoElement.height = 240;
 			videoElement.controls = true;
 			
 			var sourceElement = document.createElement('source');

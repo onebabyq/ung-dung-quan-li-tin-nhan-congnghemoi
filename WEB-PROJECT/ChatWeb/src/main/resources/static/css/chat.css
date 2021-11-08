@@ -40,6 +40,7 @@
     --black2: #999;
 }
 
+
 .top{
     height: 100vh;
     background-image: var(--grad) ;
@@ -175,6 +176,7 @@ span{
 }
 
 .icon2{
+    margin-left: 120px;
     margin-right: 20px;
     height: 23px;
     width: 23px;
@@ -262,8 +264,20 @@ form.form-css{
     color: white;
     font-size: 15px;
 }
+.me span{
+    margin-top:5px;
+    color: white;
+    font-size: 10px;
+    float: right;
+}
 
 .u p{
     color: white;
     font-size: 15px;
+}
+.u span{
+    margin-top:5px;
+    color: white;
+    font-size: 10px;
+    float: right;
 }
