@@ -21,11 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatActivity" />
-        <activity android:name=".DanhBaActivity" />
-        <activity android:name=".DangKyActivity" />
-        <activity android:name=".TuyChonActivity" />
-        <activity android:name=".CaNhanActivity" />
+        <activity android:name=".Activities.ChatActivity" />
+        <activity android:name=".Activities.DictionaryActivity" />
+        <activity android:name=".Activities.SignupActivity" />
+        <activity android:name=".Activities.SelectActivity" />
+        <activity android:name=".Activities.PersonalActivity" />
     </application>
 
 </manifest>

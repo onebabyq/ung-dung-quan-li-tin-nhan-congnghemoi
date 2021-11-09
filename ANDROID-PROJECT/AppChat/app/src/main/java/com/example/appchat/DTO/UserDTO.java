@@ -1,17 +1,27 @@
 package com.example.appchat.DTO;
 
 
-public class User {
-    private int id;
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserDTO {
+    private Long id;
     private String soDienThoai;
     private String password;
+
     private boolean enable;
 
-    public int getId() {
+    private List<RoleDTO> roles = new ArrayList<>();
+
+    private AccountDTO account;
+
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,13 +49,25 @@ public class User {
         this.enable = enable;
     }
 
+    public List<RoleDTO> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDTO> roles) {
+        this.roles = roles;
+    }
+
+    public AccountDTO getAccount() {
+        return account;
+    }
+
+    public void setAccount(AccountDTO account) {
+        this.account = account;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", soDienThoai='" + soDienThoai + '\'' +
-                ", password='" + password + '\'' +
-                ", enable=" + enable +
-                '}';
+        return "User [soDienThoai=" + soDienThoai + ", password=" + password + ", enable=" + enable + ", roles="
+                + ", account=" + "]";
     }
 }

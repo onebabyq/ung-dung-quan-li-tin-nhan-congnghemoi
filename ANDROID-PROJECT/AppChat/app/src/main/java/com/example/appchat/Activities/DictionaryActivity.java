@@ -1,4 +1,4 @@
-package com.example.appchat;
+package com.example.appchat.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.appchat.DTO.Contact;
+import com.example.appchat.DTO.ContactDTO;
 import com.example.appchat.DTO.Friend;
-import com.example.appchat.DTO.MyChairAdapter;
+import com.example.appchat.Adapter.MyChairAdapter;
+import com.example.appchat.R;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -27,14 +28,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DanhBaActivity extends AppCompatActivity {
+public class DictionaryActivity extends AppCompatActivity {
 //    List<Account> listAccount;
     RecyclerView recyclerView;
     List<Friend> fiendList;
-    List<Contact> listFriend;
+    List<ContactDTO> listFriend;
     MyChairAdapter myChairAdapter;
-    ImageButton mImgBtnTinNhan, mImgBtnCaNhan;
-    EditText mEditTimBanBe;
+    ImageButton mImgBtnChat, mImgBtnPersonal;
+    EditText mEditFindFriend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +53,18 @@ public class DanhBaActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView.setAdapter(myChairAdapter);
 
-        mImgBtnTinNhan.setOnClickListener(new View.OnClickListener() {
+        mImgBtnChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DanhBaActivity.this, ChatActivity.class);
+                Intent intent = new Intent(DictionaryActivity.this, ChatActivity.class);
                 startActivity(intent);
             }
         });
 
-        mImgBtnCaNhan.setOnClickListener(new View.OnClickListener() {
+        mImgBtnPersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DanhBaActivity.this, CaNhanActivity.class);
+                Intent intent = new Intent(DictionaryActivity.this, PersonalActivity.class);
                 startActivity(intent);
             }
         });
@@ -73,9 +74,9 @@ public class DanhBaActivity extends AppCompatActivity {
 
     private void initViews() {
         recyclerView = findViewById(R.id.recyclerView);
-        mImgBtnTinNhan = (ImageButton) findViewById(R.id.imgBtnTinNhan);
-        mImgBtnCaNhan = (ImageButton) findViewById(R.id.imgBtnCaNhan);
-        mEditTimBanBe = (EditText) findViewById(R.id.editTimBanBe);
+        mImgBtnChat = (ImageButton) findViewById(R.id.imgBtnTinNhan);
+        mImgBtnPersonal = (ImageButton) findViewById(R.id.imgBtnCaNhan);
+        mEditFindFriend = (EditText) findViewById(R.id.editTimBanBe);
     }
 
     public void getDanhBaById(int id) {
@@ -90,7 +91,7 @@ public class DanhBaActivity extends AppCompatActivity {
                     try {
                         JSONObject object = (JSONObject) response.get(i);
                         Gson gson = new Gson();
-                        Contact p = gson.fromJson(String.valueOf(object), Contact.class);
+                        ContactDTO p = gson.fromJson(String.valueOf(object), ContactDTO.class);
 
                         fiendList.add(new Friend(R.drawable._061334, p.getFriend().toString(),R.drawable.chat,R.drawable.phone));
                         myChairAdapter.notifyDataSetChanged();
