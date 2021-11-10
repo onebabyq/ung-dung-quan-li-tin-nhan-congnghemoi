@@ -1,4 +1,4 @@
-package com.example.appchat.DTO;
+package com.example.appchat.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import com.example.appchat.R;
 
 import java.util.List;
 
-public class MessageAdapter extends BaseAdapter {
+public class ChatAdapter extends BaseAdapter {
     private List<String> mMessageList;
     private Context mContext;
-    public MessageAdapter(List<String> messageList, Context context){
+    public ChatAdapter(List<String> messageList, Context context){
         this.mMessageList = messageList;
         this.mContext = context;
     }
