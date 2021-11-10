@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.ChatWeb.dto.AccountDTO;
@@ -28,18 +31,20 @@ import com.example.ChatWeb.dto.RoomDTO;
 import com.example.ChatWeb.dto.UserDTO;
 import com.example.ChatWeb.model.ChatMessage;
 import com.example.ChatWeb.model.ChatMessage.MessageType;
+import com.example.ChatWeb.model.EchoModel;
 import com.example.ChatWeb.model.InviteMessage;
 import com.example.ChatWeb.service.AccountService;
 import com.example.ChatWeb.service.ContactService;
-import com.example.ChatWeb.service.FilesStorageService;
 import com.example.ChatWeb.service.MessageService;
 import com.example.ChatWeb.service.RoomService;
+import com.example.ChatWeb.service.SocketService;
 import com.example.ChatWeb.service.UserService;
+
 
 @Controller
 public class ChatController {
-	//@Autowired
-	//FilesStorageService storageService;
+	// @Autowired
+	// FilesStorageService storageService;
 	@Autowired
 	private AccountService accountService;
 	@Autowired
@@ -54,19 +59,33 @@ public class ChatController {
 
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
+	@Autowired
+	SocketService socketService;
+
+	@MessageMapping("/hello-msg-mapping")
+	@SendTo("/topic/greetings")
+	EchoModel echoMessageMapping(@Payload String message) {
+		log.info("Tin nhan: "+message);
+		log.debug("React to hello-msg-mapping");
+		return new EchoModel(message.trim());
+	}
+
+	@RequestMapping(value = "/hello-convert-and-send", method = RequestMethod.POST)
+	void echoConvertAndSend(@RequestParam("msg") String message) {
+		socketService.echoMessage(message);
+	}
 
 	@MessageMapping("/chat/{roomId}/sendMessage")
 	public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
 		log.info(chatMessage.toString());
 		messageService.createByChatMessage(chatMessage);
-		if(chatMessage.getContentType().equals("FILE")||chatMessage.getContentType().equals("VIDEO"))
+		if (chatMessage.getContentType().equals("FILE") || chatMessage.getContentType().equals("VIDEO"))
 			chatMessage.setFileName(convertUrlToFileName(chatMessage.getContent()));
 		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
 	}
 
 	@MessageMapping("/chat/{roomId}/sendInvite")
 	public void sendInvite(@DestinationVariable String roomId, @Payload InviteMessage inviteMessage) {
-		
 
 		UserDTO user = userService.getUserBySoDienThoai(inviteMessage.getTelReceiver());
 		inviteMessage.setIdReceiver(user.getId());
@@ -81,7 +100,7 @@ public class ChatController {
 		log.info(chatMessage.toString());
 		String currentRoomId = (String) headerAccessor.getSessionAttributes().put("room_id", roomId);
 		if (currentRoomId != null) {
-			System.out.println(chatMessage.getSender()+" vừa rời khỏi phòng "+roomId);
+			System.out.println(chatMessage.getSender() + " vừa rời khỏi phòng " + roomId);
 			ChatMessage leaveMessage = new ChatMessage();
 			leaveMessage.setType(MessageType.LEAVE);
 			leaveMessage.setSender(chatMessage.getSender());
@@ -112,7 +131,7 @@ public class ChatController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
-		
+
 		return callChatPage(model, accountLogin);
 	}
 
@@ -130,26 +149,24 @@ public class ChatController {
 		model.addAttribute("roomId", room.getId());
 		return callChatPage(model, accountLogin);
 	}
+
 	@GetMapping("/accept/{friendId}")
 	public String acceptFriend(Model model, @PathVariable long friendId) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
-		
+
 		long accountId = accountLogin.getId();
-		
-		
-		
+
 		RoomDTO newRoom = new RoomDTO();
 		newRoom.setAdminId(accountLogin.getId());
 		newRoom.setDeleted(false);
 		newRoom.setType("Dual");
-		
+
 		roomService.createRoom(newRoom, accountId, friendId);
 		contactService.updateAcceptContact(accountId, friendId);
-		
-		
+
 		List<AccountDTO> listAccount = new ArrayList<AccountDTO>();
 		listAccount.add(accountLogin);
 		listAccount.add(accountService.getAccountById(friendId));
@@ -157,25 +174,24 @@ public class ChatController {
 
 		return callChatPage(model, accountLogin);
 	}
+
 	@PostMapping("/findSDT")
 	public String findSDT(Model model, @RequestParam String soDienThoai) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
-		
-		
+
 		UserDTO userFinded = userService.getUserBySoDienThoai(soDienThoai);
-		
+
 		model.addAttribute("userFinded", userFinded);
 		return callChatPage(model, accountLogin);
 	}
-	
-	public String callChatPage(Model model,AccountDTO accountLogin) {
-		
-		
+
+	public String callChatPage(Model model, AccountDTO accountLogin) {
+
 		List<ContactDTO> listContact = contactService.getListContactByAccountId(accountLogin.getId());
-		for(ContactDTO c : listContact) {
+		for (ContactDTO c : listContact) {
 			c.setFriend(accountService.getAccountById(c.getFriendId()));
 		}
 		model.addAttribute("listContact", listContact);
@@ -184,13 +200,15 @@ public class ChatController {
 		return "chat";
 
 	}
+
 	public void setFileName(List<MessageDTO> listMessage) {
-		for(MessageDTO m : listMessage) {
-			if(m.getContentType().equals("FILE")) {
+		for (MessageDTO m : listMessage) {
+			if (m.getContentType().equals("FILE")) {
 				m.setFileName(convertUrlToFileName(m.getContent()));
 			}
 		}
 	}
+
 	public String convertUrlToFileName(String url) {
 		File f = new File(url);
 		return f.getName();
