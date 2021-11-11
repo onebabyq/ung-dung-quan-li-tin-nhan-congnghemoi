@@ -35,7 +35,6 @@ dependencies {
     implementation ('io.socket:socket.io-client:2.0.0') {
         exclude group: 'org.json', module: 'json'
     }
-    implementation 'com.github.VishnuSivadasVS:Advanced-HttpURLConnection:1.2'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

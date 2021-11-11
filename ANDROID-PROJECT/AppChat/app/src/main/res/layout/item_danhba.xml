@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="65dp"
     android:id="@+id/cardView"
@@ -23,29 +24,32 @@
 
         <TextView
             android:id="@+id/txtText"
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
+            android:layout_width="187dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="15dp"
             android:text="Tứ Thy"
             android:textColor="#2C2C2C"
             android:textSize="28dp"
 
             app:layout_constraintVertical_bias="0.576"></TextView>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imageMess"
-            android:layout_width="53dp"
+            android:layout_width="5dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="120dp"
-            android:layout_marginLeft="120dp"
-            app:srcCompat="@drawable/_21014" />
+            android:layout_weight="1"
+            app:srcCompat="@drawable/chat"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/imageCall"
-            android:layout_width="51dp"
+            android:layout_width="6dp"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/_762106" />
+            android:layout_weight="1"
+            app:srcCompat="@drawable/phone"
+            tools:ignore="SpeakableTextPresentCheck" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
