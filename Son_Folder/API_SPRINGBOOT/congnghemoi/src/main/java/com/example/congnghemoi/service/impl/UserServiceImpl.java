@@ -55,5 +55,13 @@ public class UserServiceImpl implements UserService {
 
 
 
+	@Override
+	public List<User> findListUserByContactOfAccountId(long id) {
+		// TODO Auto-generated method stub
+		return userRepository.getListUserByContactOfAccountId(id);
+	}
+
+
+
 
 }

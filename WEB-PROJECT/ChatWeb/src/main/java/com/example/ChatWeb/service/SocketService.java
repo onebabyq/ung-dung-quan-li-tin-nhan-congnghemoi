@@ -24,6 +24,7 @@ class SocketService {
 
    public void echoMessage(String message) {
         log.debug("Start convertAndSend ${new Date()}");
+        
         simpTemplate.convertAndSend("/topic/greetings", new EchoModel(message));
         log.debug("End convertAndSend ${new Date()}");
     }

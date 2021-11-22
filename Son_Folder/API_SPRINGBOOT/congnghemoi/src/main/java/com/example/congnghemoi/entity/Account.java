@@ -48,7 +48,12 @@ public class Account extends BaseEntity implements Serializable{
     private User user;
     
     
-    public User getUser() {
+    public Account() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User getUser() {
 		return user;
 	}
 
