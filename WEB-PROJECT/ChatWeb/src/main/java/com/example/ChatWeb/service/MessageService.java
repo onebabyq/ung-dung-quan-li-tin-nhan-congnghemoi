@@ -42,13 +42,13 @@ public class MessageService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<MessageDTO> request = new HttpEntity<>(message,headers);
-		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/messages", HttpMethod.POST, request, String.class);
+		ResponseEntity<MessageDTO> response = restTemplate.exchange(LOCALHOST+"/messages", HttpMethod.POST, request, MessageDTO.class);
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("Insert Message Successfully!!!");
 		}
-		return message;
+		return response.getBody();
 	}
-	public void createByChatMessage( ChatMessage chatmessage) {
+	public MessageDTO createByChatMessage( ChatMessage chatmessage) {
 		MessageDTO message = new MessageDTO();
 		message.setContent(chatmessage.getContent());
 		message.setFrom(accountService.getAccountById(chatmessage.getIdSender()));
@@ -56,6 +56,7 @@ public class MessageService {
 		message.setReadStatus("Đã xem");
 		message.setRoom(roomService.getRoomById(chatmessage.getRoomId()));
 		message = createMessage( message);
+		return message;
 	}
 
 	
