@@ -65,12 +65,11 @@
                 
                 </nav>
                 <div class="detel">
-                    <h1>${firstname} <span>${lastname} <button><ion-icon name="pencil-outline"></ion-icon></button></span></h1>
-                    <p>Email: ${email}</p>
-                    <p>${content}</p>
+                    <h1><span>${username} <button><ion-icon name="pencil-outline"></ion-icon></button></span></h1>
+                    <p>Đây là trang cá nhân của ${content}</p>
                 </div>
                 <div class="images">
-                    <img src="${contextPath}/image//user_img.jpg" class="shape" style="height: 600px; width: 600px; border-radius: 50%;" alt="">
+                    <img src="${contextPath}/image/user_img.jpg" class="shape" style="height: 600px; width: 600px; border-radius: 50%;" alt="">
                 </div>
             </div>
         </div>
