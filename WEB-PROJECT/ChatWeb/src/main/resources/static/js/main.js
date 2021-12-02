@@ -215,18 +215,18 @@ function onMessageReceivedMain(payload) {
 function onMessageReceived(payload) {
 	var message = JSON.parse(payload.body);
 
-	if (message.type === 'JOIN' && message.sender != username) {
+	if (message.type === 'JOIN' && message.idSender != idAccount) {
 		hoat_dong.textContent = "Vừa mới hoạt động";
 		//messageElement.classList.add('event-message');
 		//message.content = message.sender + ' joined!';
-	} else if (message.type === 'LEAVE' && message.sender != username) {
+	} else if (message.type === 'LEAVE' && message.idSender != idAccount) {
 		hoat_dong.textContent = "Hoạt động ít phút trước";
 		//messageElement.classList.add('event-message');
 		//message.content = message.sender + ' left!';
 	} else if (message.type === 'CHAT') {
 
 		var messageElement = document.createElement('li');
-		if (message.sender == username)
+		if (message.idSender == idAccount)
 			messageElement.classList.add('me');
 		else messageElement.classList.add('u');
 		messageElement.classList.add('chat-message');
