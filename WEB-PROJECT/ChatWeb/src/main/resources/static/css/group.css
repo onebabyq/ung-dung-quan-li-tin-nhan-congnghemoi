@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* widht */
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+/* track */
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb{
+    background: #888;
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover{
+    background: #555;
+}
+
+:root{
+    --grad: linear-gradient(to bottom right, var(--blue), var(--white));
+    --clip: polygon(52% 65%, 100% 38%, 100% 0, 0 0, 0% 38%);
+    --shadow: rgba(50,50,93,0.25) 0px 30px 60px -12px, rgba(0,0,0,0.3) 0px 18px 36px -18px;
+    --c: #eaeaea;
+    --g: #74d800;
+    --blue: #287bff;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+}
+.btnup{
+    height: 30px;
+    
+}
+
+.top{
+    height: 100vh;
+    background-image: var(--grad) ;
+    width: 100%;
+    clip-path: var(--clip);
+}
+
+.box{
+    width: 1000px;
+    height: 600px;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    position: absolute;
+    background: var(--white);
+    top: 50%;
+    left: 50%;
+    display: flex;
+    transform: translate(-50%, -50%);
+}
+
+.left{
+    width: 280px;
+    height: 600px;
+    border-right: 1px solid var(--c);
+}
+
+.right{
+    height: 600px;
+    width: calc(1000px-280px);
+}
+
+.topp{
+    width: 280px;
+    height: 50px;
+    display: flex;
+    border-bottom: 1px solid var(--c);
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search_box{
+    position: relative;
+    margin: 0 10px;
+    width: 270px;
+    height: 50px;
+    display: flex;
+    border-bottom: 1px solid var(--c);
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ico{
+    background: var(--blue);
+    padding: 5px;
+    border-radius: 5px;
+}
+.ico button{
+    background: var(--blue);
+    border: 0px;
+   /* padding: 5px;*/
+   /* border-radius: 5px;*/
+}
+
+.icon1{
+    color: white;
+    width: 23px;
+    height: 18px;
+/*    width: 15px;
+    height: 15px;*/
+}
+
+.in{
+    border: none;
+    outline: none;
+/*    background: var(--c);*/
+    background: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 220px;
+}
+
+.ava{
+    height: 40px;
+    width: 40px;
+    margin-left: 7px;
+    border-radius: 50px;
+}
+
+li{
+    list-style: none;
+}
+
+.friend{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    transition: 0.5s ease;
+    border-bottom: 1px solid var(--c);
+    justify-content: space-between;
+}
+
+.img_name{
+    display: flex;
+    align-items: center;
+}
+
+h3{
+    font-size: 14px;
+    margin-left: 7px;
+}
+
+p{
+    margin-left: 7px;
+    color: gray;
+    font-size: 12px;
+}
+
+.p{
+    margin-right: 10px;
+}
+
+.friend:hover{
+    background: var(--c);
+}
+
+ul{
+    height: calc(600px - 100px);
+    overflow-y: auto;
+}
+
+span{
+    color: green;
+}
+
+.right_top{
+    height: 50px;
+    border-bottom: 1px solid var(--c);
+    width: calc(1000px - 280px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+form.formNone{
+
+}
+.icon2{
+    margin-left: 120px;
+    margin-right: 20px;
+    height: 23px;
+    width: 23px;
+    color: var(--blue);
+}
+.img_up{
+    margin-right: -150px;
+    height: 23px;
+    width: 70px;
+    color: var(--blue);
+}
+
+
+.mid{
+    overflow-y: auto;
+    width: 100%;
+    border-bottom: 1px solid var(--c);
+    height: calc(600px - 100px);
+}
+
+.btm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+}
+
+form.form-css{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+
+.ico3, form:not(.formNone,.form-1) div{
+    background: var(--blue);
+    padding: 7px;
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send_svg{
+    height: 15px;
+    width: 40px;
+    color: white;
+}
+
+.in2{
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 550px;
+}
+
+.me{
+    margin: 10px;
+    background: var(--blue);
+   /* background: rgb(224,231,249);*/
+    display: table;
+    clear: both;
+    padding: 10px;
+    max-width: 80%;
+    border-radius: 5px;
+    float: left;
+}
+
+.u{
+    margin: 10px;
+    background: grey;
+    /*background: rgb(242,254,232);*/
+    display: table;
+    clear: both;
+    padding: 10px;
+    max-width: 80%;
+    border-radius: 5px;
+    float: right;
+}
+
+.me p{
+    color: white;
+    font-size: 15px;
+}
+.me span{
+    margin-top:5px;
+    color: white;
+    font-size: 10px;
+    float: right;
+}
+
+.u p{
+    color: white;
+    font-size: 15px;
+}
+.u span{
+    margin-top:5px;
+    color: white;
+    font-size: 10px;
+    float: right;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Modal Header */
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 2px 16px;
+
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+/**
+ * Checkbox Four
+ */
+/* The container */
+#searchFKey{
+    width: 300px;
+    float: left;
+    border: solid black 1px;
+    border-radius: 0px;
+    height: 40px;
+}
+#btnFKey{
+    background-color: green;
+    border-radius: 0px;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+}

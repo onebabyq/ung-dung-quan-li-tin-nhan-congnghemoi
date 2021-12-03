@@ -31,7 +31,7 @@
             <div class="form signinForm">
                 <form action="/perform_login" method="post">
                     <h3>Đăng Nhập</h3>
-                    <input type="tel" id="telephone" name="soDienThoai" value="014141414" onblur="kiemtrasdt();" placeholder="Số điện thoại"><span hidden id="er">(*)</span>
+                    <input type="tel" id="telephone" name="soDienThoai" value="0123123123" onblur="kiemtrasdt();" placeholder="Số điện thoại"><span hidden id="er">(*)</span>
                     <input type="password" id="pass" name="password" value="12345" onblur="kiemtramk();" placeholder="Mật khẩu"><span hidden id="ermk">(*)</span>
                     <input type="submit" value="Đăng Nhập">
                     <input type="submit" value="Đăng Nhập Google">

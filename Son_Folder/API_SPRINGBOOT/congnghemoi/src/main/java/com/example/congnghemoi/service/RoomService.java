@@ -13,4 +13,5 @@ public interface RoomService {
 	void deleteById(long id);
 	Room findRoomDualByTwoAccountId(long id1, long id2);
 	void insertAccoutRoom(long accId,long roomId);
+	List<Room> findRoomByAccountId(long id);
 }

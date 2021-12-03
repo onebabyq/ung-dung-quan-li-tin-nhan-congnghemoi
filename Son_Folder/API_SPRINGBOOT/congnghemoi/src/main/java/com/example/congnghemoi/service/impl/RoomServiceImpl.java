@@ -63,5 +63,13 @@ public class RoomServiceImpl implements RoomService {
 
 
 
+	@Override
+	public List<Room> findRoomByAccountId(long id) {
+		// TODO Auto-generated method stub
+		return roomRepository.findRoomByAccountId(id);
+	}
+
+
+
 
 }

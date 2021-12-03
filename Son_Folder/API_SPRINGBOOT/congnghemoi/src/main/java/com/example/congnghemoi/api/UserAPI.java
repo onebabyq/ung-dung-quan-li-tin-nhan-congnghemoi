@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.ChatWeb.dto.UserDTO;
-import com.example.congnghemoi.converter.AccountConverter;
-import com.example.congnghemoi.converter.UserConverter;
 import com.example.congnghemoi.entity.Account;
 import com.example.congnghemoi.entity.User;
 import com.example.congnghemoi.service.AccountService;
@@ -27,10 +24,7 @@ public class UserAPI {
 	private UserService userService;
 	@Autowired
 	private AccountService accountService;
-	@Autowired
-	private AccountConverter accountConverter;
-	@Autowired
-	private UserConverter userConverter;
+
 	
 	
 	@GetMapping(value="/users")
@@ -55,6 +49,11 @@ public class UserAPI {
 	public List<User> getListUserByContactOfAccountId(@PathVariable long id) {
 		//System.out.println("SĐT query: "+sdt);
 		return userService.findListUserByContactOfAccountId(id);
+	}
+	@GetMapping(value="/users/byKey")
+	public List<User> getListUserByContactOfAccountId(@RequestBody String key) {
+		//System.out.println("SĐT query: "+sdt);
+		return userService.findListUserByKey(key);
 	}
 	@PostMapping(value="/users")
 	public User saveUser(@RequestBody User newEntity) {

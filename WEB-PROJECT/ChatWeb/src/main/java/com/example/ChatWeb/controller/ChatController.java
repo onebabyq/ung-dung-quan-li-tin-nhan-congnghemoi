@@ -10,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,9 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.ChatWeb.dto.AccountDTO;
@@ -33,13 +28,11 @@ import com.example.ChatWeb.dto.RoomDTO;
 import com.example.ChatWeb.dto.UserDTO;
 import com.example.ChatWeb.model.ChatMessage;
 import com.example.ChatWeb.model.ChatMessage.MessageType;
-import com.example.ChatWeb.model.EchoModel;
 import com.example.ChatWeb.model.InviteMessage;
 import com.example.ChatWeb.service.AccountService;
 import com.example.ChatWeb.service.ContactService;
 import com.example.ChatWeb.service.MessageService;
 import com.example.ChatWeb.service.RoomService;
-import com.example.ChatWeb.service.SocketService;
 import com.example.ChatWeb.service.UserService;
 
 
@@ -62,8 +55,8 @@ public class ChatController {
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
 
-	
-
+	//ChatMessage [idSender=43, type=CHAT, content=hello, fileName=null, contentType=TEXT, sender=Hưng, roomId=37]
+	//ChatMessage [idSender=42, type=CHAT, content=hello, fileName=null, contentType=TEXT, sender=son, roomId=37]
 	
 	@MessageMapping("/chat/{roomId}/sendMessage")
 	public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
@@ -98,6 +91,7 @@ public class ChatController {
 			messagingTemplate.convertAndSend("/topic/" + currentRoomId, leaveMessage);
 		}
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+		chatMessage.setRoomId(Long.parseLong(roomId));
 		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
 	}
 //    @MessageMapping("/chat.sendMessage")
@@ -118,14 +112,14 @@ public class ChatController {
 //    }
 
 	@GetMapping("/chat")
-	public String viewBooks(Model model) {
+	public String viewChatPage(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
 
 		return callChatPage(model, accountLogin);
 	}
-
+	
 	@GetMapping("/dual/withFriend/{friendId}")
 	public String chatwithfriend(Model model, @PathVariable long friendId) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -191,8 +185,8 @@ public class ChatController {
 		return "chat";
 
 	}
-
-	public void setFileName(List<MessageDTO> listMessage) {
+	
+	public static void setFileName(List<MessageDTO> listMessage) {
 		for (MessageDTO m : listMessage) {
 			if (m.getContentType().equals("FILE")) {
 				m.setFileName(convertUrlToFileName(m.getContent()));
@@ -200,7 +194,7 @@ public class ChatController {
 		}
 	}
 
-	public String convertUrlToFileName(String url) {
+	public static String convertUrlToFileName(String url) {
 		File f = new File(url);
 		return f.getName();
 	}

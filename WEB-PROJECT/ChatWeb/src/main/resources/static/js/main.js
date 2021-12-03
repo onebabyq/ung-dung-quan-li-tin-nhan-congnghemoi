@@ -60,10 +60,10 @@ function connect(event) {
 	if (username) {
 
 		var socket = new SockJS('/ws');
-		var socketMain = new SockJS('/ws');
+		//var socketMain = new SockJS('/ws');
 		stompClient = Stomp.over(socket);
-		stompClientMain = Stomp.over(socketMain);
-		stompClientMain.connect({}, onConnectedMain, onError);
+		//stompClientMain = Stomp.over(socketMain);
+		//stompClientMain.connect({}, onConnectedMain, onError);
 		stompClient.connect({}, onConnected, onError);
 
 	}
@@ -72,16 +72,18 @@ function connect(event) {
 // Leave the current room and enter a new one.
 function enterRoom(newRoomId, stompClient) {
 	var roomId = newRoomId;
+	//alert("room-id: "+roomId)
 	topic = `/app/chat/${newRoomId}`;
 
 	if (currentSubscription) {
 		currentSubscription.unsubscribe();
 	}
-	if (currentSubscriptionMain) {
+/*	if (currentSubscriptionMain) {
 		currentSubscriptionMain.unsubscribe();
-	}
+	}*/
+//	if(roomId==0)
+//		currentSubscriptionMain = stompClientMain.subscribe(`/topic/${roomId}`, onMessageReceivedMain);
 	currentSubscription = stompClient.subscribe(`/topic/${roomId}`, onMessageReceived);
-	currentSubscriptionMain = stompClientMain.subscribe(`/topic/${roomId}`, onMessageReceivedMain);
 	stompClient.send(`${topic}/addUser`,
 		{},
 		JSON.stringify({ idSender: idAccount, sender: username, type: 'JOIN' })
@@ -168,7 +170,8 @@ function sendInvite(event) {
 	event.preventDefault();
 	//alert("step finish!!!");
 }
-function onMessageReceivedMain(payload) {
+/*function onMessageReceivedMain(payload) {
+//	alert("mark onmessagereceivedmain");
 	var message = JSON.parse(payload.body);
 	if (message.type === 'INVITE' && idAccount == message.idReceiver ) {
 
@@ -210,11 +213,11 @@ function onMessageReceivedMain(payload) {
 		divElement.appendChild(div3Element);
 		friendArea.appendChild(divElement);
 	}
-}
+}*/
 
 function onMessageReceived(payload) {
 	var message = JSON.parse(payload.body);
-
+	//alert("mark onmessagereceived");
 	if (message.type === 'JOIN' && message.idSender != idAccount) {
 		hoat_dong.textContent = "Vừa mới hoạt động";
 		//messageElement.classList.add('event-message');
@@ -224,7 +227,7 @@ function onMessageReceived(payload) {
 		//messageElement.classList.add('event-message');
 		//message.content = message.sender + ' left!';
 	} else if (message.type === 'CHAT') {
-
+	//	alert("ID sender: "+message.idSender+" /ID Account:"+idAccount);
 		var messageElement = document.createElement('li');
 		if (message.idSender == idAccount)
 			messageElement.classList.add('me');

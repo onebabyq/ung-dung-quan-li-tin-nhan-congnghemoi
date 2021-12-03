@@ -12,7 +12,7 @@
 <title>Chat Room</title>
 <link rel="stylesheet" href="${contextPath}/css/fileUpload.css">
 <link rel="stylesheet" href="${contextPath}/css/button.css">
-<link rel="stylesheet" href="${contextPath}/css/chat.css">
+<link rel="stylesheet" href="${contextPath}/css/group.css">
 <link rel="stylesheet" href="${contextPath}/css/admin_dashboard.css">
 <style>
 a {
@@ -26,7 +26,7 @@ a {
 			<li><a href="${contextPath}/home"> <span class="icon"><ion-icon
 							name="person-circle-outline"></ion-icon></span> <%--              <span class="title" id="name">${username}</span> --%>
 					<span class="title" id="name">${account.username}</span> <span
-					class="title" id="idAccount" style="color:var(--blue);">${account.id}</span>
+					class="title" id="idAccount" style="color: var(- -blue);">${account.id}</span>
 			</a></li>
 			<li><a href="${contextPath}/home"> <span class="icon"><ion-icon
 							name="home-outline"></ion-icon></span> <span class="title">Trang
@@ -36,12 +36,10 @@ a {
 							name="chatbubbles-outline"></ion-icon></span> <span class="title">Tin
 						Nhắn</span>
 			</a></li>
-			<li>
-                <a href="${contextPath}/group">
-                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-                    <span class="title">Nhóm chat</span>
-                </a>
-            </li>
+			<li><a href="${contextPath}/group"> <span class="icon"><ion-icon
+							name="chatbubbles-outline"></ion-icon></span> <span class="title">Nhóm
+						chat</span>
+			</a></li>
 			<li><a href="${contextPath}/info"> <span class="icon"><ion-icon
 							name="person-outline"></ion-icon></span> <span class="title">Cá
 						Nhân</span>
@@ -76,22 +74,25 @@ a {
 		<div class="box">
 			<div class="left">
 				<div class="topp">
-					<h2>APPCHAT</h2>
+					<h2>GROUP CHAT</h2>
 					<!-- <h2 id="room-id-display">1</h2> -->
 				</div>
 
 				<div class="search_box">
-					<form class="form-css" action="${contextPath}/findSDT" method="POST">
+					<form class="form-css" action="${contextPath}/findSDT"
+						method="POST">
 						<input class="in" type="text" placeholder="Tìm kiếm..."
 							name="soDienThoai">
-						<div class="ico" >
-							<button class="button buttonsearch" type="submit" ><span><ion-icon class="icon1" name="search-outline"></ion-icon></span></button>
+						<div class="ico">
+							<button class="button buttonsearch" type="submit">
+								<span><ion-icon class="icon1" name="search-outline"></ion-icon></span>
+							</button>
 						</div>
 					</form>
 				</div>
 
 				<ul id="FriendArea">
-					<c:if test="${not empty userFinded}">
+					<%-- <c:if test="${not empty userFinded}">
 						<li class="kb_area">
 	                        <form class="formNone" action="${contextPath}/chat" method="GET">
 	                            <div class="friend">
@@ -103,29 +104,29 @@ a {
 	                            </div>
 	                         </form>
 	                    </li>
-					</c:if>
-					<c:forEach items="${listContact}" var="item">
-						<c:if test="${item.accept == true}">
-							<a href="${contextPath}/dual/withFriend/${item.friend.id}"> <%-- <input name="roomId" type="hidden" value="${entry.value}"> --%>
-								<li class="connect_btn">
-									<div class="friend">
-										<div class="img_name"></div>
-										<img src="${contextPath}/image/none-avatar.png" class="ava"
-											alt="">
-										<div>
-											<h3>${item.friend.username}</h3>
-											<p>
-												Chào: <span>${item.friend.username}</span>
-											</p>
-										</div>
-										<div class="time">
-											<p class="p">Today</p>
-										</div>
+					</c:if> --%>
+					<c:forEach items="${listGroup}" var="item">
+						<%-- <c:if test="${item.accept == true}"> --%>
+						<a href="${contextPath}/group/${item.id}"> <%-- <input name="roomId" type="hidden" value="${entry.value}"> --%>
+							<li class="connect_btn">
+								<div class="friend">
+									<div class="img_name"></div>
+									<img src="${contextPath}/image/none-avatar.png" class="ava"
+										alt="">
+									<div>
+										<h3>${item.name}</h3>
+										<p>
+											Members: <span>10</span>
+										</p>
 									</div>
-							</li>
-							</a>
-						</c:if>
-						<c:if test="${item.accept == false}">
+									<div class="time">
+										<p class="p">Today</p>
+									</div>
+								</div>
+						</li>
+						</a>
+						<%-- </c:if> --%>
+						<%-- 	<c:if test="${item.accept == false}">
 
 							<div>
 								<h3>${item.friend.username}</h3>
@@ -137,7 +138,7 @@ a {
 								</p>
 							</div>
 
-						</c:if>
+						</c:if> --%>
 					</c:forEach>
 
 				</ul>
@@ -147,15 +148,68 @@ a {
 					<div class="img_name">
 						<img src="${contextPath}/image/none-avatar.png" class="ava" alt="">
 						<div>
-							<h3 id="friend-name">${friendName}</h3>
+							<h3 id="friend-name">Group 1</h3>
 							<p id="hoat-dong">Active 30 seconds ago...</p>
 						</div>
 					</div>
+					<button type="button" class="button button2 btnup" id="myBtn">
+						THÊM THÀNH VIÊN</button>
+					<!-- The Modal -->
+					<div id="myModal" class="modal">
+
+						<!-- Modal content -->
+						<div class="modal-content">
+							<div class="modal-header">
+								<span class="close">&times;</span>
+								<h2>Thêm thành viên vào group</h2>
+							</div>
+							<div class="modal-body">
+								<form class="formNone" style="margin: 20px 20px">
+									<h3 style="color: blue;">Tìm kiếm bạn bè</h3>
+									<input class="in" type="text"
+										placeholder="Nhập tên hoặc số điện thoại..." id="searchFKey">
+									<div class="ico" id="btnFKey"
+										style="width: 40px; float: left; padding: 0; margin: 0;">
+										<!--  <button><ion-icon class="icon1" name="search-outline"></ion-icon></button> -->
+										<button class="button buttonsearch" id="btnFKey"
+											style="width: 40px">
+											<ion-icon class="icon1" name="search-outline"></ion-icon>
+										</button>
+									</div>
+									<br> <br> <br>
+									<h3 style="color: blue;">Danh sách bạn bè</h3>
+									<div style="margin: 20px 10px;" id="contactArea">
+
+										<div>
+											<input class="checkbox-custom" type="checkbox" name="fruit"
+												value="Apple"> Sơn (Phone: 0968900475)
+										</div>
+										<div>
+											<input class="checkbox-custom" type="checkbox" name="fruit"
+												value="Apple"> Hải (Phone: 01232577913)
+										</div>
+										<div>
+											<input class="checkbox-custom" type="checkbox" name="fruit"
+												value="Apple"> Tiên (Phone: 0929315825)
+										</div>
+									</div>
+
+									<button class="button button1"
+										style="border-radius: 0; font-size: 16px; padding: 5px 15px;">Thêm
+										vào nhóm</button>
+
+								</form>
+
+							</div>
+							<div class="modal-footer" style="height: 20px;">
+								<!-- <h3>Modal Footer</h3> -->
+							</div>
+						</div>
+					</div>
 					<form class="img_up" id="form-file-id" method="POST"
-						action="${contextPath}/upload/${friendId}"
-						enctype="multipart/form-data">
-						<input type="file" name="file" class="custom-file-input"  id="file-id"
-							onChange="changeImage();">
+						action="${contextPath}/upload/1" enctype="multipart/form-data">
+						<input type="file" name="file" class="custom-file-input"
+							id="file-id" onChange="changeImage();">
 					</form>
 
 					<span><ion-icon class="icon2"
@@ -216,8 +270,11 @@ a {
 							class="in2" id="message">
 						<div class="ico3">
 
-							<button id="messageForm" class="button buttonsearch" type="submit"><span><ion-icon type='submit' class="send_svg"
-									name="send-outline" ></ion-icon></span></button>
+							<button id="messageForm" class="button buttonsearch"
+								type="submit">
+								<span><ion-icon type='submit' class="send_svg"
+										name="send-outline"></ion-icon></span>
+							</button>
 
 							<!-- <button id="messageForm" name="messageForm">Send</button> -->
 						</div>
@@ -260,6 +317,82 @@ a {
         }
         list.forEach((item) => 
         item.addEventListener('mouseover',activeLink))
+        
+        /*  Modal*/
+         /*Modal*/
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+		
+        var btnFKey document.getElementById("btnFKey");
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+  	      ShowAllReservation(${account.id}) ;
+
+        }
+        btnFKey.onclick = function() {
+            searchFriendByKey(key);
+
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        
+        function searchFriendByKey(key) {
+	        var xhttp = new XMLHttpRequest();
+	        xhttp.open("GET", "http://localhost:8080/api/users/byKey", true);
+	        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+	        xmlhttp.send(JSON.stringify({ "key": key }));
+	        xhttp.onreadystatechange = function () {
+	            var div = document.getElementById("contactArea");
+	            div.innerHTML = "";
+	            if (this.status == 200) {
+	                JSON.parse(this.responseText).forEach(function (data, index) {
+	                    div.innerHTML += "<div><input class='checkbox-custom' type='checkbox' value='"+data.account.id+"'>" + data.account.username +" (Phone: "+data.soDienThoai+")"+"</div>";
+	                });
+	            }
+	        };
+	    }
+        
+	 
+	    function ShowAllReservation(id) {
+	        var xhttp = new XMLHttpRequest();
+	        xhttp.open("GET", "http://localhost:8080/api/users/byContactOfAccountId/"+id, true);
+	        xhttp.send();
+	 
+	        xhttp.onreadystatechange = function () {
+	            var div = document.getElementById("contactArea");
+	            div.innerHTML = "";
+	            if (this.status == 200) {
+	                JSON.parse(this.responseText).forEach(function (data, index) {
+	                    div.innerHTML += "<div><input class='checkbox-custom' type='checkbox' value='"+data.account.id+"'>" + data.account.username +" (Phone: "+data.soDienThoai+")"+"</div>";
+	                });
+	            }
+	        };
+	    }
+	    /*
+	    <div>
+			<input class="checkbox-custom" type="checkbox" name="fruit"
+				value="Apple"> Sơn (Phone: 0968900475)
+		</div>
+	    
+	    */
+	
     </script>
 
 

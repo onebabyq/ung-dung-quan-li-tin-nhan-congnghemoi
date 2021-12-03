@@ -39,6 +39,12 @@
                 </a>
             </li>
             <li>
+                <a href="${contextPath}/group">
+                    <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                    <span class="title">Nhóm chat</span>
+                </a>
+            </li>
+            <li>
                 <a href="${contextPath}/info">
                     <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                     <span class="title">Cá Nhân</span>

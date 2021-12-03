@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RoomDTO  {
 	private Long id;
-
+	private String name;
     private int lastMessageId;
     private String type;
   
@@ -80,11 +80,22 @@ public class RoomDTO  {
 		this.adminId = adminId;
 	}
 
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
-		return "RoomDTO [id=" + id + ", lastMessageId=" + lastMessageId + ", type=" + type + ", deleted=" + deleted
-				+ ", adminId=" + adminId + ", messages=" + messages + ", accounts=" + accounts + "]";
+		return "RoomDTO [id=" + id + ", name=" + name + ", lastMessageId=" + lastMessageId + ", type=" + type
+				+ ", deleted=" + deleted + ", adminId=" + adminId + ", messages=" + messages + ", accounts=" + accounts
+				+ "]";
 	}
+	
 
    
 

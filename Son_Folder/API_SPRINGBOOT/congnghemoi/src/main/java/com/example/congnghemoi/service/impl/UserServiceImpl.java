@@ -63,5 +63,13 @@ public class UserServiceImpl implements UserService {
 
 
 
+	@Override
+	public List<User> findListUserByKey(String key) {
+		// TODO Auto-generated method stub
+		return userRepository.findListUserByKey(key);
+	}
+
+
+
 
 }

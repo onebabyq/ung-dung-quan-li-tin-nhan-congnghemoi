@@ -18,7 +18,7 @@ public class Room extends BaseEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5385951309781988012L;
-
+	private String name;
     private int lastMessageId;
     private String type;
     @Column(columnDefinition = "boolean default false")
@@ -84,6 +84,14 @@ public class Room extends BaseEntity implements Serializable {
     public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
   
 }

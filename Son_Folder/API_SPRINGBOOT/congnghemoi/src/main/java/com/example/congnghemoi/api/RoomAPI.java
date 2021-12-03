@@ -3,6 +3,7 @@ package com.example.congnghemoi.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,12 @@ public class RoomAPI {
 	public Room getRoomDualByTwoAccountId(@PathVariable long id1,@PathVariable long id2) {
 		
 		return roomService.findRoomDualByTwoAccountId(id1,id2);
+	}
+	
+	@GetMapping(value="/rooms/byAccountId/{id}")
+	public ResponseEntity<List<Room>> getRoomDualByAccountId(@PathVariable long id) {
+		
+		return ResponseEntity.ok(roomService.findRoomByAccountId(id));
 	}
 	@PostMapping(value="/rooms")
 	public Room saveRoom(@RequestBody Room newEntity) {

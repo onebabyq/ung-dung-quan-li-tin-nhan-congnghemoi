@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import com.example.ChatWeb.model.FileInfo;
-import com.example.ChatWeb.model.ResponseMessage;
 import com.example.ChatWeb.service.FilesStorageService;
 
 @Controller
@@ -82,5 +81,9 @@ public class FilesController {
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 				.body(file);
+	}
+
+	public static String getLocalhost() {
+		return LOCALHOST;
 	}
 }
