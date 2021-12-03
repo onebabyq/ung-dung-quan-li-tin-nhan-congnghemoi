@@ -2,6 +2,8 @@ package com.example.congnghemoi.api;
 
 import java.util.List;
 
+import com.example.ChatWeb.dto.AccountDTO;
+import com.example.congnghemoi.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,10 +51,19 @@ public class RoomAPI {
 		
 		return ResponseEntity.ok(roomService.findRoomByAccountId(id));
 	}
+
 	@PostMapping(value="/rooms")
 	public Room saveRoom(@RequestBody Room newEntity) {
 		Room room =  roomService.save(newEntity);
 		return room;
+	}
+	@PostMapping(value="/rooms/{id}/addMembers")
+	public void addMembers(@RequestBody List<Long> listIdMember,@PathVariable long id) {
+		roomService.addMembers(listIdMember,id);
+	}
+	@PostMapping(value="/rooms/{id}/removeMembers")
+	public void removeMembers(@RequestBody List<Long> listIdMember,@PathVariable long id) {
+		roomService.removeMembers(listIdMember,id);
 	}
 	@PostMapping(value="/rooms/byTwoAccountId/{accountId}/{friendId}")
 	public Room saveRoomTwoAccountId(@RequestBody Room newEntity,@PathVariable long accountId,@PathVariable long friendId) {
@@ -68,9 +79,22 @@ public class RoomAPI {
 			return null;
 		return roomService.save(newEntity);
 	}
+	@PutMapping(value="/rooms/{id}/updateRoomName")
+	public Room updateRoomName(@RequestBody String roomName,@PathVariable long id) {
+		Room temp = roomService.findById(id);
+		if(temp==null)
+			return null;
+		temp.setName(roomName);
+		return roomService.save(temp);
+	}
 	@DeleteMapping(value="/rooms/{id}")
 	public String deleteRoom(@PathVariable long id) {
 		roomService.deleteById(id);
 		return "Deleted Room with id : "+id;
+	}
+	@DeleteMapping(value="/rooms/{id}/leave")
+	public String leaveRoom(@PathVariable long id,@RequestBody Long idAccount) {
+		roomService.leaveRoom(id,idAccount);
+		return "Leave success : "+id;
 	}
 }

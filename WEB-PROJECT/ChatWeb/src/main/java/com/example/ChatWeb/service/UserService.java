@@ -55,16 +55,17 @@ public class UserService {
 		return user;
 	}
 
-	public List<UserDTO> getUserByKey(String key) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		final HttpEntity<String> request = new HttpEntity<>(key, headers);
-		ResponseEntity<List<UserDTO>> responseEntity = restTemplate.exchange(LOCALHOST + "/api/users/byKey",
-				HttpMethod.GET, request, new ParameterizedTypeReference<List<UserDTO>>() {
+	public List<UserDTO> getUserByKey(long id,String key) {
+		//HttpHeaders headers = new HttpHeaders();
+		//headers.setContentType(MediaType.APPLICATION_JSON);
+		//final HttpEntity<String> request = new HttpEntity<>(key, headers);
+		ResponseEntity<List<UserDTO>> responseEntity = restTemplate.exchange(LOCALHOST + "/api/users/"+id+"/byKey/"+key,
+				HttpMethod.GET, null, new ParameterizedTypeReference<List<UserDTO>>() {
 				});
 		List<UserDTO> listUser = responseEntity.getBody();
 
 		return listUser;
 	}
+
 
 }

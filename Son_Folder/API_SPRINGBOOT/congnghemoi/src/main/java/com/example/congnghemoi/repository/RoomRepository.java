@@ -2,6 +2,7 @@ package com.example.congnghemoi.repository;
 
 import java.util.List;
 
+import com.example.congnghemoi.entity.Account;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -24,4 +25,13 @@ public interface RoomRepository extends CrudRepository<Room, Long>{
 	@Query(value="SELECT r.* FROM room r JOIN account_room ar ON r.id = ar.room_id where r.type = 'Group' AND ar.account_id = ?1",nativeQuery = true)
 	List<Room> findRoomByAccountId(long id);
 
+	@Modifying
+	@Query(value="DELETE FROM account_room ar where ar.account_id = ?1 AND ar.room_id = ?2",nativeQuery = true)
+	@Transactional
+    void deleteAccoutRoom(long l, long id);
+
+	@Modifying
+	@Query(value="DELETE FROM account_room ar where ar.room_id = ?1",nativeQuery = true)
+	@Transactional
+	void deleteAllAccoutRoom(long id);
 }

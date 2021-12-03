@@ -142,6 +142,7 @@ a {
 
 				</ul>
 			</div>
+			<c:if test="${not empty roomId}">
 			<div class="right">
 				<div class="right_top">
 					<div class="img_name">
@@ -228,7 +229,7 @@ a {
 		</div>
 	</div>
 
-
+    </c:if>
 
 
 

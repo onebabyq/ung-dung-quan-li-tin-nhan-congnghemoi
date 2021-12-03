@@ -2,7 +2,9 @@ package com.example.congnghemoi.api;
 
 import java.util.List;
 
+import com.example.congnghemoi.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,10 +39,21 @@ public class AccountAPI {
 		
 		return accountService.findAccountBySoDienThoai(id);
 	}
+
 	@GetMapping(value="/accountsWithAccount/{id}")
 	public Account getAccountWithAccoutById(@PathVariable long id) {
 		
 		return accountService.findById(id);
+	}
+	@GetMapping(value="/rooms/{id}/getAdmin")
+	public ResponseEntity<Account> getAdmin(@PathVariable long id) {
+
+		return ResponseEntity.ok(accountService.findAccountAdminByRoomId(id));
+	}
+	@GetMapping(value="/accounts/rooms/{id}")
+	public ResponseEntity<List<Account>> getListAccountInRoomById(@PathVariable long id) {
+		//System.out.println("id query: "+id);
+		return ResponseEntity.ok(accountService.findListAccountInRoomById(id));
 	}
 	@PostMapping(value="/accounts")
 	public Account saveAccount(@RequestBody Account newEntity) {

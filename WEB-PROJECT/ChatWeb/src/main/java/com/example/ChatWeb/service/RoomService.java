@@ -61,6 +61,62 @@ public class RoomService {
 		return room;
 	}
 
+	public void addMembers( List<Long> listAccountId,long roomId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpEntity< List<Long>> request = new HttpEntity<>(listAccountId,headers);
+		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId+"/addMembers", HttpMethod.POST, request, String.class);
+		if (response.getStatusCode().equals(HttpStatus.OK)) {
+			System.out.println("Add members Successfully!!!");
+		}
+	}
 
-	
+
+	public void removeMembers(List<Long> ckb_friends, long roomId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpEntity< List<Long>> request = new HttpEntity<>(ckb_friends,headers);
+		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId+"/removeMembers", HttpMethod.POST, request, String.class);
+		if (response.getStatusCode().equals(HttpStatus.OK)) {
+			System.out.println("Remove members Successfully!!!");
+		}
+	}
+
+	public void updateRoomName(String roomName, long roomId) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpEntity<String> request = new HttpEntity<>(roomName,headers);
+		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId+"/updateRoomName", HttpMethod.PUT, request, String.class);
+		if (response.getStatusCode().equals(HttpStatus.OK)) {
+			System.out.println("Update room name Successfully!!!");
+		}
+	}
+
+	public RoomDTO createGroup(RoomDTO room) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpEntity<RoomDTO> request = new HttpEntity<>(room,headers);
+		ResponseEntity<RoomDTO> response = restTemplate.exchange(LOCALHOST+"/rooms", HttpMethod.POST, request, RoomDTO.class);
+		if (response.getStatusCode().equals(HttpStatus.OK)) {
+			System.out.println("create room Successfully!!!");
+		}
+		RoomDTO temp = response.getBody();
+		return temp;
+	}
+
+	public void deleteRoom(long roomId) {
+		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId, HttpMethod.DELETE, null, String.class);
+		if (response.getStatusCode().equals(HttpStatus.OK)) {
+			System.out.println("delete room Successfully!!!");
+		}
+	}
+	public void leaveRoom(long roomId,long idAccount) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		final HttpEntity<Long> request = new HttpEntity<>(idAccount,headers);
+		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId+"/leave", HttpMethod.DELETE, request, String.class);
+		if (response.getStatusCode().equals(HttpStatus.OK)) {
+			System.out.println("leave room Successfully!!!");
+		}
+	}
 }

@@ -53,7 +53,14 @@ public class AccountServiceImpl implements AccountService {
 		return accountRepository.findByAccountUserSoDienThoai(id).get();
 	}
 
-
+	@Override
+	public List<Account> findListAccountInRoomById(long id) {
+		return accountRepository.findListAccountInRoomById(id);
+	}
+	@Override
+	public Account findAccountAdminByRoomId(long id) {
+		return accountRepository.findAccountAdminByRoomId(id);
+	}
 
 
 }

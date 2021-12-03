@@ -3,6 +3,7 @@ package com.example.congnghemoi.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,11 +51,13 @@ public class UserAPI {
 		//System.out.println("SĐT query: "+sdt);
 		return userService.findListUserByContactOfAccountId(id);
 	}
-	@GetMapping(value="/users/byKey")
-	public List<User> getListUserByContactOfAccountId(@RequestBody String key) {
-		//System.out.println("SĐT query: "+sdt);
-		return userService.findListUserByKey(key);
+	@GetMapping(value="/users/{id}/byKey/{key}")
+	public List<User> getListUserByContactOfAccountId(@PathVariable long id,@PathVariable String key) {
+
+		//System.out.println("id query: "+id);
+		return userService.findListUserByKey(id,key);
 	}
+
 	@PostMapping(value="/users")
 	public User saveUser(@RequestBody User newEntity) {
 		Account temp = new Account();

@@ -2,6 +2,7 @@ package com.example.ChatWeb.service;
 
 import java.util.List;
 
+import com.example.ChatWeb.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -48,8 +49,24 @@ public class AccountService {
 
 		return listFriend;
 	}
+	public List<AccountDTO> getListAccountInRoomById(long id) {
+		ResponseEntity<List<AccountDTO>> responseEntity = restTemplate.exchange(
+				LOCALHOST + "/accounts/rooms/" + id, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<AccountDTO>>() {
+				});
+		List<AccountDTO> listAccountDTO = responseEntity.getBody();
+
+		return listAccountDTO;
+	}
 
 
+	public AccountDTO getAdminInRoomById(long id) {
+		ResponseEntity<AccountDTO> responseEntity = restTemplate.exchange(
+				LOCALHOST + "/rooms/"+id+"/getAdmin", HttpMethod.GET, null,
+				new ParameterizedTypeReference<AccountDTO>() {
+				});
+		AccountDTO dto = responseEntity.getBody();
 
-	
+		return dto;
+	}
 }
