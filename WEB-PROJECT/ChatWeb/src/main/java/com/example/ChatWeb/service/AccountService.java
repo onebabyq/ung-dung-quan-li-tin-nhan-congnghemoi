@@ -61,8 +61,9 @@ public class AccountService {
 
 
 	public AccountDTO getAdminInRoomById(long id) {
+		String url = LOCALHOST + "/rooms/"+id+"/getAdmin";
 		ResponseEntity<AccountDTO> responseEntity = restTemplate.exchange(
-				LOCALHOST + "/rooms/"+id+"/getAdmin", HttpMethod.GET, null,
+				url, HttpMethod.GET, null,
 				new ParameterizedTypeReference<AccountDTO>() {
 				});
 		AccountDTO dto = responseEntity.getBody();

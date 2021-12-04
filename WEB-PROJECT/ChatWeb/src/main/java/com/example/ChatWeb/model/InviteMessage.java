@@ -1,5 +1,7 @@
 package com.example.ChatWeb.model;
 
+import static com.example.ChatWeb.model.ChatMessage.*;
+
 public class InviteMessage {
 	private long idSender;
 	private String sender;
@@ -8,9 +10,7 @@ public class InviteMessage {
 	private String telReceiver;
 	private long idReceiver;
 
-	public enum MessageType {
-		CHAT, JOIN, LEAVE, INVITE
-	}
+
 	
 	public String getSender() {
 		return sender;

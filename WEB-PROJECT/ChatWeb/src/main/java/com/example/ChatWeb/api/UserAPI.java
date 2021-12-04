@@ -23,16 +23,17 @@ public class UserAPI {
 	@Autowired
 	private AccountService accountService;
 	public static final Logger log = LoggerFactory.getLogger(UserAPI.class);
-	@GetMapping("/byContactOfAccountId/{id}")
-	public List<UserDTO> getListContactByAccountId(@PathVariable long id){
-		List<UserDTO> listUser = userService.getUserByContactOfAccountId(id);
+	@GetMapping("/byContactOfAccountId/{id}/rooms/{roomId}")
+	public List<UserDTO> getListContactByAccountId(@PathVariable long id,@PathVariable long roomId){
+		List<UserDTO> listUser = userService.getUserByContactOfAccountId(id,roomId);
 		
 		return listUser;
 	}
-	@GetMapping("/{id}/byKey/{key}")
-	public List<UserDTO> getListContactByAccountId(@PathVariable long id,@PathVariable String key){
+	//http://localhost:8080/api/users/43/rooms/48/byKey/o
+	@GetMapping("/{id}/rooms/{roomId}/byKey/{key}")
+	public List<UserDTO> getListContactByAccountId(@PathVariable long id,@PathVariable String key,@PathVariable long roomId){
 
-		List<UserDTO> listUser = userService.getUserByKey(id,key);
+		List<UserDTO> listUser = userService.getUserByKey(id,key,roomId);
 		
 		return listUser;
 	}

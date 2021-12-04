@@ -43,5 +43,35 @@ public abstract class BaseEntity {
 	public String getModifiedBy() {
 		return modifiedBy;
 	}
-	
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
+	}
+
+	@Override
+	public String toString() {
+		return "BaseEntity{" +
+				"id=" + id +
+				", createDate=" + createDate +
+				", modifiedDate=" + modifiedDate +
+				", createBy='" + createBy + '\'' +
+				", modifiedBy='" + modifiedBy + '\'' +
+				'}';
+	}
 }

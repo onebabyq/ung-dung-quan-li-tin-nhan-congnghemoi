@@ -165,7 +165,7 @@ a {
                        }
                        function ShowAllReservation(id) {
                        	        var xhttp = new XMLHttpRequest();
-                       	        xhttp.open("GET", "http://localhost:8080/api/users/byContactOfAccountId/"+id, true);
+                       	        xhttp.open("GET", "http://localhost:8080/api/users/byContactOfAccountId/"+id+"/rooms/${roomId}", true);
                        	        xhttp.send();
 
                        	        xhttp.onreadystatechange = function () {
@@ -214,7 +214,8 @@ a {
 										    }
 										    function tesSearchKey(key) {
                                                 var xhttp = new XMLHttpRequest();
-                                                var url = "http://localhost:8080/api/users/"+${account.id}+"/byKey/"+key;
+                                                var url = "http://localhost:8080/api/users/"+${account.id}+"/rooms/${roomId}/byKey/"+key;
+                                                //alert("URL: "+url);
                                                 xhttp.open("GET", url, true);
                                                 xhttp.send();
 

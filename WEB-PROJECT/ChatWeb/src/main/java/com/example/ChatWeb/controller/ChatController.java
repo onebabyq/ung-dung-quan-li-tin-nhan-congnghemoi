@@ -169,6 +169,25 @@ public class ChatController {
 		model.addAttribute("userFinded", userFinded);
 		return callChatPage(model, accountLogin);
 	}
+	@PostMapping("/createInvite")
+	public String createInvite(Model model, @RequestParam String soDienThoai, @RequestParam long idReceiver) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String sdt = auth.getName(); // get logged in username;
+		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+
+		InviteMessage inviteMessage = new InviteMessage();
+		inviteMessage.setType(MessageType.INVITE);
+		inviteMessage.setIdSender(accountLogin.getId());
+		inviteMessage.setTelReceiver(soDienThoai);
+		inviteMessage.setIdReceiver(idReceiver);
+		inviteMessage.setContent("Lời mời kết bạn!!!");
+
+		contactService.createByInviteMessage(inviteMessage);
+
+		return "redirect:/chat";
+	}
+
 
 	public String callChatPage(Model model, AccountDTO accountLogin) {
 

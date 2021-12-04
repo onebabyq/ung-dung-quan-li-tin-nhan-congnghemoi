@@ -44,21 +44,22 @@ public class ContactService {
 		
 	}
 	public void createByInviteMessage(InviteMessage inviteMessage) {
-		ContactDTO contact = new ContactDTO();
-		contact.setAccount(accountService.getAccountById(inviteMessage.getIdSender()));
-		contact.setAccept(false);
-		contact.setFriendId(inviteMessage.getIdReceiver());
+//		ContactDTO contact = new ContactDTO();
+//		contact.setAccount(accountService.getAccountById(inviteMessage.getIdSender()));
+//		contact.setAccept(false);
+//		contact.setFriendId(inviteMessage.getIdReceiver());
 		ContactDTO contact1 = new ContactDTO();
 		contact1.setAccount(accountService.getAccountById(inviteMessage.getIdReceiver()));
 		contact1.setAccept(false);
 		contact1.setFriendId(inviteMessage.getIdSender());
-		createContact(contact);
+		//createContact(contact);
 		createContact(contact1);
 	}
 
 	public List<ContactDTO> getListContactByAccountId(Long id) {
+		String url = LOCALHOST+"/contacts/getListContactByAccountId/"+id;
 		ResponseEntity<List<ContactDTO>> responseEntity =
-		        restTemplate.exchange(LOCALHOST+"/contacts/getListContactByAccountId/"+id,
+		        restTemplate.exchange(url,
 		            HttpMethod.GET, null, new ParameterizedTypeReference<List<ContactDTO>>() {
 		            });
 		List<ContactDTO> listContact = responseEntity.getBody();

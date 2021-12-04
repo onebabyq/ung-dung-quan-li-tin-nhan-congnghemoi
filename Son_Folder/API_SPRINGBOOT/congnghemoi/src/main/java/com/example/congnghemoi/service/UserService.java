@@ -13,7 +13,13 @@ public interface UserService {
 	void deleteById(long id);
 	User findBySoDienThoai(String sdt);
 	List<User> findListUserByContactOfAccountId(long id);
-	List<User> findListUserByKey(long id,String key);
+	List<User> findListUserByContactOfAccountId(long id,long roomId);
+	List<User> findListUserByKey(long id,String key,long roomId);
 
 
+	User findByAccountId(long id);
+
+	List<User> findListUserByContactOfAccountIdNotAccept(long id);
+
+	List<User> findListUserByContactOfAccountIdAccepted(long id);
 }

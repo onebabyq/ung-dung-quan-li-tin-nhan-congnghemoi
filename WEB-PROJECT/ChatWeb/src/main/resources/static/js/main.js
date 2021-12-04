@@ -149,6 +149,7 @@ function sendMessage(event) {
 	event.preventDefault();
 }
 function sendInvite(event) {
+    //alert("Đã gửi lời mời kết bạn thành công !!!");
 	//alert("telReceiver: 0");
 	var messageContent = PhoneNeedInvite.value.trim();
 	//alert("telReceiver: 1");

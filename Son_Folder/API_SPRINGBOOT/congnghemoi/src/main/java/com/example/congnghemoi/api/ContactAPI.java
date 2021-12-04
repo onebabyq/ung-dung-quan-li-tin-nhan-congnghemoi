@@ -71,8 +71,33 @@ public class ContactAPI {
 	}
 	@GetMapping(value="/contacts/accept/{accountId}/{friendId}")
 	public void updateAccept(@PathVariable Long accountId , @PathVariable Long friendId) {
-		contactService.updateContactByTwoId(accountId,friendId);
-		contactService.updateContactByTwoId(friendId,accountId);
+		int flag=0;
+		List<Contact> listContact = contactService.findByAccountId(accountId);
+		for(Contact c : listContact){
+			if(c.getFriendId()==friendId){
+				flag=1;
+			}
+		}
+		if(flag==1){
+			contactService.updateContactByTwoId(accountId,friendId);
+			Contact c = new Contact();
+			Account a = new Account();
+			a.setId(friendId);
+			c.setAccount(a);
+			c.setAccept(true);
+			c.setFriendId(accountId);
+			contactService.save(c);
+		}
+		else{
+			contactService.updateContactByTwoId(friendId,accountId);
+			Contact c = new Contact();
+			Account a = new Account();
+			a.setId(accountId);
+			c.setAccount(a);
+			c.setAccept(true);
+			c.setFriendId(friendId);
+			contactService.save(c);
+		}
 	}
 	@DeleteMapping(value="/contacts/{id}")
 	public String deleteContact(@PathVariable long id) {

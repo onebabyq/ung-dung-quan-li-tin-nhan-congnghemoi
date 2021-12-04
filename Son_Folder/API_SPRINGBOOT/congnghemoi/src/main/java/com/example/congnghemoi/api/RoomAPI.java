@@ -97,4 +97,10 @@ public class RoomAPI {
 		roomService.leaveRoom(id,idAccount);
 		return "Leave success : "+id;
 	}
+	@DeleteMapping(value="/rooms/{id}/leave/{idAccount}")
+	public String leaveRoom2(@PathVariable long id,@PathVariable long idAccount) {
+		roomService.leaveRoom(id,idAccount);
+		return "Leave success : "+id;
+	}
+
 }

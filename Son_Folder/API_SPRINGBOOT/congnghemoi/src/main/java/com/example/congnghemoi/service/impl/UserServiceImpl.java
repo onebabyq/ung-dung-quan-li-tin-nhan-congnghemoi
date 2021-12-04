@@ -56,6 +56,11 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
+	public List<User> findListUserByContactOfAccountId(long id,long roomId) {
+		// TODO Auto-generated method stub
+		return userRepository.getListUserByContactOfAccountIdNotInRoom(id,roomId);
+	}
+	@Override
 	public List<User> findListUserByContactOfAccountId(long id) {
 		// TODO Auto-generated method stub
 		return userRepository.getListUserByContactOfAccountId(id);
@@ -64,12 +69,25 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public List<User> findListUserByKey(long id,String key) {
+	public List<User> findListUserByKey(long id,String key,long roomId) {
 		// TODO Auto-generated method stub
-		return userRepository.findListUserByKey(id,key);
+		return userRepository.findListUserByKey(id,key,roomId);
 	}
 
+	@Override
+	public User findByAccountId(long id) {
+		return userRepository.findByAccountId(id);
+	}
 
+	@Override
+	public List<User> findListUserByContactOfAccountIdNotAccept(long id) {
+		return userRepository.findListUserByContactOfAccountIdNotAccept(id);
+	}
+
+	@Override
+	public List<User> findListUserByContactOfAccountIdAccepted(long id) {
+		return userRepository.findListUserByContactOfAccountIdAccepted(id);
+	}
 
 
 }

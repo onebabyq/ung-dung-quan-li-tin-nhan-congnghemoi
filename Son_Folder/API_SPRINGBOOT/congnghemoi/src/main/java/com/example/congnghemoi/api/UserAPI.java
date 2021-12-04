@@ -40,22 +40,45 @@ public class UserAPI {
 		
 		return userService.findById(id);
 	}
-	
+	@GetMapping(value="/users/accounts/{id}")
+	public User getUserByAccountId(@PathVariable long id) {
+
+		return userService.findByAccountId(id);
+	}
 	@GetMapping(value="/users/bySoDienThoai/{sdt}")
 	public User getUserBySoDienThoai(@PathVariable String sdt) {
 		//System.out.println("SĐT query: "+sdt);
 		return userService.findBySoDienThoai(sdt);
 	}
+
 	@GetMapping(value="/users/byContactOfAccountId/{id}")
 	public List<User> getListUserByContactOfAccountId(@PathVariable long id) {
 		//System.out.println("SĐT query: "+sdt);
 		return userService.findListUserByContactOfAccountId(id);
 	}
-	@GetMapping(value="/users/{id}/byKey/{key}")
-	public List<User> getListUserByContactOfAccountId(@PathVariable long id,@PathVariable String key) {
+	@GetMapping(value="/users/byContactOfAccountIdAccepted/{id}")
+	public List<User> getListUserByContactOfAccountIdAccepted(@PathVariable long id) {
+		//System.out.println("SĐT query: "+sdt);
+		return userService.findListUserByContactOfAccountIdAccepted(id);
+	}
+	@GetMapping(value="/users/byContactOfAccountIdNotAccept/{id}")
+	public List<User> getListUserByContactOfAccountIdNotAccept(@PathVariable long id) {
+		//System.out.println("SĐT query: "+sdt);
+		return userService.findListUserByContactOfAccountIdNotAccept(id);
+	}
+	@GetMapping(value="/users/byContactOfAccountId/{id}/rooms/{roomId}")
+	public List<User> getListUserByContactOfAccountId(@PathVariable long id,@PathVariable long roomId) {
+		//System.out.println("SĐT query: "+sdt);
+		return userService.findListUserByContactOfAccountId(id,roomId);
+	}
 
+	@GetMapping(value="/users/{id}/rooms/{roomId}/byKey/{key}")
+	public List<User> getListUserByContactOfAccountId(@PathVariable long id,@PathVariable String key,@PathVariable long roomId) {
+		System.out.println("id: "+id);
+		System.out.println("key: "+key);
+		System.out.println("roomId: "+roomId);
 		//System.out.println("id query: "+id);
-		return userService.findListUserByKey(id,key);
+		return userService.findListUserByKey(id,key,roomId);
 	}
 
 	@PostMapping(value="/users")

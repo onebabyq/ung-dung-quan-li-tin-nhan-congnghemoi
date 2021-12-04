@@ -54,7 +54,8 @@ public class RoomService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<RoomDTO> request = new HttpEntity<>(room,headers);
-		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/byTwoAccountId/"+accountId+"/"+friendId, HttpMethod.POST, request, String.class);
+		String url = LOCALHOST+"/rooms/byTwoAccountId/"+accountId+"/"+friendId;
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("Insert Room ByTwoAccountId Successfully!!!");
 		}
@@ -76,7 +77,8 @@ public class RoomService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity< List<Long>> request = new HttpEntity<>(ckb_friends,headers);
-		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId+"/removeMembers", HttpMethod.POST, request, String.class);
+		String url = LOCALHOST+"/rooms/"+roomId+"/removeMembers";
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("Remove members Successfully!!!");
 		}
@@ -86,7 +88,8 @@ public class RoomService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<String> request = new HttpEntity<>(roomName,headers);
-		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId+"/updateRoomName", HttpMethod.PUT, request, String.class);
+		String url = LOCALHOST+"/rooms/"+roomId+"/updateRoomName";
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, request, String.class);
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("Update room name Successfully!!!");
 		}
@@ -105,7 +108,8 @@ public class RoomService {
 	}
 
 	public void deleteRoom(long roomId) {
-		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId, HttpMethod.DELETE, null, String.class);
+		String url = LOCALHOST+"/rooms/"+roomId;
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, null, String.class);
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("delete room Successfully!!!");
 		}
@@ -114,7 +118,8 @@ public class RoomService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<Long> request = new HttpEntity<>(idAccount,headers);
-		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST+"/rooms/"+roomId+"/leave", HttpMethod.DELETE, request, String.class);
+		String url = LOCALHOST+"/rooms/"+roomId+"/leave" ;
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.DELETE, request, String.class);
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("leave room Successfully!!!");
 		}

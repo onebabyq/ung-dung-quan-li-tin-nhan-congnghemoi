@@ -93,10 +93,11 @@ a {
 				<ul id="FriendArea">
 					<c:if test="${not empty userFinded}">
 						<li class="kb_area">
-	                        <form class="formNone" action="${contextPath}/chat" method="GET">
+	                        <form class="formNone" action="${contextPath}/createInvite" method="POST">
 	                            <div class="friend">
 	                                <div>
-	                                	<input  type="hidden" id="PhoneNeedInvite" value="${userFinded.soDienThoai}">
+	                                	<input  name ="soDienThoai" type="hidden" id="PhoneNeedInvite" value="${userFinded.soDienThoai}">
+	                                	<input  name ="idReceiver" type="hidden" value="${userFinded.account.id}">
 	                                    <h3>${userFinded.account.username} (Phone: ${userFinded.soDienThoai})</h3>
 	                                    <p>Gửi kết bạn <button id="btnSendInvite" class="button button2">Kết bạn</button> </p>
 	                                </div>

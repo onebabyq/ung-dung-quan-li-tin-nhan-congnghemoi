@@ -33,9 +33,9 @@ public class UserService {
 		return user;
 	}
 
-	public List<UserDTO> getUserByContactOfAccountId(long id) {
+	public List<UserDTO> getUserByContactOfAccountId(long id,long roomId) {
 		ResponseEntity<List<UserDTO>> responseEntity = restTemplate.exchange(
-				LOCALHOST + "/api/users/byContactOfAccountId/" + id, HttpMethod.GET, null,
+				LOCALHOST + "/api/users/byContactOfAccountId/" + id+"/rooms/"+roomId, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<UserDTO>>() {
 				});
 		List<UserDTO> listUser = responseEntity.getBody();
@@ -55,11 +55,13 @@ public class UserService {
 		return user;
 	}
 
-	public List<UserDTO> getUserByKey(long id,String key) {
+	public List<UserDTO> getUserByKey(long id,String key,long roomId) {
 		//HttpHeaders headers = new HttpHeaders();
 		//headers.setContentType(MediaType.APPLICATION_JSON);
 		//final HttpEntity<String> request = new HttpEntity<>(key, headers);
-		ResponseEntity<List<UserDTO>> responseEntity = restTemplate.exchange(LOCALHOST + "/api/users/"+id+"/byKey/"+key,
+		///api/users/{id}/rooms/{roomId}/byKey/{key}
+		String url = LOCALHOST + "/api/users/"+id+"/rooms/"+roomId+"/byKey/"+key;
+		ResponseEntity<List<UserDTO>> responseEntity = restTemplate.exchange(url,
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<UserDTO>>() {
 				});
 		List<UserDTO> listUser = responseEntity.getBody();

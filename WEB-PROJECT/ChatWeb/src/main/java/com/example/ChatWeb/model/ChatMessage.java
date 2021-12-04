@@ -10,7 +10,7 @@ public class ChatMessage {
     private String sender;
     private long roomId;
     
-    public enum MessageType {
+    static public enum MessageType {
         CHAT,
         JOIN,
         LEAVE,
