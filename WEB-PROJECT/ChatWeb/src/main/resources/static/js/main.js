@@ -20,7 +20,8 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
-
+var randomValue = document.querySelector('#randomValue');
+var friendId = document.querySelector('#friendId');
 //var roomIdDisplay = document.querySelector('#room-id-display');
 
 var topic = null;
@@ -315,12 +316,17 @@ messageForm.onclick = function(event) {
 
 function changeImage(event) {
 	fileName = inputImage.files[0].name;
-	urlImage = contextPath + '/files/' + fileName;
+
 	// Regular expression for file extension.
 	fileExtension = fileName.split('.').pop();
-	sendImage();
+	var randomName = new Date().valueOf()+"_"+fileName;
+	urlImage = contextPath + '/file/download/' + randomName;
+    randomValue.value = randomName;
 	document.getElementById('form-file-id').submit();
+	sendImage();
 	event.preventDefault();
+	var frdId = friendId.value;
+	window.location.href = contextPath+"/dual/withFriend/"+frdId;
 }
 btnSendInvite.onclick = function(event){
 	//event.preventDefault();
