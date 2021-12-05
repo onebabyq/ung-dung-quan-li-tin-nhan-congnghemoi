@@ -16,14 +16,7 @@ public class DemoController {
     	return "home";
     }
     
-    @GetMapping("/info")
-    public String viewInfo(Model model) {
-    	model.addAttribute("firstname","Toàn");
-    	model.addAttribute("lastname","Lê");
-    	model.addAttribute("email","lvtoan.cv@gmail.com");
-    	model.addAttribute("content","Đây là trang cá nhân của tôi");
-    	return "info";
-    }
+    
     
     @GetMapping("/admin")
     public String viewAdmin(Model model) {

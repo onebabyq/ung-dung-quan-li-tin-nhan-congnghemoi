@@ -1,0 +1,68 @@
+.hero{
+    position: relative;
+    width: 100%;
+    background: #ffffff;
+}
+
+.hero img.logo{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.detel{
+    margin-left: 8%;
+    margin-top: 13%;
+}
+
+.detel h1{
+    font-size: 80px;
+    color: #212121;
+    margin-bottom: 20px;
+}
+
+.detel span{
+    color: #287bff;
+}
+
+.detel p{
+    font-size: 24px;
+    color: #555;
+    line-height: 30px;
+}
+
+.detel a{
+    background: #212121;
+    padding: 10px 18px;
+     text-decoration: none;
+     font-weight: bold;
+     color: #fff ;
+     display: inline-block;
+     margin: 30px 0;
+     border-radius: 5px;
+}
+
+.images{
+    width: 455;
+    height: 80%;
+    position: absolute;
+    bottom: 0;
+    right: 100px;
+}
+
+.images img{
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition: bottom 1s, left 1s;
+}
+
+.images:hover .shape{
+    bottom: 40px;
+}
+
+.images .app{
+    left: 45%;
+}

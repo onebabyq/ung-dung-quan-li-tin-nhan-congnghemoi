@@ -1,0 +1,24 @@
+
+
+.box_info .box-img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.box_info h1{
+    font-size: 40px;
+    letter-spacing: 4px;
+    font-weight: 100;
+}
+
+.box_info h5{
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 100;
+}
+
+.box_info p{
+    text-align: justify;
+}
+

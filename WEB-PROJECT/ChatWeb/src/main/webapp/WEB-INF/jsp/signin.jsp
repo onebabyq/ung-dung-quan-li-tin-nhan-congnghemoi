@@ -129,5 +129,24 @@
                 }
             }
     </script>
+    
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.5.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCuMob4Skzf6ulL6TAs3CH_4TpAVApkInw",
+    authDomain: "chatweb-d2cef.firebaseapp.com",
+    databaseURL: "https://chatweb-d2cef-default-rtdb.firebaseio.com",
+    projectId: "chatweb-d2cef",
+    storageBucket: "chatweb-d2cef.appspot.com",
+    messagingSenderId: "920983083272",
+    appId: "1:920983083272:web:64c90a8f9f5e066251b4bd",
+    measurementId: "G-XMTLG6E9WK"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
