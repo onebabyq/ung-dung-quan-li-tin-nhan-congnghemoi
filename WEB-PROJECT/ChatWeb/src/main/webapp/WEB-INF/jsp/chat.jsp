@@ -158,7 +158,7 @@ a {
 						action="${contextPath}/file/upload"
 						enctype="multipart/form-data">
 					   <input type="hidden" name="fileName" value="" id="randomValue">
-					   <input type="hidden" name="fileId" value="${friendId}" id="friendId">
+					   <input type="hidden" name="fileIdInput" value="${friendId}" id="friendIdInput">
 					   <input type="file" name="file" class="custom-file-input"  id="file-id"
 							onChange="changeImage();">
 					</form>

@@ -1,5 +1,7 @@
 package com.example.ChatWeb.dto;
 
+import com.example.congnghemoi.entity.Room;
+
 import java.util.Date;
 
 public class MessageDTO implements Comparable<MessageDTO> {
@@ -11,7 +13,7 @@ public class MessageDTO implements Comparable<MessageDTO> {
 	private String fileName;
 	private Date createDate;
 
-	private RoomDTO room;
+	private Room room;
 
 	private AccountDTO from;
 	
@@ -76,11 +78,11 @@ public class MessageDTO implements Comparable<MessageDTO> {
 		this.readStatus = readStatus;
 	}
 
-	public RoomDTO getRoom() {
+	public Room getRoom() {
 		return room;
 	}
 
-	public void setRoom(RoomDTO room) {
+	public void setRoom(Room room) {
 		this.room = room;
 	}
 

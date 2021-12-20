@@ -1,0 +1,278 @@
+<!--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<c:url value="css/style.css" var="jstlCss" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" th:href="@{/css/fileUpload.css}">
+    <link rel="stylesheet" th:href="@{/css/button.css}">
+    <link rel="stylesheet" th:href="@{/css/chat.css}">
+    <link rel="stylesheet" th:href="@{/css/admin_dashboard.css}">
+    <style>
+a {
+	text-decoration: none;
+}
+
+    </style>
+</head>
+<body>
+<div class="navigation">
+    <ul>
+        <li><a th:href="@{/home}"> <span class="icon"><ion-icon
+                name="person-circle-outline"></ion-icon></span>
+            <span class="title" id="name" th:text="${account.username}"></span> <span
+                    class="title" id="idAccount" style="color:var(--blue);" th:text="${account.id}"></span>
+        </a></li>
+        <li><a th:href="@{/home}"> <span class="icon"><ion-icon
+                name="home-outline"></ion-icon></span> <span class="title">Trang
+						Chủ</span>
+        </a></li>
+        <li><a th:href="@{/chat}"> <span class="icon"><ion-icon
+                name="chatbubbles-outline"></ion-icon></span> <span class="title">Tin
+						Nhắn</span>
+        </a></li>
+        <li>
+            <a th:href="@{/group}">
+                <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                <span class="title">Nhóm chat</span>
+            </a>
+        </li>
+        <li><a th:href="@{/info}"> <span class="icon"><ion-icon
+                name="person-outline"></ion-icon></span> <span class="title">Cá
+						Nhân</span>
+        </a></li>
+        <li><a th:href="@{/logout}"> <span class="icon"><ion-icon
+                name="log-out-outline"></ion-icon></span> <span class="title">Đăng
+						Xuất</span>
+        </a></li>
+    </ul>
+    <span th:if="${roomId}">
+			<p style="position: absolute; bottom: 0; left: 0;">
+				RoomId: <span id="room-id" th:text="${roomId}"></span>
+			</p>
+		</span>
+    <span th:unless="${roomId}">
+			<p style="position: absolute; bottom: 0; left: 0;">
+				RoomId: <span id="room-id">0</span>
+			</p>
+		</span>
+
+</div>
+
+<div class="main">
+    <div class="topbar">
+        <div class="toggle">
+            <ion-icon name="menu-outline" class="open"></ion-icon>
+        </div>
+    </div>
+    <div class="box">
+        <div class="left">
+            <div class="topp">
+                <h2>APPCHAT</h2>
+                <!-- <h2 id="room-id-display">1</h2> -->
+            </div>
+
+            <div class="search_box">
+                <form class="form-css" th:action="@{/findSDT}" method="POST">
+                    <input class="in" type="text" placeholder="Tìm kiếm..."
+                           name="soDienThoai">
+                    <div class="ico">
+                        <button class="button buttonsearch" type="submit"><span><ion-icon class="icon1"
+                                                                                          name="search-outline"></ion-icon></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <ul id="FriendArea">
+					<span th:if="${userFinded}">
+						<li class="kb_area">
+	                        <form class="formNone" th:action="@{/createInvite}" method="POST">
+	                            <div class="friend">
+	                                <div>
+	                                	<input name="soDienThoai" type="hidden" id="PhoneNeedInvite"
+                                               th:value="${userFinded.soDienThoai}">
+	                                	<input name="idReceiver" type="hidden" th:value="${userFinded.account.id}">
+	                                    <h3 th:text="${userFinded.account.username}"> <span>(Phone: <span th:text="${userFinded.soDienThoai}"></span>)</span></h3>
+	                                    <p>Gửi kết bạn <button id="btnSendInvite"
+                                                               class="button button2">Kết bạn</button> </p>
+	                                </div>
+	                            </div>
+	                         </form>
+	                    </li>
+					</span>
+                <span th:each="item : ${listContact}">
+						<span th:if="${item.accept == true}">
+							<a th:href="@{/dual/withFriend/}+''+${item.friend.id}">
+								<li class="connect_btn">
+									<div class="friend">
+										<div class="img_name"></div>
+										<img th:src="@{/image/none-avatar.png}" class="ava"
+                                             alt="">
+										<div>
+											<h3 th:text="${item.friend.username}"></h3>
+											<p>
+												Chào: <span th:text="${item.friend.username}"></span>
+											</p>
+										</div>
+										<div class="time">
+											<p class="p">Today</p>
+										</div>
+									</div>
+							</li>
+							</a>
+						</span>
+						<span th:if="${item.accept == false}">
+							<div>
+								<h3 th:text="${item.friend.username}"></h3>
+								<p>
+									<span>Lời mời kết bạn</span><a
+                                        th:href="@{/accept/}+''+${item.friend.id}"><button class="button button1">Chấp
+											nhận</button> </a>
+									<button class="button button3">Từ chối</button>
+								</p>
+							</div>
+						</span>
+					</span>
+
+            </ul>
+        </div>
+        <span th:if="${roomId}">
+			<div class="right">
+				<div class="right_top">
+					<div class="img_name">
+						<img th:src="@{/image/none-avatar.png}" class="ava" alt="">
+						<div>
+							<h3 id="friend-name" th:text="${friendName}"></h3>
+							<p id="hoat-dong">Active 30 seconds ago...</p>
+						</div>
+					</div>
+					<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+					<form class="img_up" id="form-file-id" method="POST" target="dummyframe"
+                          th:action="@{/file/upload}"
+                          enctype="multipart/form-data">
+					   <input type="hidden" name="fileName" value="" id="randomValue">
+					   <input type="hidden" name="fileIdInput" th:value="${friendId}" id="friendIdInput">
+					   <input type="file" name="file" class="custom-file-input" id="file-id"
+                              onChange="changeImage();">
+					</form>
+
+
+					<span><ion-icon class="icon2"
+                                    name="ellipsis-horizontal-outline"></ion-icon></span>
+				</div>
+				<div class="mid">
+					<ul id="messageArea">
+						<!-- This is message area -->
+						<span th:if="${listMessage}">
+							<span th:each="item : ${listMessage}">
+								<span th:if="${item.from.id == account.id}">
+									<li class="me"><span th:if="${item.contentType=='TEXT'}">
+											<p th:text="${item.content}"></p>
+											<span>10:20</span>
+										</span> <span th:if="${item.contentType=='IMAGE'}">
+											<img th:src="${item.content}" width="200" height="200">
+										</span> <span th:if="${item.contentType=='FILE'}">
+											<img th:src="@{/image/file-image.jpg}" width="200"
+                                                 height="200">
+											<br>
+											<a href="${item.content}" th:text="${item.fileName}"></a>
+										</span> <span th:if="${item.contentType=='VIDEO'}">
+											<video width="320" height="240" controls>
+												<source th:src="${item.content}" type="video/mp4">
+											</video>
+											<br>
+											<a href="${item.content}" th:text="${item.fileName}"></a>
+										</span></li>
+								</span>
+								<span th:if="${item.from.id != account.id}">
+									<li class="u"><span th:if="${item.contentType=='TEXT'}">
+											<p th:text="${item.content}"></p>
+											<span>10:20</span>
+										</span> <span th:if="${item.contentType=='IMAGE'}">
+											<img th:src="${item.content}" width="200" height="200">
+										</span> <span th:if="${item.contentType=='FILE'}">
+											<img th:src="@{/image/file-image.jpg}" width="200"
+                                                 height="200">
+											<br>
+											<a href="${item.content}" th:text="${item.fileName}"></a>
+										</span> <span th:if="${item.contentType=='VIDEO'}">
+											<video width="320" height="240" controls>
+												<source th:src="${item.content}" type="video/mp4">
+											</video>
+											<br>
+											<a href="${item.content}" th:text="${item.fileName}"></a>
+										</span></li>
+								</span>
+							</span>
+						</span>
+					</ul>
+				</div>
+
+				<div class="btm">
+					<form class="form-css">
+						<div>+</div>
+						<input type="text" name="" placeholder="Bạn đang nghĩ gì?"
+                               class="in2" id="message">
+						<div class="ico3">
+
+							<button id="messageForm" class="button buttonsearch" type="submit"><span><ion-icon
+                                    type='submit' class="send_svg"
+                                    name="send-outline"></ion-icon></span></button>
+
+                            <!-- <button id="messageForm" name="messageForm">Send</button> -->
+						</div>
+					</form>
+				</div>
+
+			</div>
+    </span>
+</div>
+</div>
+
+
+
+<script type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+    	//var messageForm = document.querySelector('#messageForm');
+        //Menu Toggle
+        let menuToggle = document.querySelector('.toggle');
+        let navigation = document.querySelector('.navigation');
+        let main = document.querySelector('.main');
+        
+       
+        menuToggle.onclick = function(){
+            //menuToggle.classList.toggle('active')
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+
+        // add hovered class in selected list item
+        let list = document.querySelectorAll('.navigation li');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('hovered'));
+            this.classList.add('hovered');
+        }
+        list.forEach((item) => 
+        item.addEventListener('mouseover',activeLink));
+
+</script>
+
+
+<script th:src="@{/js/sockjs.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/stomp.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/main.js}" type="text/javascript"></script>
+
+</body>
+</html>

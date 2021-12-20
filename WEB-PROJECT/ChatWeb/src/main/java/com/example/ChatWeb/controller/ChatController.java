@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.ChatWeb.service.*;
+import com.example.ChatWeb.thread.SimpleThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,7 @@ import com.example.ChatWeb.dto.UserDTO;
 import com.example.ChatWeb.model.ChatMessage;
 import com.example.ChatWeb.model.ChatMessage.MessageType;
 import com.example.ChatWeb.model.InviteMessage;
-import com.example.ChatWeb.service.AccountService;
-import com.example.ChatWeb.service.ContactService;
-import com.example.ChatWeb.service.MessageService;
-import com.example.ChatWeb.service.RoomService;
-import com.example.ChatWeb.service.UserService;
+import org.springframework.web.client.RestTemplate;
 
 
 @Controller
@@ -46,7 +44,11 @@ public class ChatController {
 	@Autowired
 	private UserService userService;
 	@Autowired
+	private StorageService storageService;
+	@Autowired
 	private ContactService contactService;
+	@Autowired
+	private RestTemplate restTemplate;
 	private static final Logger log = LoggerFactory.getLogger(ChatController.class);
 
 	@Autowired
@@ -59,9 +61,15 @@ public class ChatController {
 	public void sendMessage(@DestinationVariable String roomId, @Payload ChatMessage chatMessage) {
 		log.info(chatMessage.toString());
 		messageService.createByChatMessage(chatMessage);
-		if (chatMessage.getContentType().equals("FILE") || chatMessage.getContentType().equals("VIDEO"))
+		//if (chatMessage.getContentType().equals("FILE") || chatMessage.getContentType().equals("VIDEO"))
+		if (!chatMessage.getContentType().equals("TEXT")){
 			chatMessage.setFileName(convertUrlToFileName(chatMessage.getContent()));
-		messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
+			SimpleThread m1 = new SimpleThread(messagingTemplate,chatMessage,Long.parseLong(roomId),storageService,restTemplate);
+			Thread t1 = new Thread(m1);
+			t1.start();
+		}
+        else
+			messagingTemplate.convertAndSend("/topic/" + roomId, chatMessage);
 		
 	}
 
@@ -163,10 +171,11 @@ public class ChatController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String sdt = auth.getName(); // get logged in username;
 		AccountDTO accountLogin = accountService.getAccountBySoDienThoai(sdt);
+		if(soDienThoai!=null && !soDienThoai.isEmpty()){
+			UserDTO userFinded = userService.getUserBySoDienThoai(soDienThoai);
+			model.addAttribute("userFinded", userFinded);
+		}
 
-		UserDTO userFinded = userService.getUserBySoDienThoai(soDienThoai);
-
-		model.addAttribute("userFinded", userFinded);
 		return callChatPage(model, accountLogin);
 	}
 	@PostMapping("/createInvite")
@@ -204,7 +213,7 @@ public class ChatController {
 	
 	public static void setFileName(List<MessageDTO> listMessage) {
 		for (MessageDTO m : listMessage) {
-			if (m.getContentType().equals("FILE")) {
+			if (!m.getContentType().equals("TEXT")) {
 				m.setFileName(convertUrlToFileName(m.getContent()));
 			}
 		}

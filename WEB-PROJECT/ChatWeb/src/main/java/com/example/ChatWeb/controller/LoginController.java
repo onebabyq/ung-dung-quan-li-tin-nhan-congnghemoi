@@ -28,13 +28,15 @@ public class LoginController {
 	    }
 	 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = {"application/x-www-form-urlencoded"} )
-    public String register( UserDTO user,@RequestParam String hoten) {
+    public String register( @RequestParam String soDienThoai,@RequestParam String hoten, @RequestParam String password) {
 	//public String register() {
 		AccountDTO account = new AccountDTO();
 		account.setUsername(hoten);
+		UserDTO user = new UserDTO();
+		user.setSoDienThoai(soDienThoai);
 		user.setAccount(account);
 		user.setEnable(true);
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setPassword(bCryptPasswordEncoder.encode(password));
 		//userService.sendRegister(user);
 		userService.sendRegister(user);
     	return "login";

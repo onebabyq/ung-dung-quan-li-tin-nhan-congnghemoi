@@ -38,14 +38,16 @@ public class StorageService {
 
     public byte[] downloadFile(String fileName) {
         S3Object s3Object = s3Client.getObject(bucketName, fileName);
+        if(s3Object==null)
+            return null;
         S3ObjectInputStream inputStream = s3Object.getObjectContent();
         try {
             byte[] content = IOUtils.toByteArray(inputStream);
             return content;
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
+            //e.printStackTrace();
         }
-        return null;
     }
 
 

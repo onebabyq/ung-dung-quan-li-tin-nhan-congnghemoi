@@ -16,16 +16,19 @@ import org.springframework.web.client.RestTemplate;
 import com.example.ChatWeb.dto.MessageDTO;
 import com.example.ChatWeb.dto.UserDTO;
 
+import static com.example.ChatWeb.service.AccountService.LOCALHOST;
+
 @Service
 public class UserService {
 
-	private static final String LOCALHOST = "http://localhost:9000";
+	//private static final String LOCALHOST = "http://localhost:9000";
 
 	@Autowired
 	private RestTemplate restTemplate;
 
 	public UserDTO getUserBySoDienThoai(String sdt) {
-		UserDTO user = restTemplate.getForObject(LOCALHOST + "/api/users/bySoDienThoai/" + sdt, UserDTO.class);
+		UserDTO user = restTemplate.getForObject(LOCALHOST + "/users/bySoDienThoai/" + sdt, UserDTO.class);
+
 		if (user == null)
 			return new UserDTO();
 		// System.out.println(user);
@@ -35,7 +38,7 @@ public class UserService {
 
 	public List<UserDTO> getUserByContactOfAccountId(long id,long roomId) {
 		ResponseEntity<List<UserDTO>> responseEntity = restTemplate.exchange(
-				LOCALHOST + "/api/users/byContactOfAccountId/" + id+"/rooms/"+roomId, HttpMethod.GET, null,
+				LOCALHOST + "/users/byContactOfAccountId/" + id+"/rooms/"+roomId, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<UserDTO>>() {
 				});
 		List<UserDTO> listUser = responseEntity.getBody();
@@ -47,7 +50,7 @@ public class UserService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		final HttpEntity<UserDTO> request = new HttpEntity<>(user, headers);
-		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST + "/api/users", HttpMethod.POST, request,
+		ResponseEntity<String> response = restTemplate.exchange(LOCALHOST + "/users", HttpMethod.POST, request,
 				String.class);
 		if (response.getStatusCode().equals(HttpStatus.OK)) {
 			System.out.println("got response succsessfully");
@@ -60,7 +63,7 @@ public class UserService {
 		//headers.setContentType(MediaType.APPLICATION_JSON);
 		//final HttpEntity<String> request = new HttpEntity<>(key, headers);
 		///api/users/{id}/rooms/{roomId}/byKey/{key}
-		String url = LOCALHOST + "/api/users/"+id+"/rooms/"+roomId+"/byKey/"+key;
+		String url = LOCALHOST + "/users/"+id+"/rooms/"+roomId+"/byKey/"+key;
 		ResponseEntity<List<UserDTO>> responseEntity = restTemplate.exchange(url,
 				HttpMethod.GET, null, new ParameterizedTypeReference<List<UserDTO>>() {
 				});

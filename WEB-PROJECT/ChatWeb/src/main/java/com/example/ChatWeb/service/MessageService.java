@@ -15,10 +15,13 @@ import org.springframework.web.client.RestTemplate;
 
 import com.example.ChatWeb.dto.MessageDTO;
 import com.example.ChatWeb.model.ChatMessage;
+
+import static com.example.ChatWeb.service.AccountService.LOCALHOST;
+
 @Service
 public class MessageService {
 
-	private static final String LOCALHOST = "http://localhost:9000/api";
+	//private static final String LOCALHOST = "http://localhost:9000/api";
 
 	@Autowired
 	private RestTemplate restTemplate;

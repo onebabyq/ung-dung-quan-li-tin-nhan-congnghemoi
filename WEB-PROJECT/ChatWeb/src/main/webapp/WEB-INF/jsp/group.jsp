@@ -266,11 +266,15 @@ a {
 							</div>
 						</div>
 					</div>
-					<form class="img_up" id="form-file-id" method="POST"
-						action="${contextPath}/upload/1" enctype="multipart/form-data">
-						<input type="file" name="file" class="custom-file-input"
-							id="file-id" onChange="changeImage();">
-					</form>
+					<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+					<form class="img_up" id="form-file-id" method="POST" target="dummyframe"
+                        action="${contextPath}/file/upload"
+                        enctype="multipart/form-data">
+                       <input type="hidden" name="fileName" value="" id="randomValue">
+                       <input type="hidden" name="roomIdInput" value="${roomId}" id="roomIdInput">
+                       <input type="file" name="file" class="custom-file-input"  id="file-id"
+                            onChange="changeImage();">
+                    </form>
 
 					<span id="three-dots"><ion-icon class="icon2" name="ellipsis-horizontal-outline"></ion-icon></span>
                     <script>

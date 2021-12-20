@@ -18,10 +18,13 @@ import com.example.ChatWeb.dto.ContactDTO;
 import com.example.ChatWeb.dto.MessageDTO;
 import com.example.ChatWeb.dto.RoomDTO;
 import com.example.ChatWeb.model.InviteMessage;
+
+import static com.example.ChatWeb.service.AccountService.LOCALHOST;
+
 @Service
 public class ContactService {
 
-	private static final String LOCALHOST = "http://localhost:9000/api";
+	//private static final String LOCALHOST = "http://localhost:9000/api";
 
 	@Autowired
 	private RestTemplate restTemplate;

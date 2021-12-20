@@ -1,7 +1,11 @@
 package com.example.congnghemoi.api;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.example.ChatWeb.dto.MessageDTO;
+import com.example.congnghemoi.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,7 +25,8 @@ import com.example.congnghemoi.service.MessageService;
 public class MessageAPI {
 	@Autowired
 	private MessageService messageService;
-	
+	@Autowired
+	private MessageConverter messageConverter;
 	@GetMapping(value="/messages")
 	public List<Message> getMessages() {
 		
@@ -34,12 +39,16 @@ public class MessageAPI {
 		return messageService.findById(id);
 	}
 	@GetMapping(value="/messages/byRoomId/{id}")
-	public List<Message> getMessageByRoomId(@PathVariable long id) {
+	public List<MessageDTO> getMessageByRoomId(@PathVariable long id) {
 		List<Message> list = messageService.findMessageByRoomId(id);
+		List<MessageDTO> dtos = new ArrayList<>();
+		for(Message m : list){
+			dtos.add(messageConverter.toDTO(m));
+		}
 		/*
 		 * for(Message m : list) { System.out.println(m); }
 		 */
-		return list;
+		return dtos;
 	}
 	@GetMapping(value="/messagesWithAccount/{id}")
 	public Message getMessageWithAccoutById(@PathVariable long id) {
@@ -63,4 +72,5 @@ public class MessageAPI {
 		messageService.deleteById(id);
 		return "Deleted Message with id : "+id;
 	}
+
 }

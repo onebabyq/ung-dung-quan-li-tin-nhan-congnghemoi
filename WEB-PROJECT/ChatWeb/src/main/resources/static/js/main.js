@@ -4,7 +4,7 @@
 //var testModel = $('#testModel');
 //var connect_btn = document.querySelector('#connect_btn');
 
-var contextPath = 'http://localhost:8080';
+var contextPath = 'http://ec2-13-214-188-97.ap-southeast-1.compute.amazonaws.com:8080';
 var btnSendInvite = document.querySelector('#btnSendInvite');
 var formSubmitImage = document.querySelector('#form-file-id');
 var inputImage = document.querySelector('#file-id');
@@ -21,7 +21,8 @@ var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var randomValue = document.querySelector('#randomValue');
-var friendId = document.querySelector('#friendId');
+var friendIdInput = document.querySelector('#friendIdInput');
+var roomIdInput = document.querySelector('#roomIdInput');
 //var roomIdDisplay = document.querySelector('#room-id-display');
 
 var topic = null;
@@ -243,11 +244,13 @@ function onMessageReceived(payload) {
 			messageElement.appendChild(textElement);
 		}
 		if (message.contentType == 'IMAGE') {
-			var imgElement = document.createElement('img');
-			imgElement.src = message.content;
-			imgElement.width = 200;
-			imgElement.height = 200;
-			messageElement.appendChild(imgElement);
+		    setTimeout(function(){
+		    var imgElement = document.createElement('img');
+                    imgElement.src = message.content;
+                    imgElement.width = 200;
+                    imgElement.height = 200;
+                    messageElement.appendChild(imgElement);
+		    },1000);
 		}
 		if (message.contentType == 'FILE') {
 			var imgElement = document.createElement('img');
@@ -265,7 +268,6 @@ function onMessageReceived(payload) {
 			messageElement.appendChild(aElement);
 		}
 		if (message.contentType == 'VIDEO') {
-
 			//<video width="320" height="240" controls>
 			//       <source src="video-test.mp4" type="video/mp4">
 			//    </video><br>
@@ -325,8 +327,28 @@ function changeImage(event) {
 	document.getElementById('form-file-id').submit();
 	sendImage();
 	event.preventDefault();
-	var frdId = friendId.value;
-	window.location.href = contextPath+"/dual/withFriend/"+frdId;
+
+	/*setTimeout(function(){
+	     if(friendIdInput!=null)
+             window.location = contextPath+"/dual/withFriend/"+friendIdInput.value;
+         if(roomIdInput!=null)
+             window.location = contextPath+"/group/"+roomIdInput.value;
+	 }, timeDelay);*/
+
+
+}
+function pingUrlFile(url) {
+
+    var xhttp = new XMLHttpRequest();
+    //alert("URL: "+url);
+    xhttp.open("GET", url, true);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if (this.status == 200) {
+            alert("Completed");
+        }
+    };
 }
 btnSendInvite.onclick = function(event){
 	//event.preventDefault();

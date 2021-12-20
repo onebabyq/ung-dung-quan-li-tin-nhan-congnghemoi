@@ -18,7 +18,7 @@ import com.example.ChatWeb.dto.AccountDTO;
 @Service
 public class AccountService {
 
-	private static final String LOCALHOST = "http://localhost:9000/api";
+	public static final String LOCALHOST = "http://ec2-54-169-112-210.ap-southeast-1.compute.amazonaws.com:9000/api";
 
 	@Autowired
 	private RestTemplate restTemplate;

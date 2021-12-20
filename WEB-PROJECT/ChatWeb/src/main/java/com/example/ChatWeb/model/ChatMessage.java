@@ -49,6 +49,7 @@ public class ChatMessage {
         return type;
     }
 
+
     public long getIdSender() {
 		return idSender;
 	}
